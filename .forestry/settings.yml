@@ -5,6 +5,13 @@ admin_path: "/static/admin"
 webhook_url: 
 sections:
 - type: directory
+  path: paint_section
+  label: Paint section
+  create: documents
+  match: "**/*.md"
+  templates:
+  - paint-section
+- type: directory
   path: projects
   label: Projects
   create: documents
