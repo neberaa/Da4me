@@ -7,7 +7,8 @@ thumbnail: "/uploads/Test.jpg"
 categories:
 - photography
 - pink
-project_bg_color: ''
+- 'Staff '
+project_bg_color: "#794E4E"
 project_fg_color: ''
 
 ---
