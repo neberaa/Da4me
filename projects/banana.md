@@ -3,7 +3,7 @@ date: 2018
 year: 2019
 title: Banana2
 category: Identity
-thumbnail: "/uploads/mike-dorner-173502-unsplash.jpg"
+thumbnail: "/uploads/test2.jpg"
 categories:
 - photography
 - pink
