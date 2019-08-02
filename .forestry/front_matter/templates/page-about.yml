@@ -1,4 +1,30 @@
 ---
 label: 'Page about '
 hide_body: true
-fields: []
+fields:
+- name: page_title
+  type: text
+  config:
+    required: false
+  label: Page title
+  description: Header of the page
+- name: page_main_content
+  type: textarea
+  default: ''
+  config:
+    required: false
+    wysiwyg: true
+    schema:
+      format: markdown
+  label: Page main content
+  description: Insert all the content
+- name: paint_slider
+  type: image_gallery
+  config: {}
+  label: Paint slider
+  description: Add images for the carousel
+- name: background_image
+  type: file
+  config:
+    maxSize: 250
+  label: Background image
