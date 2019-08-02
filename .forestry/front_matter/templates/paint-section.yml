@@ -1,4 +1,10 @@
 ---
 label: Paint section
 hide_body: false
-fields: []
+fields:
+- name: section_title
+  type: text
+  config:
+    required: false
+  label: Section title
+  description: PLease fill in section title
