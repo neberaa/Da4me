@@ -18,13 +18,3 @@ fields:
       format: markdown
   label: Page main content
   description: Insert all the content
-- name: paint_slider
-  type: image_gallery
-  config: {}
-  label: Paint slider
-  description: Add images for the carousel
-- name: background_image
-  type: file
-  config:
-    maxSize: 250
-  label: Background image
