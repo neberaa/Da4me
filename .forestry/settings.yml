@@ -7,7 +7,6 @@ sections:
 - type: document
   path: page_about
   label: 'Page about '
-  match: "**/*"
 - type: directory
   path: paint_section
   label: Paint section
