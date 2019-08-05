@@ -1,5 +1,5 @@
 ---
-product_category: ''
+product_category: categories/category-kids.md
 product_image: "/uploads/logo3.png"
 product_old_price: '0'
 product_title: Платье детское
