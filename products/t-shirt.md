@@ -1,5 +1,5 @@
 ---
-product_category: ''
+product_category: categories/category-kids.md
 product_image: "/uploads/IMG-38be1b88211fe33f6a01ac6ab9dc6608-V.jpg"
 product_old_price: '0'
 product_title: Футболка 1

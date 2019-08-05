@@ -83,5 +83,5 @@ fields:
   label: Product size
   description: Size for the product
 pages:
-- products/Kids/kids-dress.md
 - products/t-shirt.md
+- products/Kids/kids-dress.md
