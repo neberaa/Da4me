@@ -32,3 +32,5 @@ fields:
   hidden: true
   label: Category key
   description: Set the category API key
+pages:
+- categories/category-kids.md
