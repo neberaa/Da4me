@@ -1,4 +1,77 @@
 ---
 label: Product
 hide_body: true
-fields: []
+fields:
+- name: product_title
+  type: text
+  config:
+    required: false
+  label: Product title
+  description: Title of the product
+- name: product_description
+  type: textarea
+  default: ''
+  config:
+    required: false
+    wysiwyg: false
+    schema:
+      format: markdown
+  label: Product description
+  description: Description of the product
+- name: product_category
+  type: select
+  default: []
+  config:
+    required: false
+    options: []
+    source:
+      type: simple
+      section: 
+      file: 
+      path: 
+  label: Product category
+  description: Which category this product belongs
+- name: product_image
+  type: file
+  config:
+    maxSize: 250
+  label: Product image
+  description: Hero (main) image of the priduct
+- name: product_price
+  type: number
+  label: Product price
+  default: 0
+  required: true
+  config:
+    min: 
+    max: 
+    step: 
+  description: Price for this product
+- name: product_old_price
+  type: number
+  description: Previous price of the product before discount
+  default: 0
+  required: true
+  config:
+    min: 
+    max: 
+    step: 
+  label: Product old price
+- name: product_image_gallery
+  type: image_gallery
+  config: {}
+  label: Product image gallery
+  description: Further images for the product
+- name: product_size
+  type: select
+  default: []
+  config:
+    required: false
+    options: []
+    source:
+      type: simple
+      section: 
+      file: 
+      path: 
+  label: Product size
+  description: Size for the product
