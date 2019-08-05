@@ -28,8 +28,8 @@ fields:
 - name: category_key
   type: text
   config:
-    required: false
-  hidden: true
+    required: true
+  hidden: false
   label: Category key
   description: Set the category API key
 pages:
