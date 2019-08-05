@@ -25,8 +25,8 @@ fields:
     required: false
     options: []
     source:
-      type: simple
-      section: 
+      type: pages
+      section: caterories
       file: 
       path: 
   label: Product category
