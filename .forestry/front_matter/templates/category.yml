@@ -1,4 +1,34 @@
 ---
 label: Category
 hide_body: true
-fields: []
+fields:
+- name: category_title
+  type: text
+  config:
+    required: true
+  label: Category title
+  description: Please insert category name
+- name: category_description
+  type: textarea
+  default: ''
+  config:
+    required: false
+    wysiwyg: false
+    schema:
+      format: markdown
+  label: Category description
+  description: Please fill category description
+- name: category_image
+  type: file
+  config:
+    maxSize: '20'
+  label: Category image
+  description: Please choose the category main image
+  default: "/uploads/logo3.png"
+- name: category_key
+  type: text
+  config:
+    required: false
+  hidden: true
+  label: Category key
+  description: Set the category API key
