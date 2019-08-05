@@ -4,6 +4,13 @@ auto_deploy: false
 admin_path: "/static/admin"
 webhook_url: 
 sections:
+- type: directory
+  path: product
+  label: Product
+  create: all
+  match: "**/*"
+  templates:
+  - product
 - type: document
   path: page_about
   label: 'Page about '
