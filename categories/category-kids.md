@@ -1,5 +1,5 @@
 ---
-category_image: "/uploads/logo3.png"
+category_image: "/v1565020659/samples/landscapes/landscape-panorama.jpg"
 category_title: Kids
 category_description: Lorem Ipsum - это текст-"рыба", часто используемый в печати
   и вэб-дизайне. Lorem Ipsum является стандартной "рыбой" для текстов на латинице
