@@ -66,9 +66,9 @@ fields:
   description: Further images for the product
 - name: product_size
   type: select
-  default: M
+  default: ''
   config:
-    required: true
+    required: false
     options:
     - XS
     - " S"
