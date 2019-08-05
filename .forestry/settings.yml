@@ -5,8 +5,8 @@ admin_path: "/static/admin"
 webhook_url: 
 sections:
 - type: directory
-  path: product
-  label: Product
+  path: products
+  label: Products
   create: all
   match: "**/*.md"
   new_doc_ext: ".md"
