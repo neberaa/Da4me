@@ -7,7 +7,7 @@ fields:
   config:
     required: true
   label: Category title
-  description: Please insert category name
+  description: Введите название категории
 - name: category_description
   type: textarea
   default: ''
@@ -17,13 +17,13 @@ fields:
     schema:
       format: markdown
   label: Category description
-  description: Please fill category description
+  description: Введите описание категории
 - name: category_image
   type: file
   config:
     maxSize: '20'
   label: Category image
-  description: Please choose the category main image
+  description: Вставьте главную картинку категории
   default: "/uploads/logo3.png"
 - name: category_key
   type: text
