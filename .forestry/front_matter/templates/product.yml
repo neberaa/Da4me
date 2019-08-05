@@ -5,7 +5,7 @@ fields:
 - name: product_title
   type: text
   config:
-    required: false
+    required: true
   label: Product title
   description: Title of the product
 - name: product_description
@@ -34,9 +34,10 @@ fields:
 - name: product_image
   type: file
   config:
-    maxSize: 250
+    maxSize: '20'
   label: Product image
   description: Hero (main) image of the priduct
+  default: "/uploads/logo3.png"
 - name: product_price
   type: number
   label: Product price
@@ -46,11 +47,12 @@ fields:
     min: 
     max: 
     step: 
+    required: true
   description: Price for this product
 - name: product_old_price
   type: number
   description: Previous price of the product before discount
-  default: 0
+  default: '0'
   required: true
   config:
     min: 
@@ -64,10 +66,15 @@ fields:
   description: Further images for the product
 - name: product_size
   type: select
-  default: []
+  default: M
   config:
-    required: false
-    options: []
+    required: true
+    options:
+    - XS
+    - " S"
+    - M
+    - L
+    - XL
     source:
       type: simple
       section: 
