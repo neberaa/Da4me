@@ -5,13 +5,13 @@ fields:
 - name: title
   type: text
   config:
-    required: true
+    required: false
   label: Заголовок
   description: Введите заголовок страницы
 - name: path
   type: text
   config:
-    required: false
+    required: true
   label: ID страницы
   description: 'Будет использоваться как путь к странице (должен быть на английском) '
   hidden: false
