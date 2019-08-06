@@ -2,12 +2,12 @@
 label: Product
 hide_body: true
 fields:
-- name: product_title
+- name: title
   type: text
   config:
     required: true
-  label: Product title
-  description: Title of the product
+  label: Название
+  description: 'Введите название продукта '
 - name: product_description
   type: textarea
   default: ''
