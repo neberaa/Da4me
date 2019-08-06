@@ -5,6 +5,10 @@
       <ProjectsGrid :projects="$page.projects.edges" />
     </div>
     <LatestJournals :journals="$page.journals.edges" />
+      <div v-for="edge in $page.products.edges" :key="edge.node.id">
+          <h2>{{ edge.node.title }}</h2>
+          <img :src="edge.node.image" alt="">
+      </div>
   </Layout>
 </template>
 
@@ -28,6 +32,17 @@ query Posts {
         id
         path
         title
+      }
+    }
+  },
+  products: allProductItem {
+    edges {
+      node {
+        id
+        title
+    description
+    category
+    image
       }
     }
   }

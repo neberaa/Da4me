@@ -3,9 +3,9 @@
         <div class="container">
             <div class="left">
                 <g-link :to="{ name: 'home' }" class="home-link">
-                    <img 
-                        src="../../static/logo.svg"
-                        :alt="settings.site_name" 
+                    <img
+                        src="../../static/logo.png"
+                        :alt="settings.site_name"
                         class="logo"
                     />
                 </g-link>
@@ -22,7 +22,7 @@
 export default {
   data() {
     return {
-        logo: require("../../static/logo.svg"),
+        logo: require("../../static/logo.png"),
         settings: require("../../data/theme.json")
     }
   }
@@ -50,15 +50,12 @@ export default {
 .home-link {
     text-decoration: none;
 }
-.logo {
-    height: 1.5rem;
-}
 .site-name {
     font-size: 0.9rem;
     font-weight: 700;
     letter-spacing: 0.05em;
     text-decoration: none;
-    text-transform: uppercase;   
+    text-transform: uppercase;
 }
 .nav > * {
     font-size: 0.9rem;

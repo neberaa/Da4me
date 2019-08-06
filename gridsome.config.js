@@ -30,7 +30,19 @@ module.exports = {
           externalLinksRel: ["nofollow", "noopener", "noreferrer"]
         }
       }
-    }
+    },
+    {
+      use: "@gridsome/source-filesystem",
+      options: {
+        path: "products/**/*.md",
+        typeName: "ProductItem",
+        resolveAbsolutePaths: true,
+        remark: {
+          externalLinksTarget: "_blank",
+          externalLinksRel: ["nofollow", "noopener", "noreferrer"]
+        }
+      }
+    },
   ],
   transformers: {
     remark: {

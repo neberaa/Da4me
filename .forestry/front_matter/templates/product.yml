@@ -7,7 +7,7 @@ fields:
   config:
     required: true
   label: Название
-  description: 'Введите название продукта '
+  description: 'Введите название продукта'
 - name: description
   type: textarea
   default: ''
@@ -17,7 +17,7 @@ fields:
     schema:
       format: markdown
   label: 'Описание '
-  description: 'Введите описание продукта '
+  description: 'Введите описание продукта'
 - name: category
   type: select
   default: []
@@ -27,10 +27,10 @@ fields:
     source:
       type: pages
       section: caterories
-      file: 
-      path: 
+      file:
+      path:
   label: 'Категория '
-  description: 'Выберите категорию продукта '
+  description: 'Выберите категорию продукта'
 - name: image
   type: file
   config:
@@ -43,9 +43,9 @@ fields:
   default: 0
   required: true
   config:
-    min: 
-    max: 
-    step: 
+    min:
+    max:
+    step:
     required: true
   label: Цена
   description: Введите актуальную цену
@@ -54,10 +54,10 @@ fields:
   default: '0'
   required: true
   config:
-    min: 
-    max: 
-    step: 
-  label: 'Старая цена (если есть) '
+    min:
+    max:
+    step:
+  label: 'Старая цена (если есть)'
   description: Введите старую цену до скидки
 - name: image_gallery
   type: image_gallery
@@ -71,15 +71,15 @@ fields:
     required: false
     options:
     - XS
-    - " S"
+    - S
     - M
     - L
     - XL
     source:
       type: simple
-      section: 
-      file: 
-      path: 
+      section:
+      file:
+      path:
   label: Размер
   description: Выберите размер, если есть
 pages:
