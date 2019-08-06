@@ -2,7 +2,7 @@
 new_page_extension: md
 auto_deploy: false
 admin_path: "/static/admin"
-webhook_url:
+webhook_url: 
 sections:
 - type: directory
   path: categories
@@ -46,12 +46,11 @@ sections:
 - type: document
   path: data/theme.json
   label: Theme config
-upload_dir: ''
-public_path: https://res.cloudinary.com/da4me/image/upload
+upload_dir: https://res.cloudinary.com/da4me/image/upload/da4me
+public_path: https://res.cloudinary.com/da4me/image/upload/da4me
 front_matter_path: ''
-use_front_matter_path:
+use_front_matter_path: 
 file_template: ":filename:"
-cloudinary_url: 'https://res.cloudinary.com/da4me/image/upload'
 build:
   preview_command: gridsome build
   publish_command: gridsome build
