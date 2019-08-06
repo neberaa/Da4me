@@ -1,4 +1,22 @@
 ---
 label: Social
 hide_body: true
-fields: []
+fields:
+- name: key
+  type: text
+  config:
+    required: true
+  label: Ключ
+  description: 'Ключ для АПИ на английском языке '
+- name: icon
+  type: file
+  config:
+    maxSize: 250
+  label: Иконка
+  description: Выберите соц иконку
+- name: link
+  type: text
+  config:
+    required: true
+  label: Ссылка
+  description: 'Введите ссылку на аккаунт в соц сетях '
