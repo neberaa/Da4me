@@ -64,7 +64,7 @@ fields:
   config: {}
   label: Галерея
   description: Выберите дополнительные картинки для слайдера
-- name: product_size
+- name: size
   type: select
   default: ''
   config:
@@ -80,8 +80,8 @@ fields:
       section: 
       file: 
       path: 
-  label: Product size
-  description: Size for the product
+  label: Размер
+  description: Выберите размер, если есть
 pages:
 - products/t-shirt.md
 - products/Kids/kids-dress.md
