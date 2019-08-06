@@ -47,7 +47,7 @@ sections:
   path: data/theme.json
   label: Theme config
 upload_dir: da4me
-public_path: https://res.cloudinary.com/da4me/image/upload/da4me
+public_path: https://res.cloudinary.com/da4me/da4me
 front_matter_path: ''
 use_front_matter_path: 
 file_template: ":filename:"
