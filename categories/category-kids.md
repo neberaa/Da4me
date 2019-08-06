@@ -10,5 +10,9 @@ category_description: Lorem Ipsum - это текст-"рыба", часто и�
   Lorem Ipsum в 60-х годах и, в более недавнее время, программы электронной вёрстки
   типа Aldus PageMaker, в шаблонах которых используется Lorem Ipsum.
 category_key: category_kids
+title: 'Детская одежда '
+description: Все для детей
+image: https://res.cloudinary.com/da4me/uploads/v1565020655/uploads/leather-bag-gray.jpg
+key: category_kids
 
 ---
