@@ -18,7 +18,7 @@ fields:
       format: markdown
   label: 'Описание '
   description: 'Введите описание продукта '
-- name: product_category
+- name: category
   type: select
   default: []
   config:
@@ -29,8 +29,8 @@ fields:
       section: caterories
       file: 
       path: 
-  label: Product category
-  description: Which category this product belongs
+  label: 'Категория '
+  description: 'Выберите категорию продукта '
 - name: product_image
   type: file
   config:
