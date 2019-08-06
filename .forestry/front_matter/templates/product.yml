@@ -31,16 +31,15 @@ fields:
       path: 
   label: 'Категория '
   description: 'Выберите категорию продукта '
-- name: product_image
+- name: image
   type: file
   config:
     maxSize: '20'
-  label: Product image
-  description: Hero (main) image of the priduct
   default: "/uploads/logo3.png"
-- name: product_price
+  label: 'Основная картинка '
+  description: Выберите основную картинку
+- name: price
   type: number
-  label: Product price
   default: 0
   required: true
   config:
@@ -48,22 +47,23 @@ fields:
     max: 
     step: 
     required: true
-  description: Price for this product
-- name: product_old_price
+  label: Цена
+  description: Введите актуальную цену
+- name: old_price
   type: number
-  description: Previous price of the product before discount
   default: '0'
   required: true
   config:
     min: 
     max: 
     step: 
-  label: Product old price
-- name: product_image_gallery
+  label: 'Старая цена (если есть) '
+  description: Введите старую цену до скидки
+- name: image_gallery
   type: image_gallery
   config: {}
-  label: Product image gallery
-  description: Further images for the product
+  label: Галерея
+  description: Выберите дополнительные картинки для слайдера
 - name: product_size
   type: select
   default: ''
