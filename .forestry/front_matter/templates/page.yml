@@ -15,5 +15,13 @@ fields:
   label: ID страницы
   description: 'Будет использоваться как путь к странице (должен быть на английском) '
   hidden: false
+- name: block
+  type: blocks
+  label: Блоки страниц
+  template_types: []
+  config:
+    min: 
+    max: 
+  description: Выберите блок для страницы
 pages:
 - pages/размерная-сетка.md
