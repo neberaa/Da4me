@@ -2,13 +2,13 @@
 label: Category
 hide_body: true
 fields:
-- name: category_title
+- name: title
   type: text
   config:
     required: true
-  label: Category title
   description: Введите название категории
-- name: category_description
+  label: Название
+- name: description
   type: textarea
   default: ''
   config:
@@ -16,21 +16,21 @@ fields:
     wysiwyg: false
     schema:
       format: markdown
-  label: Category description
   description: Введите описание категории
-- name: category_image
+  label: 'Описание '
+- name: image
   type: file
   config:
     maxSize: '20'
-  label: Category image
   description: Вставьте главную картинку категории
   default: "/uploads/logo3.png"
-- name: category_key
+  label: Картинка
+- name: key
   type: text
   config:
     required: true
   hidden: false
-  label: Category key
-  description: Set the category API key
+  description: 'Ключ для АПИ на английском языке '
+  label: Ключ
 pages:
 - categories/category-kids.md
