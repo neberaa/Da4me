@@ -9,6 +9,8 @@ sections:
   label: Страницы
   create: all
   match: "**/*.md"
+  templates:
+  - page
 - type: directory
   path: categories
   label: Категории
