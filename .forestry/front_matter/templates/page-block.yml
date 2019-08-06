@@ -1,4 +1,37 @@
 ---
 label: Page block
 hide_body: true
-fields: []
+fields:
+- name: title
+  type: text
+  config:
+    required: false
+  label: Заголовок
+  description: Введите заголовок для секции
+- name: description
+  type: textarea
+  default: ''
+  config:
+    required: false
+    wysiwyg: false
+    schema:
+      format: markdown
+  label: 'Описание '
+  description: Описание, контент секции
+- name: key
+  type: text
+  config:
+    required: false
+  label: ID секции
+  description: 'Ключ на английском языке '
+- name: bg_image
+  type: file
+  config:
+    maxSize: 250
+  label: Фоновая картинка
+  description: Выберите фоновую картинку
+- name: gallery
+  type: image_gallery
+  config: {}
+  label: Слайдер картинок
+  description: Выберите несколько дополнительных картинок
