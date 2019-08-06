@@ -25,4 +25,3 @@ fields:
   description: Выберите блок для страницы
 pages:
 - pages/размерная-сетка-1.md
-- pages/размерная-сетка.md
