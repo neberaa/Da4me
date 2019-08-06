@@ -8,3 +8,5 @@ fields:
     required: true
   label: Заголовок
   description: Введите заголовок страницы
+pages:
+- pages/размерная-сетка.md
