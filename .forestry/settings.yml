@@ -2,7 +2,7 @@
 new_page_extension: md
 auto_deploy: false
 admin_path: "/static/admin"
-webhook_url: 
+webhook_url:
 sections:
 - type: directory
   path: categories
@@ -49,8 +49,9 @@ sections:
 upload_dir: ''
 public_path: ''
 front_matter_path: ''
-use_front_matter_path: 
+use_front_matter_path:
 file_template: ":filename:"
+cloudinary_url: 'https://res.cloudinary.com/da4me/image/upload'
 build:
   preview_command: gridsome build
   publish_command: gridsome build
