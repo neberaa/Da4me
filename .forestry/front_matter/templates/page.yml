@@ -18,7 +18,8 @@ fields:
 - name: block
   type: blocks
   label: Блоки страниц
-  template_types: []
+  template_types:
+  - page-block
   config:
     min: 
     max: 
