@@ -38,16 +38,6 @@ sections:
   new_doc_ext: md
   templates:
   - product
-- type: document
-  path: page_about
-  label: 'Page about '
-- type: directory
-  path: paint_section
-  label: Paint section
-  create: documents
-  match: "**/*.md"
-  templates:
-  - paint-section
 - type: directory
   path: projects
   label: Projects

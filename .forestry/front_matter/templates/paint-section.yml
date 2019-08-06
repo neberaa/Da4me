@@ -8,5 +8,3 @@ fields:
     required: false
   label: Section title
   description: PLease fill in section title
-pages:
-- paint_section/Paint.md
