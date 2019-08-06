@@ -8,7 +8,7 @@ fields:
     required: true
   label: Название
   description: 'Введите название продукта '
-- name: product_description
+- name: description
   type: textarea
   default: ''
   config:
@@ -16,8 +16,8 @@ fields:
     wysiwyg: false
     schema:
       format: markdown
-  label: Product description
-  description: Description of the product
+  label: 'Описание '
+  description: 'Введите описание продукта '
 - name: product_category
   type: select
   default: []
