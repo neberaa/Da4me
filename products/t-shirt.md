@@ -13,5 +13,13 @@ product_image_gallery:
 - "/v1565020656/samples/cloudinary-group.jpg"
 - "/v1565020657/samples/landscapes/nature-mountains.jpg"
 product_size: ''
+title: Футболка женская
+description: Аьалаьаьм. Аааа
+category: categories/category-kids.md
+image: ''
+price: '200'
+old_price: 
+image_gallery: []
+size: ''
 
 ---
