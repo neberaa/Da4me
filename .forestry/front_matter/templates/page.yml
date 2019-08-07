@@ -1,0 +1,28 @@
+---
+label: Page
+hide_body: false
+fields:
+- name: title
+  type: text
+  config:
+    required: false
+  label: Заголовок
+  description: Введите заголовок страницы
+- name: path
+  type: text
+  config:
+    required: true
+  label: ID страницы
+  description: 'Будет использоваться как путь к странице (должен быть на английском) '
+  hidden: false
+- name: block
+  type: blocks
+  label: Блоки страниц
+  template_types:
+  - page-block
+  config:
+    min: 
+    max: 
+  description: Выберите блок для страницы
+pages:
+- pages/размерная-сетка-1.md

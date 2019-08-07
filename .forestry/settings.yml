@@ -2,33 +2,42 @@
 new_page_extension: md
 auto_deploy: false
 admin_path: "/static/admin"
-webhook_url:
+webhook_url: 
 sections:
 - type: directory
+  path: socials
+  label: Соц сети
+  create: all
+  match: "**/*.md"
+  templates:
+  - social
+- type: directory
+  path: blocks
+  label: Блоки страниц
+  create: all
+  match: "**/*.md"
+- type: directory
+  path: pages
+  label: Страницы
+  create: all
+  match: "**/*.md"
+  templates:
+  - page
+- type: directory
   path: categories
-  label: Caterories
+  label: Категории
   create: documents
   match: "**/*.md"
   templates:
   - category
 - type: directory
   path: products
-  label: Products
+  label: Продукты
   create: all
   match: "**/*.md"
   new_doc_ext: md
   templates:
   - product
-- type: document
-  path: page_about
-  label: 'Page about '
-- type: directory
-  path: paint_section
-  label: Paint section
-  create: documents
-  match: "**/*.md"
-  templates:
-  - paint-section
 - type: directory
   path: projects
   label: Projects
@@ -46,12 +55,11 @@ sections:
 - type: document
   path: data/theme.json
   label: Theme config
-upload_dir: ''
-public_path: https://res.cloudinary.com/da4me/image/upload
+upload_dir: uploads
+public_path: https://res.cloudinary.com/da4me/uploads
 front_matter_path: ''
-use_front_matter_path:
+use_front_matter_path: 
 file_template: ":filename:"
-cloudinary_url: 'https://res.cloudinary.com/da4me/image/upload'
 build:
   preview_command: gridsome build
   publish_command: gridsome build
