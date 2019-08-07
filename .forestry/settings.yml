@@ -12,11 +12,6 @@ sections:
   templates:
   - social
 - type: directory
-  path: blocks
-  label: Блоки страниц
-  create: all
-  match: "**/*.md"
-- type: directory
   path: pages
   label: Страницы
   create: all
