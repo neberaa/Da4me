@@ -9,6 +9,8 @@ sections:
   label: Соц сети
   create: all
   match: "**/*.md"
+  templates:
+  - social
 - type: directory
   path: blocks
   label: Блоки страниц
