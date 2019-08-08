@@ -59,7 +59,7 @@ module.exports = {
       use: "@gridsome/source-filesystem",
       options: {
         path: "pages/**/*.md",
-        typeName: "Page",
+        typeName: "PageItem",
         resolveAbsolutePaths: true,
         remark: {
           externalLinksTarget: "_blank",
