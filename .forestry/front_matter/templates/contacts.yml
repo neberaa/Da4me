@@ -1,4 +1,22 @@
 ---
 label: Contacts
 hide_body: true
-fields: []
+fields:
+- name: address
+  type: text
+  config:
+    required: false
+  label: Адрес
+  description: Введите адрес
+- name: e-mail
+  type: text
+  config:
+    required: false
+  label: 'E-mail '
+  description: 'Введите e-mail адрес '
+- name: phone
+  type: text
+  config:
+    required: false
+  label: 'Контактный телефон '
+  description: Введите кон верный телефон
