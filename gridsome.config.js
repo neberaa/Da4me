@@ -2,8 +2,8 @@
 // Learn more: https://gridsome.org/docs/config
 
 module.exports = {
-  siteName: "Portfolio",
-  siteUrl: `https://www.itsnwa.com`,
+  siteName: "DaForMe fashion e-store",
+  siteUrl: `https://da4me.metlify.com`,
   titleTemplate: "%s - NWA",
   siteDescription: "Creative technologist",
   plugins: [
