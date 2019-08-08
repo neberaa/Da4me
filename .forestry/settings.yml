@@ -12,11 +12,6 @@ sections:
   templates:
   - social
 - type: directory
-  path: blocks
-  label: Блоки страниц
-  create: all
-  match: "**/*.md"
-- type: directory
   path: pages
   label: Страницы
   create: all
@@ -56,7 +51,7 @@ sections:
   path: data/theme.json
   label: Theme config
 upload_dir: uploads
-public_path: https://res.cloudinary.com/da4me/uploads
+public_path: https://res.cloudinary.com/da4me
 front_matter_path: ''
 use_front_matter_path: 
 file_template: ":filename:"
