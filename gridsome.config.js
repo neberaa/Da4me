@@ -4,8 +4,8 @@
 module.exports = {
   siteName: "DaForMe fashion e-store",
   siteUrl: `https://da4me.metlify.com`,
-  titleTemplate: "%s - NWA",
-  siteDescription: "Creative technologist",
+  titleTemplate: "%s - Da4Me",
+  siteDescription: "Creative and modern clothes fashion store",
   plugins: [
     {
       use: "@gridsome/source-filesystem",
