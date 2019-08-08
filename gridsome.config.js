@@ -43,6 +43,42 @@ module.exports = {
         }
       }
     },
+    {
+      use: "@gridsome/source-filesystem",
+      options: {
+        path: "categories/**/*.md",
+        typeName: "CategoryItem",
+        resolveAbsolutePaths: true,
+        remark: {
+          externalLinksTarget: "_blank",
+          externalLinksRel: ["nofollow", "noopener", "noreferrer"]
+        }
+      }
+    },
+    {
+      use: "@gridsome/source-filesystem",
+      options: {
+        path: "pages/**/*.md",
+        typeName: "Page",
+        resolveAbsolutePaths: true,
+        remark: {
+          externalLinksTarget: "_blank",
+          externalLinksRel: ["nofollow", "noopener", "noreferrer"]
+        }
+      }
+    },
+    {
+      use: "@gridsome/source-filesystem",
+      options: {
+        path: "socials/**/*.md",
+        typeName: "SocialItem",
+        resolveAbsolutePaths: true,
+        remark: {
+          externalLinksTarget: "_blank",
+          externalLinksRel: ["nofollow", "noopener", "noreferrer"]
+        }
+      }
+    },
   ],
   transformers: {
     remark: {
