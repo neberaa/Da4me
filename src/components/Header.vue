@@ -25,7 +25,7 @@
 
 <static-query>
 query allPageItem  {
-  pages: allPageItem {
+  pages: allPageItem(filter: { showInNav: {eq:true}}) {
     edges{
       node{
        title
