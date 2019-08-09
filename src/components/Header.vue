@@ -11,19 +11,37 @@
                 </g-link>
             </div>
             <nav class="nav right">
-                <g-link class="nav__link" :to="{ name: 'journal' }">Journal</g-link>
-                <g-link class="nav__link" :to="{ name: 'contact' }">Say Hi!</g-link>
+<!--                <g-link class="nav__link" :to="{ name: 'journal' }">Journal</g-link>-->
+<!--                <g-link class="nav__link" :to="{ name: 'contact' }">Say Hi!</g-link>-->
+                <g-link
+                    v-for="(page, ind) in $static.pages.edges"
+                    :key="`page-${ind}`"
+                    class="nav__link"
+                    :to="page.node.path">{{ page.node.title }}</g-link>
             </nav>
         </div>
     </header>
 </template>
 
+<static-query>
+query allPageItem  {
+  pages: allPageItem {
+    edges{
+      node{
+       title
+       path
+      }
+    }
+  }
+}
+</static-query>
+
 <script>
 export default {
   data() {
     return {
-        logo: require("../../static/logo.png"),
-        settings: require("../../data/theme.json")
+      logo: require("../../static/logo.png"),
+      settings: require("../../data/theme.json")
     }
   }
 }
