@@ -1,5 +1,16 @@
 // This is where project configuration and installed plugin options are located.
 // Learn more: https://gridsome.org/docs/config
+const path = require('path');
+
+function addStyleResource (rule) {
+  rule.use('style-resource')
+    .loader('style-resources-loader')
+    .options({
+      patterns: [
+        path.resolve(__dirname, './src/assets/styles/*.scss'),
+      ],
+    })
+}
 
 module.exports = {
   siteName: "DaForMe fashion e-store",
@@ -84,5 +95,11 @@ module.exports = {
     remark: {
       plugins: ["@gridsome/remark-prismjs"]
     }
+  },
+  chainWebpack (config) {
+    const types = ['vue-modules', 'vue', 'normal-modules', 'normal'];
+    types.forEach(type => {
+      addStyleResource(config.module.rule('scss').oneOf(type))
+    })
   }
 };

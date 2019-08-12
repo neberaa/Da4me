@@ -1,0 +1,88 @@
+@mixin screenBreakpoint2($point) {
+  @if $point == phone {
+    @media (max-width: $tablet - 1) { @content; }
+  }
+  
+  @else if $point == phone-landscape {
+    @media (max-width: $tablet - 1) and (orientation: landscape) { @content; }
+  }
+  
+  @else if $point == large-phone-landscape {
+    @media only screen
+    and (min-device-width : 375px)
+    and (max-device-width : 896px) // width of iphone XR
+    and (orientation : landscape) { @content; }
+  }
+  
+  @else if $point == tablet {
+    @media (min-width: $tablet) and (max-width: $desktop - 1) { @content; }
+  }
+  
+  @else if $point == tablet-landscape {
+    @media (min-width: $tablet) and (max-width: $desktop - 1) and (orientation: landscape) { @content; }
+  }
+  
+  @else if $point == tablet-portrait {
+    @media (min-width: $tablet) and (max-width: $desktop - 1) and (orientation: portrait) { @content; }
+  }
+  
+  @else if $point == desktop {
+    @media (min-width: $desktop) { @content; }
+  }
+}
+@mixin center($axis: "both") {
+  position: absolute;
+  
+  @if $axis == 'y' {
+    top: 50%;
+    transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+  }
+  
+  @if $axis == 'x' {
+    left: 50%;
+    transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+  }
+  
+  @if $axis == 'both' {
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    -ms-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    -moz-transform: translateX(-50%) translateY(-50%);
+  }
+}
+%reset-Button {
+  border: none;
+  margin: 0;
+  padding: 0;
+  width: auto;
+  overflow: visible;
+  background-color: transparent;
+  cursor: pointer;
+  /* inherit font & color from ancestor */
+  color: inherit;
+  font: inherit;
+  text-align: inherit;
+  /* Normalize `line-height`. Cannot be changed from `normal` in Firefox 4+. */
+  line-height: normal;
+  /* Corrects font smoothing for webkit */
+  -webkit-font-smoothing: inherit;
+  -moz-osx-font-smoothing: inherit;
+  /* Corrects inability to style clickable `input` types in iOS */
+  -webkit-appearance: none;
+  &:focus {
+    outline: none;
+  }
+  /* Remove excess padding and border in Firefox 4+ */
+  &::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+  }
+}
