@@ -2,36 +2,19 @@
   <Layout>
     <div class="container">
       <Hero />
-      <ProjectsGrid :projects="$page.projects.edges" />
+      <categories-grid :categories="$page.categories.edges" />
     </div>
-    <LatestJournals :journals="$page.journals.edges" />
-      <div v-for="edge in $page.products.edges" :key="edge.node.id">
-          <h2>{{ edge.node.title }}</h2>
-          <img :src="edge.node.image" alt="">
-      </div>
   </Layout>
 </template>
 
 <page-query>
 query Posts {
-	projects: allProjectPost {
+	categories: allCategoryItem {
     edges {
       node {
-        id
-        date (format: "D. MMMM YYYY")
         title
-        categories
-        thumbnail (quality: 90)
+        image
         path
-      }
-    }
-  },
-  journals: allJournalPost (perPage: 4) {
-    edges {
-      node {
-        id
-        path
-        title
       }
     }
   },
@@ -51,14 +34,12 @@ query Posts {
 
 <script>
 import Hero from "@/components/Hero"
-import ProjectsGrid from "@/components/ProjectsGrid"
-import LatestJournals from "@/components/LatestJournals"
+import CategoriesGrid from "@/components/CategoriesGrid"
 
 export default {
   components: {
     Hero,
-    ProjectsGrid,
-    LatestJournals
+    CategoriesGrid
   }
 }
 </script>

@@ -13,7 +13,7 @@ function addStyleResource (rule) {
 }
 
 module.exports = {
-  siteName: "DaForMe fashion e-store",
+  siteName: "Fashion e-store",
   siteUrl: `https://da4me.netlify.com`,
   titleTemplate: "%s - Da4Me",
   siteDescription: "Creative and modern clothes fashion store",
