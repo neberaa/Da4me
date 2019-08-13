@@ -13,19 +13,20 @@
                     :key="item.node.id">
                     {{item.node.title}}
             </g-link>
+            <div class="products">
+                <g-link
+                        :to="item.node.path"
+                        v-for="item in $page.products.edges"
+                        :key="item.node.id"
+                        class="product__item"
+                >
+                    <div class="container journal">
+                        <h2 class="journal-title">{{ item.node.title }}</h2>
+                        <img :src="item.node.image" :alt="item.node.title">
+                    </div>
+                </g-link>
+            </div>
         </div>
-
-            <g-link
-              :to="item.node.path"
-              v-for="item in $page.products.edges"
-              :key="item.node.id"
-              class="product__item"
-            >
-              <div class="container journal">
-                <h2 class="journal-title">{{ item.node.title }}</h2>
-                  <img :src="item.node.image" :alt="item.node.title">
-              </div>
-            </g-link>
 
     </Layout>
 </template>
@@ -60,4 +61,15 @@
 </script>
 
 <style scoped>
+    .products {
+        display: flex;
+    }
+    .product__item {
+        display: block;
+        width: 300px;
+        height: 600px;
+        overflow: hidden;
+        border: 1px solid darkgray;
+        margin: 0 20px;
+    }
 </style>

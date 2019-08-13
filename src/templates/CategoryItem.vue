@@ -2,24 +2,33 @@
   <Layout>
     <div class="category">
       <div class="container category-container">
-          <g-link
-                  :to="item.node.path"
-                  v-for="item in $page.categories.edges"
-                  :key="item.node.id">
-              {{item.node.title}}
-          </g-link>
-        <h1 v-html="$page.category.title" class="category-title" />
-          <p>{{$page.category.path}}</p>
-          <div v-for="product in filteredProducts">
-              <g-link
-                  :to="product.node.path"
-                  :key="product.node.id"
-                  class="product__item">
-                  {{product.node.title}}
-                  <img
-                      :src="product.node.image"
-                      :alt="product.node.title">
-              </g-link>
+
+          <nav class="breadcrumbs">
+              <g-link to="/">Главная/</g-link>
+              <g-link to="/categories">Категории</g-link>
+          </nav>
+          <h1 v-html="$page.category.title" class="category-title" />
+          <div class="content">
+              <aside class="sidebar">
+                  <g-link
+                          :to="item.node.path"
+                          v-for="item in $page.categories.edges"
+                          :key="item.node.id">
+                      {{item.node.title}}
+                  </g-link>
+              </aside>
+              <div class="products">
+                  <g-link
+                          v-for="product in filteredProducts"
+                          :to="product.node.path"
+                          :key="product.node.id"
+                          class="product__item">
+                      {{product.node.title}}
+                      <img
+                              :src="product.node.image"
+                              :alt="product.node.title">
+                  </g-link>
+              </div>
           </div>
       </div>
     </div>
@@ -70,8 +79,30 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
     a.active {
         color: red;
     }
+    .breadcrumbs {
+        margin: 20px 0;
+    }
+    .content {
+        display: flex;
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+        }
+        .products {
+            display: flex;
+            .product__item {
+                display: block;
+                width: 300px;
+                height: 600px;
+                overflow: hidden;
+                border: 1px solid darkgray;
+                margin: 0 20px;
+            }
+        }
+    }
+
 </style>

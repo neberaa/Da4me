@@ -25,5 +25,15 @@ export default {
 </script>
 
 <style scoped>
-
+    .categories {
+        display: flex;
+    }
+    .category {
+        display: block;
+        width: 300px;
+        height: 400px;
+        overflow: hidden;
+        border: 1px solid darkgray;
+        margin: 0 20px;
+    }
 </style>
