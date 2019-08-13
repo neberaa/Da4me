@@ -16,7 +16,7 @@ product_size: ''
 title: Футболка женская
 description: Аьалаьаьм. Аааа
 category: categories/category-kids.md
-image: https://res.cloudinary.com/da4me/uploads/v1565020648/uploads/analog-classic.jpg
+image: https://res.cloudinary.com/da4me/v1565241900/uploads/IMG-dad89357e1ec309696af7420459f3d1a-V_fg6q2q.jpg
 price: '200'
 old_price: 
 image_gallery:
