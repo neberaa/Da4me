@@ -55,12 +55,13 @@ public_path: https://res.cloudinary.com/da4me
 front_matter_path: ''
 use_front_matter_path: 
 file_template: ":filename:"
+instant_preview: 
 build:
-  preview_command: gridsome build
-  publish_command: gridsome build
   preview_output_directory: dist
-  output_directory: dist
   install_dependencies_command: yarn install
   preview_docker_image: node:10
   mount_path: "/srv"
   instant_preview_command: vuepress dev -p 8080 -h 0.0.0.0
+  publish_command: gridsome build
+  output_directory: dist
+  preview_command: gridsome build

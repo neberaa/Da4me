@@ -83,5 +83,5 @@ fields:
   label: Размер
   description: Выберите размер, если есть
 pages:
-- products/Kids/kids-dress.md
 - products/t-shirt.md
+- products/Kids/kids-dress.md
