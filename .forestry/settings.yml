@@ -4,9 +4,6 @@ auto_deploy: false
 admin_path: "/static/admin"
 webhook_url: 
 sections:
-- type: document
-  path: data/contacts.json
-  label: Контакты
 - type: directory
   path: socials
   label: Соц сети
@@ -14,6 +11,9 @@ sections:
   match: "**/*.md"
   templates:
   - social
+- type: document
+  path: data/contacts.json
+  label: Контакты
 - type: directory
   path: pages
   label: Страницы
