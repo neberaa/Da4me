@@ -5,7 +5,7 @@ admin_path: "/static/admin"
 webhook_url: 
 sections:
 - type: document
-  path: contacts/**/*.md
+  path: data/contacts.json
   label: Контакты
 - type: directory
   path: socials
