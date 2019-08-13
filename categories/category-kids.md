@@ -12,7 +12,7 @@ category_description: Lorem Ipsum - это текст-"рыба", часто и�
 category_key: category_kids
 title: 'Детская одежда '
 description: Все для детей
-image: https://res.cloudinary.com/da4me/v1565020655/uploads/accessories-bag.jpg
+image: https://res.cloudinary.com/da4me/v1565723979/uploads/%D0%91%D0%B5%D0%B7-%D0%B8%D0%BC%D0%B5%D0%BD%D0%B8-5_xjes0u.jpg
 key: category_kids
 
 ---
