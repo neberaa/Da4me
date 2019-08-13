@@ -4,6 +4,10 @@ auto_deploy: false
 admin_path: "/static/admin"
 webhook_url: 
 sections:
+- type: document
+  path: contacts/**/*.md
+  label: Контакты
+  match: "**/*"
 - type: directory
   path: socials
   label: Соц сети
