@@ -6,17 +6,17 @@ fields:
   type: text
   config:
     required: false
-  label: Адрес
-  description: Введите адрес
+  label: 'Адрес'
+  description: 'Введите адрес'
 - name: e-mail
   type: text
   config:
     required: false
-  label: 'E-mail '
-  description: 'Введите e-mail адрес '
+  label: 'E-mail'
+  description: 'Введите e-mail адрес'
 - name: phone
   type: text
   config:
     required: false
-  label: 'Контактный телефон '
-  description: Введите кон верный телефон
+  label: 'Контактный телефон'
+  description: 'Введите контактный телефон'
