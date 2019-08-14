@@ -4,6 +4,8 @@ auto_deploy: false
 admin_path: "/static/admin"
 webhook_url: 
 sections:
+- type: heading
+  label: КОНТЕНТ
 - type: directory
   path: socials
   label: Соц сети
@@ -47,6 +49,12 @@ sections:
   match: "**/*.md"
   templates:
   - journal
+- type: heading
+  label: ОБЩАЯ ИНФОРМАЦИЯ
+- type: document
+  path: data/**/*.json
+  label: Контакты
+  match: "**/*"
 - type: document
   path: data/theme.json
   label: Theme config
