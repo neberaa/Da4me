@@ -50,9 +50,6 @@ sections:
   templates:
   - journal
 - type: document
-  path: data/**/*.json
-  label: Контакты
-- type: document
   path: data/theme.json
   label: Theme config
 upload_dir: uploads
