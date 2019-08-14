@@ -20,3 +20,5 @@ fields:
     required: false
   label: 'Контактный телефон'
   description: 'Введите контактный телефон'
+pages:
+  - data/contacts.json
