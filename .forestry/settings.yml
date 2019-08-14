@@ -7,6 +7,9 @@ sections:
 - type: document
   path: data/contacts.json
   label: Контакты
+- type: document
+  path: data/theme.json
+  label: Theme config
 - type: heading
   label: КОНТЕНТ
 - type: directory
@@ -52,9 +55,6 @@ sections:
   match: "**/*.md"
   templates:
   - journal
-- type: document
-  path: data/theme.json
-  label: Theme config
 upload_dir: uploads
 public_path: https://res.cloudinary.com/da4me
 front_matter_path: ''
