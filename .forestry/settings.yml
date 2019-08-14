@@ -49,12 +49,9 @@ sections:
   match: "**/*.md"
   templates:
   - journal
-- type: heading
-  label: ОБЩАЯ ИНФОРМАЦИЯ
 - type: document
   path: data/**/*.json
   label: Контакты
-  match: "**/*"
 - type: document
   path: data/theme.json
   label: Theme config
