@@ -49,8 +49,6 @@ sections:
   match: "**/*.md"
   templates:
   - journal
-- type: heading
-  label: 'ИНФОРМАЦИЯ '
 - type: document
   path: data/**/*.json
   label: Контакты
