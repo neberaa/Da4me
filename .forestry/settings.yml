@@ -5,7 +5,8 @@ admin_path: "/static/admin"
 webhook_url:
 sections:
 - type: heading
-  label: КОНТЕНТ
+  label: "КОНТЕНТ"
+
 - type: directory
   path: pages
   label: Страницы
@@ -13,6 +14,7 @@ sections:
   match: "**/*.md"
   templates:
   - page
+
 - type: directory
   path: categories
   label: Категории
@@ -20,6 +22,7 @@ sections:
   match: "**/*.md"
   templates:
   - category
+
 - type: directory
   path: products
   label: Продукты
@@ -28,6 +31,7 @@ sections:
   new_doc_ext: md
   templates:
   - product
+
 - type: directory
   path: projects
   label: Projects
@@ -35,6 +39,7 @@ sections:
   match: "**/*.md"
   templates:
   - project
+
 - type: directory
   path: journal
   label: Journal
@@ -42,8 +47,10 @@ sections:
   match: "**/*.md"
   templates:
   - journal
+
 - type: heading
-  label: ОБЩИЕ ДАННЫЕ
+  label: "ОБЩИЕ ДАННЫЕ"
+
 - type: directory
   path: socials
   label: Соц сети
@@ -51,12 +58,15 @@ sections:
   match: "**/*.md"
   templates:
     - social
+
 - type: document
   path: data/contacts.json
   label: Контакты
+
 - type: document
   path: data/theme.json
   label: Theme config
+
 upload_dir: uploads
 public_path: https://res.cloudinary.com/da4me
 front_matter_path: ''
