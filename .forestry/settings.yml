@@ -7,7 +7,6 @@ sections:
 - type: document
   path: data/contacts.json
   label: Контакты
-  match: "**/*"
 - type: heading
   label: КОНТЕНТ
 - type: directory
