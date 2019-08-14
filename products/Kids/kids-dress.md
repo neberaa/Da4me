@@ -12,13 +12,13 @@ product_size: ''
 title: Комбинезон
 description: Детский комбинезон
 category: categories/category-kids.md
-image: https://res.cloudinary.com/da4me/v1565020654/uploads/car-interior-design.jpg
+image: https://res.cloudinary.com/da4me/v1565724765/uploads/IMG_3890_v8ojzl.jpg
 price: '120'
 old_price: 
 image_gallery:
-- https://res.cloudinary.com/da4me/v1565020655/uploads/leather-bag-gray.jpg
-- https://res.cloudinary.com/da4me/v1565020654/uploads/car-interior-design.jpg
-- https://res.cloudinary.com/da4me/v1565020648/uploads/analog-classic.jpg
+- https://res.cloudinary.com/da4me/v1565724765/uploads/IMG_3892_v2namw.jpg
+- https://res.cloudinary.com/da4me/v1565724765/uploads/IMG_3890_v8ojzl.jpg
+- https://res.cloudinary.com/da4me/v1565724759/uploads/IMG_3511_pphllh.jpg
 size: ''
 
 ---

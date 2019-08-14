@@ -22,4 +22,5 @@ fields:
   label: Ссылка
   description: 'Введите ссылку на аккаунт в соц сетях '
 pages:
+- socials/instagram.md
 - socials/facebook.md
