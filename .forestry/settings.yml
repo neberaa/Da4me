@@ -18,7 +18,7 @@ sections:
   - social
 - type: document
   path: data/theme.json
-  label: Theme config
+  label: 'О сайте '
 - type: heading
   label: КОНТЕНТ
 - type: directory
