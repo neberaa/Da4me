@@ -3,7 +3,7 @@
         <div class="container">
             <transition name="slide">
                 <section class="navigation-container" id="navigation-container" v-show="menuIsOpen">
-                    <div class="container">
+                    <div class="container" @click="closeMenu">
                         <g-link :to="{ name: 'home' }" class="home-link">
                             <img
                                 src="../assets/icons/logo5.png"
@@ -60,8 +60,8 @@ query allPageItem  {
 </static-query>
 
 <script>
-import { mapMutations } from 'vuex';
-import ClickOutside from 'vue-click-outside'
+import ClickOutside from 'vue-click-outside';
+import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
 export default {
   directives: {
     ClickOutside
@@ -75,15 +75,11 @@ export default {
     }
   },
   methods: {
-    ...mapMutations([
-      'lockBodyScroll',
-      'unlockBodyScroll',
-      'switchBodyScrollPadding'
-    ]),
     toggleMenu() {
       this.menuIsOpen = !this.menuIsOpen;
     },
     closeMenu() {
+      console.log('close menu');
       if(this.menuIsOpen) {
         this.menuIsOpen = false;
       }
@@ -96,19 +92,27 @@ export default {
       else {
         document.querySelector('header').classList.remove('sticky');
       }
+    },
+    switchScroll(cond) {
+      const navContainer = document.getElementById('navigation-container');
+      if (cond) {
+        disableBodyScroll(navContainer);
+        setTimeout(() => {
+          document.body.classList.add('scroll-lock');
+        }, 0);
+      } else {
+        enableBodyScroll(navContainer);
+        setTimeout(() => {
+          document.body.classList.remove('scroll-lock');
+        }, 0);
+      }
     }
   },
   watch: {
     menuIsOpen(cond) {
-      const navContainer = document.getElementById('navigation-container');
-      if (cond) {
-        this.lockBodyScroll(navContainer);
-      } else {
-        // document.body.classList.remove('scroll-lock');
-        this.unlockBodyScroll(navContainer);
-      }
-      this.switchBodyScrollPadding();
-    }
+      console.log('menu is open', this.menuIsOpen);
+        this.switchScroll(cond);
+    },
   },
   mounted() {
     document.querySelector('header').classList.remove('sticky');
@@ -119,6 +123,7 @@ export default {
 
 <style lang="scss" scoped>
 @import "~hamburgers/_sass/hamburgers/hamburgers";
+
 .header {
     height: 6rem;
     z-index: 10;
@@ -167,9 +172,11 @@ export default {
                 display: flex;
                 flex-direction: column;
                 text-align: center;
+                width: 100%;
                 &__link {
                     text-decoration: none;
                     color: $white;
+                    line-height: 30px;
                     &:not(:last-child) {
                         margin-bottom: 10px;
                     }
