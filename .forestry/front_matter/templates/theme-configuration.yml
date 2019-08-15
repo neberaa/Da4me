@@ -1,5 +1,5 @@
 ---
-label: 'О сайте '
+label: 'Theme config '
 hide_body: true
 fields:
 - type: text
