@@ -1,3 +1,5 @@
+@import "variables";
+
 @mixin screenBreakpoint2($point) {
   @if $point == phone {
     @media (max-width: $tablet - 1) { @content; }

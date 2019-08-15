@@ -1,5 +1,5 @@
 <template>
-  <div class="layout" :class="{ 'sticky-header': $route.path === '/' }">
+  <div class="layout sticky-header">
     <Header />
       <transition name="fade" appear>
         <main>
@@ -24,6 +24,9 @@ export default {
 
 
 <style lang="scss">
+@import "../assets/styles/mixins";
+@import "../assets/styles/variables";
+
 * {
   box-sizing: border-box;
 }
@@ -40,13 +43,11 @@ body {
   background: var(--color-base);
   color: var(--color-contrast);
   transition: background 0.5s ease;
-}
-
-body.dark {
-  --color-base: rgb(0, 0, 0);
-  --color-base-1: rgb(43, 43, 43);
-  --color-contrast: rgb(255, 255, 255);
-  --color-contrast-1: rgb(243, 243, 243);
+  &.scroll-lock {
+    @include screenBreakpoint2(desktop) {
+      padding-right: 17px;
+    }
+  }
 }
 
 h1 {
@@ -86,12 +87,43 @@ img {
   font-weight: 700;
   margin-bottom: 0.5rem;
 }
-
+// Vue js animation
 .fade-enter-active {
     transition: opacity 2s;
 }
-
 .fade-enter {
     opacity: 0;
+}
+
+.slide-enter-active {
+    -moz-transition-duration: 0.3s;
+    -webkit-transition-duration: 0.3s;
+    -o-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -moz-transition-timing-function: ease-in;
+    -webkit-transition-timing-function: ease-in;
+    -o-transition-timing-function: ease-in;
+    transition-timing-function: ease-in;
+}
+
+.slide-leave-active {
+    -moz-transition-duration: 0.3s;
+    -webkit-transition-duration: 0.3s;
+    -o-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -moz-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+    -webkit-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+    -o-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+    transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+}
+
+.slide-enter-to, .slide-leave {
+    max-height: 600px;
+    overflow: hidden;
+}
+
+.slide-enter, .slide-leave-to {
+    overflow: hidden;
+    max-height: 0;
 }
 </style>

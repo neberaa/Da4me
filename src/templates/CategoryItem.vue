@@ -24,9 +24,9 @@
                           :key="product.node.id"
                           class="product__item">
                       {{product.node.title}}
-                      <img
+                      <g-image
                               :src="product.node.image"
-                              :alt="product.node.title">
+                              :alt="product.node.title"/>
                   </g-link>
               </div>
           </div>

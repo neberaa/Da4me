@@ -1,6 +1,5 @@
 <template>
     <Layout>
-
         <div class="container">
             <div class="journal-hero">
                 <h1 class="journal-header">
@@ -22,7 +21,7 @@
                 >
                     <div class="container journal">
                         <h2 class="journal-title">{{ item.node.title }}</h2>
-                        <img :src="item.node.image" :alt="item.node.title">
+                        <g-image :src="item.node.image" :alt="item.node.title"/>
                     </div>
                 </g-link>
             </div>

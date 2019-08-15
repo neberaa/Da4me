@@ -1,24 +1,47 @@
 <template>
-    <header class="header" :class="{sticky: $route.path === '/' || $route.path.includes('/projects/')}">
+    <header class="header sticky" v-click-outside="closeMenu">
         <div class="container">
-            <div class="left">
+            <transition name="slide">
+                <section class="navigation-container" id="navigation-container" v-show="menuIsOpen">
+                    <div class="container">
+                        <g-link :to="{ name: 'home' }" class="home-link">
+                            <img
+                                src="../assets/icons/logo5.png"
+                                :alt="settings.site_name"
+                                class="logo"/>
+                        </g-link>
+                        <nav id="nav" class="nav">
+                            <g-link
+                                v-for="(page, ind) in $static.pages.edges"
+                                :key="`page-${ind}`"
+                                class="nav__link"
+                                :to="page.node.path">{{ page.node.title }}</g-link>
+                        </nav>
+                    </div>
+            </section>
+            </transition>
+            <div class="column column--left">
+                <div class="hamburger hamburger--spin js-hamburger" :class="{'is-active': menuIsOpen}" @click="toggleMenu">
+                    <div class="hamburger-box">
+                        <div class="hamburger-inner"></div>
+                    </div>
+                </div>
+                <a href="" class="icon social-icon instagram"/>
+                <a href="" class="icon social-icon facebook"/>
+            </div>
+            <div class="column column--center">
                 <g-link :to="{ name: 'home' }" class="home-link">
                     <img
                         src="../../static/logo.png"
                         :alt="settings.site_name"
-                        class="logo"
-                    />
+                        class="logo"/>
                 </g-link>
             </div>
-            <nav class="nav right">
-<!--                <g-link class="nav__link" :to="{ name: 'journal' }">Journal</g-link>-->
-<!--                <g-link class="nav__link" :to="{ name: 'contact' }">Say Hi!</g-link>-->
-                <g-link
-                    v-for="(page, ind) in $static.pages.edges"
-                    :key="`page-${ind}`"
-                    class="nav__link"
-                    :to="page.node.path">{{ page.node.title }}</g-link>
-            </nav>
+            <div class="column column--right">
+                <a href="tel:" class="phone-number"/>
+                <a href="" class="icon wishlist"/>
+                <a href="" class="icon cart"/>
+            </div>
         </div>
     </header>
 </template>
@@ -37,62 +60,149 @@ query allPageItem  {
 </static-query>
 
 <script>
+import { mapMutations } from 'vuex';
+import ClickOutside from 'vue-click-outside'
 export default {
+  directives: {
+    ClickOutside
+  },
   data() {
     return {
       logo: require("../../static/logo.png"),
-      settings: require("../../data/theme.json")
+      settings: require("../../data/theme.json"),
+      contacts: require("../../data/contacts.json"),
+      menuIsOpen: false
     }
+  },
+  methods: {
+    ...mapMutations([
+      'lockBodyScroll',
+      'unlockBodyScroll',
+      'switchBodyScrollPadding'
+    ]),
+    toggleMenu() {
+      this.menuIsOpen = !this.menuIsOpen;
+    },
+    closeMenu() {
+      if(this.menuIsOpen) {
+        this.menuIsOpen = false;
+      }
+    },
+    checkHeader() {
+      let scrollPosition = Math.round(window.scrollY);
+      if (scrollPosition > 50){
+        document.querySelector('header').classList.add('sticky');
+      }
+      else {
+        document.querySelector('header').classList.remove('sticky');
+      }
+    }
+  },
+  watch: {
+    menuIsOpen(cond) {
+      const navContainer = document.getElementById('navigation-container');
+      if (cond) {
+        this.lockBodyScroll(navContainer);
+      } else {
+        // document.body.classList.remove('scroll-lock');
+        this.unlockBodyScroll(navContainer);
+      }
+      this.switchBodyScrollPadding();
+    }
+  },
+  mounted() {
+    document.querySelector('header').classList.remove('sticky');
+    window.addEventListener('scroll', this.checkHeader);
   }
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import "~hamburgers/_sass/hamburgers/hamburgers";
 .header {
-    position: relative;
     height: 6rem;
     z-index: 10;
-}
-.header.sticky {
-    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
+    background: $white;
+    position: fixed;
+    box-shadow: none;
+    transition: all 200ms ease;
+    &.sticky {
+      height: 4rem;
+      box-shadow: 0 2px 4px 0 rgba(0,0,0,0.4);
+        .column--center {
+            .logo {
+                width: 100px;
+            }
+        }
+    }
+    & > .container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 100%;
+    }
+
+    .navigation-container {
+        background: rgba(75,75,75,1);
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 0;
+        height: 20rem;
+        box-shadow: 0 2px 4px 0 rgba(0,0,0,0.4);
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            padding-top: 20px;
+            .home-link {
+                display: block;
+                margin-bottom: 30px;
+            }
+            .nav {
+                display: flex;
+                flex-direction: column;
+                text-align: center;
+                &__link {
+                    text-decoration: none;
+                    color: $white;
+                    &:not(:last-child) {
+                        margin-bottom: 10px;
+                    }
+                }
+            }
+        }
+    }
+    .column {
+        &--left {
+            .hamburger {
+                padding: 0;
+                &-inner,
+                &-inner::before,
+                &-inner::after {
+                    height: 3px;
+                }
+                &.is-active {
+                    .hamburger-inner,
+                    .hamburger-inner::before,
+                    .hamburger-inner::after {
+                        background-color: $white;
+                    }
+                }
+            }
+        }
+    }
+
 }
-.header > .container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 100%;
+.scroll-lock .header {
+    /*position: absolute;*/
+    /*padding-right: 17px;*/
 }
-.home-link {
-    text-decoration: none;
-}
-.site-name {
-    font-size: 0.9rem;
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    text-decoration: none;
-    text-transform: uppercase;
-}
-.nav > * {
-    font-size: 0.9rem;
-    font-weight: 600;
-    text-decoration: none;
-    margin-top: 4px;
-    margin-right: 3rem;
-    padding-bottom: 4px;
-    border-bottom: 1px solid;
-    border-color: transparent;
-    transition: border 0.15s;
-}
-.nav > *:last-of-type {
-    margin: 0;
-}
-.nav > *:hover {
-    border-color: inherit;
-}
-.nav > .active {
-    border-color: inherit;
-}
+
+
+
 </style>
