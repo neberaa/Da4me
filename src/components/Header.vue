@@ -172,7 +172,7 @@ export default {
 @import "~hamburgers/_sass/hamburgers/hamburgers";
 
 .header {
-    height: 6rem;
+    height: 4rem;
     z-index: 10;
     top: 0;
     left: 0;
@@ -181,6 +181,9 @@ export default {
     position: fixed;
     box-shadow: none;
     transition: box-shadow 400ms ease;
+    @include screenBreakpoint2(desktop) {
+        height: 6rem;
+    }
     &.sticky {
       box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
     }
@@ -204,7 +207,7 @@ export default {
                 &--left {
                     justify-content: flex-start;
                     .hamburger {
-                        position: absolute;
+                        position: relative;
                         padding: 0;
                         height: 22px;
                         z-index: 100;
@@ -237,7 +240,9 @@ export default {
                     justify-content: center;
                     .logo {
                         width: 150px;
-                        transition: width 400ms ease;
+                        @include screenBreakpoint2(phone) {
+                            width: 100px;
+                        }
                     }
                 }
                 &--right {
@@ -265,16 +270,22 @@ export default {
             box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
             .bg-wrapper {
                 background: $gray;
-                height: 6rem;
+                height: 4rem;
                 position: absolute;
                 top: 0;
                 left: 0;
                 right: 0;
                 z-index: -1;
+                @include screenBreakpoint2(desktop) {
+                    height: 6rem;
+                }
             }
             .container {
                 align-items: flex-start;
                 padding-top: 1rem;
+                @include screenBreakpoint2(phone) {
+                    padding-top: 0;
+                }
                 .column {
                     &--left {
                         margin-left: 60px;
@@ -317,6 +328,9 @@ export default {
                     &--center {
                         .logo {
                             width: 120px;
+                            @include screenBreakpoint2(phone) {
+                                width: 100px;
+                            }
                         }
                     }
                     &--right {

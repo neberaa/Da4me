@@ -64,6 +64,7 @@ h1 {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 2rem;
+  overflow-x: hidden;
 }
 
 @media (min-width: 860px) {
