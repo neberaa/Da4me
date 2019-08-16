@@ -82,6 +82,24 @@ fields:
       path: 
   label: Размер
   description: Выберите размер, если есть
+- name: colors
+  type: field_group
+  config: {}
+  fields:
+  - name: color1
+    type: color
+    config:
+      required: false
+      color_format: Hex
+    label: Цвет1
+    description: Выбрать альтернативный цвет
+  - name: images_color1
+    type: image_gallery
+    config: {}
+    label: Картинки для изделий с цветом 1
+    description: 'Выбрать картинки для продукта с другим цветом '
+  label: Другие цвета
+  description: 'Выберите цвет и картинки '
 pages:
 - products/Kids/kids-dress.md
 - products/t-shirt.md
