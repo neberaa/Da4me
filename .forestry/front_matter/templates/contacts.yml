@@ -38,3 +38,5 @@ fields:
     required: false
   label: 'Instagram аккаунт '
   description: 'Ссылка на аккаунт в instagram '
+pages:
+- data/contacts.json
