@@ -33,5 +33,6 @@ fields:
   description: 'Ключ для АПИ на английском языке '
   label: Ключ
 pages:
+- categories/платья.md
 - categories/category-kids.md
 - categories/family-look.md
