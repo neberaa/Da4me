@@ -12,13 +12,6 @@ sections:
 - type: document
   path: data/contacts.json
   label: Контакты
-- type: directory
-  path: socials
-  label: Соц сети
-  create: all
-  match: "**/*.md"
-  templates:
-  - social
 - type: heading
   label: КОНТЕНТ
 - type: directory
