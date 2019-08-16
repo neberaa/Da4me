@@ -20,3 +20,21 @@ fields:
     required: false
   label: 'Контактный телефон '
   description: Введите кон верный телефон
+- name: facebook
+  type: text
+  config:
+    required: false
+  label: Facebook  аккаунт
+  description: 'Ссылка на аккаунт в facebook '
+- name: twitter
+  type: text
+  config:
+    required: false
+  label: 'Twitter аккаунт '
+  description: Ссылка на аккаунт в twitter
+- name: instagram
+  type: text
+  config:
+    required: false
+  label: 'Instagram аккаунт '
+  description: 'Ссылка на аккаунт в instagram '
