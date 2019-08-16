@@ -30,7 +30,7 @@ fields:
   config:
     required: true
   hidden: false
-  description: 'Ключ для АПИ на английском языке '
+  description: Ключ для АПИ на английском языке(category_....)
   label: Ключ
 pages:
 - categories/платья.md
