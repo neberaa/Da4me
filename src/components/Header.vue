@@ -180,15 +180,9 @@ export default {
     background: $white;
     position: fixed;
     box-shadow: none;
-    transition: all 400ms ease;
+    transition: box-shadow 400ms ease;
     &.sticky {
-      height: 4rem;
       box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
-        .column--center {
-            .logo {
-                width: 100px;
-            }
-        }
     }
     .nav-container {
         .container {
