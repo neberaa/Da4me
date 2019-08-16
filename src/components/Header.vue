@@ -106,7 +106,7 @@ export default {
           document.body.classList.remove('scroll-lock');
         }, 0);
       }
-    }
+    },
   },
   watch: {
     menuIsOpen(cond) {
@@ -133,10 +133,15 @@ export default {
     background: $white;
     position: fixed;
     box-shadow: none;
-    transition: all 200ms ease;
+    transition: all 400ms ease;
+    .logo {
+        width: 150px;
+        transition: width 400ms ease;
+        padding-top: 10px;
+    }
     &.sticky {
       height: 4rem;
-      box-shadow: 0 2px 4px 0 rgba(0,0,0,0.4);
+      box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
         .column--center {
             .logo {
                 width: 100px;
@@ -151,13 +156,13 @@ export default {
     }
 
     .navigation-container {
-        background: rgba(75,75,75,1);
+        background: rgba(65,65,65,1);
         position: fixed;
         left: 0;
         right: 0;
         top: 0;
         height: 20rem;
-        box-shadow: 0 2px 4px 0 rgba(0,0,0,0.4);
+        box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
         .container {
             display: flex;
             flex-direction: column;
@@ -188,10 +193,11 @@ export default {
         &--left {
             .hamburger {
                 padding: 0;
+                width: 22px;
                 &-inner,
                 &-inner::before,
                 &-inner::after {
-                    height: 3px;
+                    height: 2px;
                 }
                 &.is-active {
                     .hamburger-inner,
@@ -201,9 +207,11 @@ export default {
                     }
                 }
             }
+            .social-icon {
+                display: block;
+            }
         }
     }
-
 }
 .scroll-lock .header {
     /*position: absolute;*/
