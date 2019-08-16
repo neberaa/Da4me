@@ -24,8 +24,6 @@ export default {
 
 
 <style lang="scss">
-@import "../assets/styles/mixins";
-@import "../assets/styles/variables";
 
 * {
   box-sizing: border-box;
@@ -76,6 +74,7 @@ h1 {
 
 a {
   color: inherit;
+  text-decoration: none;
 }
 
 img {
