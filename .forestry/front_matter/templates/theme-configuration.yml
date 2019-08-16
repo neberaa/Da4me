@@ -1,27 +1,31 @@
 ---
-label: Theme configuration
+label: 'Theme config '
 hide_body: true
 fields:
 - type: text
   name: site_name
-  label: Site name
+  label: Имя сайта
+  description: Введите название сайта
 - type: textarea
   name: site_description
-  label: Site description
+  label: Описание сайта
+  description: Введите описание сайта
 - type: textarea
   name: hero_title
-  label: Hero title
   config:
     wysiwyg: true
     schema:
       format: html
+  label: Заголовок главной страницы
+  description: Введите заголовок для главной страницы
 - type: textarea
   name: hero_subtitle
-  label: Hero subtitle
   config:
     wysiwyg: true
     schema:
       format: html
+  label: Подзаголовок главной страницы
+  description: 'Введите Подзаголовок для главной страницы '
 - name: footer
   label: Footer text
   type: text

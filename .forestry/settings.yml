@@ -7,6 +7,9 @@ sections:
 - type: heading
   label: INFO
 - type: document
+  path: data/theme.json
+  label: 'О сайте '
+- type: document
   path: data/contacts.json
   label: Контакты
 - type: directory
@@ -16,25 +19,8 @@ sections:
   match: "**/*.md"
   templates:
   - social
-- type: document
-  path: data/theme.json
-  label: Theme config
 - type: heading
   label: КОНТЕНТ
-- type: directory
-  path: pages
-  label: Страницы
-  create: all
-  match: "**/*.md"
-  templates:
-  - page
-- type: directory
-  path: categories
-  label: Категории
-  create: documents
-  match: "**/*.md"
-  templates:
-  - category
 - type: directory
   path: products
   label: Продукты
@@ -43,6 +29,20 @@ sections:
   new_doc_ext: md
   templates:
   - product
+- type: directory
+  path: categories
+  label: Категории
+  create: documents
+  match: "**/*.md"
+  templates:
+  - category
+- type: directory
+  path: pages
+  label: Страницы
+  create: all
+  match: "**/*.md"
+  templates:
+  - page
 - type: directory
   path: projects
   label: Projects
