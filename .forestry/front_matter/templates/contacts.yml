@@ -14,7 +14,7 @@ fields:
     required: false
   label: E-mail
   description: Введите e-mail адрес
-- name: phone_number
+- name: phone
   type: text
   config:
     required: false
