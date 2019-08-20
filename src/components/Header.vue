@@ -27,6 +27,9 @@
                 </div>
                 <div class="column column--right">
                     <a :href="`tel:+38${contacts.phone}`" class="phone-number">+38 {{contacts.phone}}</a>
+                    <a href="" class="icon wishlist" @click="toggleWishList">
+                        <HeartIcon class="icon"/>
+                    </a>
                     <WishList/>
                     <a href="" class="icon cart">
                         <CartIcon class="icon"/>
@@ -67,6 +70,9 @@
                     </div>
                     <div class="column column--right">
                         <a :href="`tel:+38${contacts.phone}`" class="phone-number">+38 {{contacts.phone}}</a>
+                        <a href="" class="icon wishlist" @click="toggleWishList">
+                            <HeartIcon class="icon icon--white"/>
+                        </a>
                         <WishList/>
                         <a href="" class="icon cart">
                             <CartIcon class="icon icon--white"/>
@@ -99,6 +105,7 @@ import FacebookIcon from '../assets/icons/facebook.svg';
 import CartIcon from '../assets/icons/shopping-bag.svg';
 import HeartIcon from '../assets/icons/heart.svg';
 import WishList from "./WishList";
+import {mapMutations, mapState} from 'vuex';
 
 export default {
   directives: {
@@ -116,19 +123,21 @@ export default {
       logo: require("../../static/logo.png"),
       settings: require("../../data/theme.json"),
       contacts: require("../../data/contacts.json"),
-      menuIsOpen: false
     }
   },
+  computed: {
+    ...mapState([
+      'menuIsOpen',
+      'wishListIsOpen'
+    ]),
+  },
   methods: {
-    toggleMenu() {
-      this.menuIsOpen = !this.menuIsOpen;
-    },
-    closeMenu() {
-      console.log('close menu');
-      if(this.menuIsOpen) {
-        this.menuIsOpen = false;
-      }
-    },
+    ...mapMutations([
+      'toggleWishList',
+      'toggleMenu',
+      'closeMenu',
+      'closeWishList'
+    ]),
     checkHeader() {
       let scrollPosition = Math.round(window.scrollY);
       if (scrollPosition > 50){
@@ -155,9 +164,16 @@ export default {
   },
   watch: {
     menuIsOpen(cond) {
-      console.log('menu is open', this.menuIsOpen);
+        if (cond) {
+          this.closeWishList();
+        }
         this.switchScroll(cond);
     },
+    wishListIsOpen(cond) {
+      if (cond) {
+        this.closeMenu();
+      }
+    }
   },
   mounted() {
     document.querySelector('header').classList.remove('sticky');
@@ -186,6 +202,7 @@ export default {
       box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
     }
     .nav-container {
+        height: inherit;
         .container {
             display: flex;
             align-items: center;
@@ -236,6 +253,7 @@ export default {
                 }
                 &--center {
                     justify-content: center;
+                    @include center('x');
                     .logo {
                         width: 150px;
                         @include screenBreakpoint2(phone) {
