@@ -27,9 +27,7 @@
                 </div>
                 <div class="column column--right">
                     <a :href="`tel:+38${contacts.phone}`" class="phone-number">+38 {{contacts.phone}}</a>
-                    <a href="" class="icon wishlist">
-                        <HeartIcon class="icon"/>
-                    </a>
+                    <WishList/>
                     <a href="" class="icon cart">
                         <CartIcon class="icon"/>
                     </a>
@@ -69,9 +67,7 @@
                     </div>
                     <div class="column column--right">
                         <a :href="`tel:+38${contacts.phone}`" class="phone-number">+38 {{contacts.phone}}</a>
-                        <a href="" class="icon wishlist">
-                            <HeartIcon class="icon icon--white"/>
-                        </a>
+                        <WishList/>
                         <a href="" class="icon cart">
                             <CartIcon class="icon icon--white"/>
                         </a>
@@ -102,6 +98,7 @@ import InstagramIcon from '../assets/icons/instagram.svg';
 import FacebookIcon from '../assets/icons/facebook.svg';
 import CartIcon from '../assets/icons/shopping-bag.svg';
 import HeartIcon from '../assets/icons/heart.svg';
+import WishList from "./WishList";
 
 export default {
   directives: {
@@ -112,6 +109,7 @@ export default {
     FacebookIcon,
     CartIcon,
     HeartIcon,
+    WishList,
   },
   data() {
     return {
@@ -172,7 +170,7 @@ export default {
 @import "~hamburgers/_sass/hamburgers/hamburgers";
 
 .header {
-    height: 4rem;
+    height: 6rem;
     z-index: 10;
     top: 0;
     left: 0;
@@ -181,8 +179,8 @@ export default {
     position: fixed;
     box-shadow: none;
     transition: box-shadow 400ms ease;
-    @include screenBreakpoint2(desktop) {
-        height: 6rem;
+    @include screenBreakpoint2(phone) {
+        height: 4rem;
     }
     &.sticky {
       box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
@@ -261,40 +259,47 @@ export default {
             }
         }
         &--expandable {
-            background: rgba($gray, 0.7);
+            background: rgba($gray, 0.8);
             position: fixed;
             left: 0;
             right: 0;
             top: 0;
-            height: 20rem;
+            height: 30rem;
             box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
             .bg-wrapper {
                 background: $gray;
-                height: 4rem;
+                height: 6rem;
                 position: absolute;
                 top: 0;
                 left: 0;
                 right: 0;
                 z-index: -1;
-                @include screenBreakpoint2(desktop) {
-                    height: 6rem;
+                @include screenBreakpoint2(phone) {
+                    height: 4rem;
                 }
             }
             .container {
+                position: relative;
                 align-items: flex-start;
                 padding-top: 1rem;
+                overflow: hidden;
                 @include screenBreakpoint2(phone) {
                     padding-top: 0;
                 }
                 .column {
+                    position: absolute;
                     &--left {
-                        margin-left: 60px;
                         flex-direction: column;
                         align-items: flex-start;
+                        margin-top: 5rem;
+                        @include screenBreakpoint2(phone) {
+                            margin-top: 4rem;
+                        }
                         .nav-title {
                             text-transform: uppercase;
                             color: $white;
                             margin-bottom: 40px;
+                            margin-top: 0;
                         }
                         .nav {
                             display: flex;
@@ -326,15 +331,24 @@ export default {
                         }
                     }
                     &--center {
+                        @include center('x');
+                        margin-top: 0;
+                        @include screenBreakpoint2(phone) {
+                            margin-top: 1rem;
+                        }
                         .logo {
                             width: 120px;
                             @include screenBreakpoint2(phone) {
-                                width: 100px;
+                                width: 80px;
                             }
                         }
                     }
                     &--right {
                         margin-top: 1rem;
+                        right: 2rem;
+                        @include screenBreakpoint2(desktop) {
+                            right: 6rem;
+                        }
                         .phone-number {
                             color: $white;
                         }
