@@ -6,7 +6,8 @@
 
         <div class="project-header">
           <h1 class="project-title" v-html="$page.product.title" />
-            <g-image :src="$page.product.image" :alt="$page.product.title"/>
+          <g-image :src="$page.product.image" :alt="$page.product.title"/>
+          <button @click="addToWishList($page.product.id)" v-show="!isAddedToWishList($page.product.id)">Add to favourite</button>
         </div>
 
       </div>
@@ -22,16 +23,28 @@ query ProductItem ($path: String!) {
     image
     description
     imageGallery
+    id
   }
 }
 </page-query>
 
 <script>
+    import { mapGetters, mapMutations } from 'vuex';
 export default {
   metaInfo () {
     return {
       title: this.$page.product.title,
     }
+  },
+  computed: {
+    ...mapGetters([
+      'isAddedToWishList'
+    ])
+  },
+  methods: {
+    ...mapMutations([
+      'addToWishList'
+    ])
   }
 }
 </script>

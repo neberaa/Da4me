@@ -30,7 +30,6 @@
                     <a href="" class="icon wishlist" @click="toggleWishList">
                         <HeartIcon class="icon"/>
                     </a>
-                    <WishList/>
                     <a href="" class="icon cart">
                         <CartIcon class="icon"/>
                     </a>
@@ -73,7 +72,6 @@
                         <a href="" class="icon wishlist" @click="toggleWishList">
                             <HeartIcon class="icon icon--white"/>
                         </a>
-                        <WishList/>
                         <a href="" class="icon cart">
                             <CartIcon class="icon icon--white"/>
                         </a>
@@ -81,16 +79,27 @@
                 </div>
             </div>
         </transition>
+        <WishList :Products="$static.products.edges"/>
     </header>
 </template>
 
 <static-query>
-query allPageItem  {
+query Posts  {
   pages: allPageItem(filter: { showInNav: {eq:true}}) {
     edges{
       node{
        title
        path
+      }
+    }
+  },
+  products: allProductItem {
+    edges{
+      node {
+        title
+        image
+        id
+        path
       }
     }
   }
