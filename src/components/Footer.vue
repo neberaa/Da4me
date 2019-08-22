@@ -1,5 +1,5 @@
 <template>
-    <footer class="footer" :style="settings.footer_bg">
+    <footer class="footer" :style="{'background-image' : `url(${settings.footer_bg})`}">
         <div class="container">
         </div>
     </footer>
