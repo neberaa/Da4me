@@ -20,10 +20,10 @@
           </g-link>
         </div>
         <div class="column contacts column--right">
-          <h2 class="nav__title">Контакты</h2>
-          <a href="https://www.google.com/maps/place/Kharkiv,+Kharkiv+Oblast/@49.9947277,36.1457427,11z/data=!3m1!4b1!4m5!3m4!1s0x4127a09f63ab0f8b:0x2d4c18681aa4be0a!8m2!3d49.9935!4d36.230383" class="address">{{contacts.address}}</a>
-          <a :href="`mailto:${contacts.email}`" class="email">{{ contacts.email }}</a>
-          <a :href="`tel:+38${contacts.phone}`" class="phone-number">+38 {{contacts.phone}}</a>
+          <h2 class="contacts__title">Контакты</h2>
+          <a href="https://www.google.com/maps/place/Kharkiv,+Kharkiv+Oblast/@49.9947277,36.1457427,11z/data=!3m1!4b1!4m5!3m4!1s0x4127a09f63ab0f8b:0x2d4c18681aa4be0a!8m2!3d49.9935!4d36.230383" class="contacts__link address">{{contacts.address}}</a>
+          <a :href="`mailto:${contacts.email}`" class="contacts__link email">{{ contacts.email }}</a>
+          <a :href="`tel:+38${contacts.phone}`" class="contacts__link phone-number">+38 {{contacts.phone}}</a>
         </div>
     </div>
   </footer>
@@ -64,20 +64,38 @@ export default {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    @include screenBreakpoint2(phone) {
+      flex-direction: column;
+    }
     .column {
-      &--left {
-        .logo {
+      display: flex;
+      flex-direction: column;
+       &.logo {
           width: 150px;
+         @include screenBreakpoint2(phone) {
+           margin-bottom: 20px;
+         }
         }
-      }
-      &--center {
-        .nav {
-          display: flex;
-          flex-direction: column;
-        }
-      }
-      &--right {
-
+       &.nav {
+         @include screenBreakpoint2(phone) {
+           margin-bottom: 20px;
+         }
+         .nav__title {
+           margin-top: 0;
+         }
+         .nav__link {
+           margin-bottom: 5px;
+           font-size: 16px;
+         }
+       }
+       &.contacts {
+         .contacts__title {
+           margin-top: 0;
+         }
+         .contacts__link {
+           margin-bottom: 5px;
+           font-size: 16px;
+         }
       }
     }
   }
