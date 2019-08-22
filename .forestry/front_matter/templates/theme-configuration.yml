@@ -31,5 +31,11 @@ fields:
   type: text
   hidden: false
   default: ''
+- name: footer_bg
+  type: file
+  config:
+    maxSize: 250
+  label: Фон для футера
+  description: Картинка для футера
 pages:
 - data/theme.json

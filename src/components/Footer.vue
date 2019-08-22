@@ -1,5 +1,5 @@
 <template>
-    <footer class="footer">
+    <footer class="footer" :style="settings.footer_bg">
         <div class="container">
         </div>
     </footer>
@@ -7,6 +7,11 @@
 
 <script>
 export default {
+    data() {
+        return {
+            settings: require("../../data/theme.json")
+        }
+    }
 }
 </script>
 
@@ -14,6 +19,8 @@ export default {
 .footer {
     font-size: 0.8rem;
     padding: 6rem 0;
-    background:
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 </style>
