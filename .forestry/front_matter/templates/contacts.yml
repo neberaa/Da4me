@@ -8,7 +8,7 @@ fields:
     required: false
   label: Адрес
   description: Введите адрес
-- name: e-mail
+- name: email
   type: text
   config:
     required: false
