@@ -2,7 +2,7 @@
   <div class="layout sticky-header">
     <Header />
       <transition name="fade" appear>
-        <main>
+        <main class="page-content">
           <slot/>
         </main>
       </transition>
@@ -54,10 +54,16 @@ h1 {
 
 .layout {
   padding: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 .layout.sticky-header {
   padding: 6rem 0 0 0;
+}
+
+main.page-content {
+  padding-bottom: 6rem;
 }
 
 .container {
