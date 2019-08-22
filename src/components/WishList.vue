@@ -1,6 +1,6 @@
 <template>
     <transition name="slide-right">
-        <div class="wishlist__popup"  v-show="wishListIsOpen">
+        <div class="wishlist__popup" v-click-outside="manageWishList"  v-show="wishListIsOpen">
             <button class="icon cross" @click="closeWishList"/>
             <h2>Wishlist</h2>
             <div class="products">
@@ -42,6 +42,14 @@ import {  mapState, mapMutations } from 'vuex';
         'removeFromWishList',
         'wishListLoadJSON',
       ]),
+      manageWishList(e) {
+        if (this.wishListIsOpen) {
+          const listIcon = e.target.className.baseVal ? true: e.target.className.indexOf('wishlist') >= 0;
+          if (!listIcon) {
+            this.closeWishList();
+          }
+        }
+      }
     },
     beforeMount() {
       this.wishListLoadJSON();
@@ -106,11 +114,11 @@ import {  mapState, mapMutations } from 'vuex';
 }
 
 .slide-right-enter-active {
-    transition: all 0.3s  ease-in;
+    transition: all 0.6s  ease-in;
 }
 
 .slide-right-leave-active {
-    transition: all 0.3s cubic-bezier(0, 1, 0.5, 1);
+    transition: all 0.6s cubic-bezier(0, 1, 0.5, 1);
 }
 
 .slide-right-enter-to, .slide-right-leave {
@@ -118,6 +126,9 @@ import {  mapState, mapMutations } from 'vuex';
 }
 
 .slide-right-enter, .slide-right-leave-to {
-    right: -120%;
+    right: -50%;
+    @include screenBreakpoint2(phone) {
+        right: -100%;
+    }
 }
 </style>

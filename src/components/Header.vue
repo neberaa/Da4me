@@ -132,6 +132,7 @@ export default {
       logo: require("../../static/logo.png"),
       settings: require("../../data/theme.json"),
       contacts: require("../../data/contacts.json"),
+      href: null,
     }
   },
   computed: {
@@ -182,7 +183,20 @@ export default {
       if (cond) {
         this.closeMenu();
       }
+    },
+    href() {
+      if (this.menuIsOpen) {
+        this.closeMenu();
+        this.switchScroll(false);
+      }
+      if (this.wishListIsOpen) {
+        this.closeWishList();
+        this.switchScroll(false);
+      }
     }
+  },
+  created() {
+    this.href = window.location.href;
   },
   mounted() {
     document.querySelector('header').classList.remove('sticky');

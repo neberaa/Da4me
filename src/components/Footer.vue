@@ -1,18 +1,12 @@
 <template>
     <footer class="footer">
         <div class="container">
-            <span v-html="settings.footer" />
         </div>
     </footer>
 </template>
 
 <script>
 export default {
-    data() {
-        return {
-            settings: require("../../data/theme.json")
-        }
-    }
 }
 </script>
 
@@ -20,5 +14,6 @@ export default {
 .footer {
     font-size: 0.8rem;
     padding: 6rem 0;
+    background:
 }
 </style>
