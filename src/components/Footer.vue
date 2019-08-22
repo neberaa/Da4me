@@ -22,7 +22,7 @@
         <div class="column contacts column--right">
           <h2 class="nav__title">Контакты</h2>
           <a href="https://www.google.com/maps/place/Kharkiv,+Kharkiv+Oblast/@49.9947277,36.1457427,11z/data=!3m1!4b1!4m5!3m4!1s0x4127a09f63ab0f8b:0x2d4c18681aa4be0a!8m2!3d49.9935!4d36.230383" class="address">{{contacts.address}}</a>
-          <a :href="`mailto:${contacts.email}`" class="email">{{contacts.email}}</a>
+          <a :href="`mailto:${contacts.email}`" class="email">{{ contacts.email }}</a>
           <a :href="`tel:+38${contacts.phone}`" class="phone-number">+38 {{contacts.phone}}</a>
         </div>
     </div>
