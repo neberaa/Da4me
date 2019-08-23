@@ -52,7 +52,7 @@ const config = {
    * You can inject custom HTML for styling, an SVG or IMG, or set it to null for no center
    */
   content: '▿',
-  useCSSVars: true,
+  useCSSVars: false,
 };
 
 export default config;
