@@ -30,16 +30,10 @@ export default {
 }
 
 body {
-  --color-base: rgb(255, 255, 255);
-  --color-base-1: rgb(243, 243, 243);
-  --color-contrast: rgb(0, 0, 0);
-  --color-contrast-1: rgb(43, 43, 43);
   font-family: 'Didact Gothic',system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
   margin:0;
   padding: 0;
   font-size: 16px;
-  background: var(--color-base);
-  color: var(--color-contrast);
   transition: background 0.5s ease;
   &.scroll-lock {
     @include screenBreakpoint2(desktop) {
@@ -50,16 +44,63 @@ body {
 
 h1 {
   letter-spacing: -0.01em;
+  font-size: 2.2rem;
+}
+h2 {
+font-size: 2rem;
+}
+h3 {
+ font-size: 1.8rem;
+}
+h4 {
+ font-size: 1.4rem;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+  font-size: 1rem;
+}
+p {
+  font-size: 1rem;
+}
+span {
+  font-size: 0.8rem;
+}
+
+img {
+  max-width: 100%;
+}
+
+button {
+  border: none;
+  overflow: visible;
+  background-color: transparent;
+  cursor: pointer;
+  color: inherit;
+  font: inherit;
+  text-align: inherit;
+  line-height: normal;
+  -webkit-font-smoothing: inherit;
+  -moz-osx-font-smoothing: inherit;
+  -webkit-appearance: none;
+  &:focus {
+    outline: none;
+  }
+  &::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+  }
 }
 
 .layout {
   padding: 0;
   display: flex;
   flex-direction: column;
-}
-
-.layout.sticky-header {
-  padding: 6rem 0 0 0;
+  min-height: 100vh;
+  justify-content: space-between;
+  &.sticky-header {
+    padding: 6rem 0 0 0;
+  }
 }
 
 main.page-content {
@@ -69,23 +110,11 @@ main.page-content {
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 6rem;
   overflow-x: hidden;
-}
-
-@media (min-width: 860px) {
-  .container {
-    padding: 0 6rem;
+  @include screenBreakpoint2(phone) {
+    padding: 0 2rem;
   }
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-img {
-  max-width: 100%;
 }
 
 .label {
@@ -93,6 +122,22 @@ img {
   font-weight: 700;
   margin-bottom: 0.5rem;
 }
+
+.icon {
+  fill: $gray;
+  &--white {
+    fill: $white;
+  }
+}
+
+.RETICOOL.active {
+  .RETICOOL__circle {
+    width: 20px;
+    height: 20px;
+    background: $gray;
+  }
+}
+
 // Vue js animation
 .fade-enter-active {
     transition: opacity 2s;

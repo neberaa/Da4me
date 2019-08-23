@@ -1,7 +1,8 @@
 <template>
   <Layout>
     <div class="container">
-      <Hero />
+      <h1 class="hero-title" v-html="settings.hero_title" />
+      <h2 class="hero-subtitle" v-html="settings.hero_subtitle" />
       <categories-grid :categories="$page.categories.edges" />
     </div>
   </Layout>
@@ -33,13 +34,22 @@ query Posts {
 </page-query>
 
 <script>
-import Hero from "@/components/Hero"
 import CategoriesGrid from "@/components/CategoriesGrid"
 
 export default {
   components: {
-    Hero,
     CategoriesGrid
+  },
+  data() {
+    return {
+      settings: require("../../data/theme.json")
+    }
   }
 }
 </script>
+<style lang="scss" scoped>
+  .hero-title,
+  .hero-subtitle {
+    text-align: center;
+  }
+</style>

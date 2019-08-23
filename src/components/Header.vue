@@ -3,16 +3,16 @@
         <div class="nav-container">
             <div class="container">
                 <div class="column column--left">
-                    <div class="hamburger hamburger--spin js-hamburger" :class="{'is-active': menuIsOpen}" @click="toggleMenu">
+                    <div class="hamburger hamburger--spin js-hamburger" data-lock :class="{'is-active': menuIsOpen}" @click="toggleMenu">
                         <div class="hamburger-box">
                             <div class="hamburger-inner"></div>
                         </div>
                     </div>
                     <div class="social-icons">
-                        <a :href="contacts.instagram" class="social-icons__item">
+                        <a :href="contacts.instagram" data-lock class="social-icons__item">
                             <InstagramIcon class="icon"/>
                         </a>
-                        <a :href="contacts.facebook" class="social-icons__item">
+                        <a :href="contacts.facebook" data-lock class="social-icons__item">
                             <FacebookIcon class="icon"/>
                         </a>
                     </div>
@@ -20,17 +20,17 @@
                 <div class="column column--center">
                     <g-link :to="{ name: 'home' }" class="home-link">
                         <img
-                                src="../../static/logo.png"
-                                :alt="settings.site_name"
-                                class="logo"/>
+                          src="../../static/logo.png"
+                          :alt="settings.site_name"
+                          class="logo"/>
                     </g-link>
                 </div>
                 <div class="column column--right">
                     <a :href="`tel:+38${contacts.phone}`" class="phone-number">+38 {{contacts.phone}}</a>
-                    <a href="" class="icon wishlist" @click="toggleWishList">
+                    <a href="" class="icon wishlist" data-lock @click="toggleWishList">
                         <HeartIcon class="icon"/>
                     </a>
-                    <a href="" class="icon cart">
+                    <a href="" data-lock class="icon cart">
                         <CartIcon class="icon"/>
                     </a>
                 </div>
@@ -50,10 +50,10 @@
                                     :to="page.node.path">{{ page.node.title }}</g-link>
                         </nav>
                         <div class="social-icons">
-                            <a :href="contacts.instagram" class="social-icons__item">
+                            <a :href="contacts.instagram" data-lock class="social-icons__item">
                                 <InstagramIcon class="icon icon--white"/>
                             </a>
-                            <a :href="contacts.facebook" class="social-icons__item">
+                            <a :href="contacts.facebook" data-lock class="social-icons__item">
                                 <FacebookIcon class="icon icon--white"/>
                             </a>
                         </div>
@@ -69,10 +69,10 @@
                     </div>
                     <div class="column column--right">
                         <a :href="`tel:+38${contacts.phone}`" class="phone-number">+38 {{contacts.phone}}</a>
-                        <a href="" class="icon wishlist" @click="toggleWishList">
+                        <a href="" class="icon wishlist" data-lock @click="toggleWishList">
                             <HeartIcon class="icon icon--white"/>
                         </a>
-                        <a href="" class="icon cart">
+                        <a href="" data-lock class="icon cart">
                             <CartIcon class="icon icon--white"/>
                         </a>
                     </div>
@@ -234,10 +234,6 @@ export default {
             .icon {
                 width: 30px;
                 height: 30px;
-                fill: $gray;
-                &--white {
-                    fill: $white;
-                }
             }
             .column {
                 display: flex;
@@ -267,10 +263,15 @@ export default {
                         padding-left: 100px;
                         display: none;
                         @include screenBreakpoint2(desktop) {
-                            display: block;
+                            display: flex;
                         }
-                        &__item:not(:first-of-type) {
+                        &__item {
+                          display: block;
+                          width: 30px;
+                          height: 30px;
+                          &:not(:first-of-type) {
                             margin-left: 20px;
+                          }
                         }
                     }
                 }
@@ -357,10 +358,15 @@ export default {
                         }
                         .social-icons {
                             padding-left: 0;
-                            display: block;
+                            display: flex;
                             margin-bottom: 10px;
-                            &__item:not(:first-of-type) {
+                            &__item {
+                              width: 30px;
+                              height: 30px;
+                              display: block;
+                              &:not(:first-of-type) {
                                 margin-left: 10px;
+                              }
                             }
                         }
                         .phone-number {
