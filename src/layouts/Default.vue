@@ -90,8 +90,10 @@ body {
   padding: 0;
   font-size: 16px;
   transition: background 0.5s ease;
-  cursor: none;
   overflow-x: hidden;
+  @include screenBreakpoint2(desktop) {
+    cursor: none;
+  }
   &.scroll-lock {
     @include screenBreakpoint2(desktop) {
       padding-right: 17px;
@@ -132,7 +134,7 @@ button {
   border: none;
   overflow: visible;
   background-color: transparent;
-  //cursor: pointer;
+  cursor: pointer;
   color: inherit;
   font: inherit;
   text-align: inherit;
@@ -188,6 +190,10 @@ main.page-content {
 }
 
 .cursor {
+  @include screenBreakpoint2(desktop) {
+    display: block;
+  }
+  display: none;
   position: absolute;
   background-color: $gray;
   width: 15px;
@@ -211,6 +217,10 @@ main.page-content {
 }
 
 .cursor-follower {
+  @include screenBreakpoint2(desktop) {
+    display: block;
+  }
+  display: none;
   position: absolute;
   background-color: rgba($gray, 0.3);
   width: 40px;
