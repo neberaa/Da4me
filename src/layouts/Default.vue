@@ -130,14 +130,6 @@ main.page-content {
   }
 }
 
-.RETICOOL.active {
-  .RETICOOL__circle {
-    width: 20px;
-    height: 20px;
-    background: $gray;
-  }
-}
-
 // Vue js animation
 .fade-enter-active {
     transition: opacity 2s;
