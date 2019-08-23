@@ -91,6 +91,7 @@ body {
   font-size: 16px;
   transition: background 0.5s ease;
   cursor: none;
+  overflow-x: hidden;
   &.scroll-lock {
     @include screenBreakpoint2(desktop) {
       padding-right: 17px;
