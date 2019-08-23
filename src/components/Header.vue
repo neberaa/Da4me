@@ -195,7 +195,7 @@ export default {
       }
     }
   },
-  created() {
+  beforeMount() {
     this.href = window.location.href;
   },
   mounted() {
