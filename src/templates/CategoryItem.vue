@@ -70,6 +70,7 @@ query CategoryItem ($path: String!) {
 export default {
   computed: {
     filteredProducts() {
+      console.log('page products', this.$page.products.edges);
       return this.$page.products.edges.filter(p => {
         const category = `/${p.node.category}.md`;
         return category.indexOf(this.$route.path) > -1;

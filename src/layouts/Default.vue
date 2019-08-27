@@ -88,11 +88,12 @@ body {
   font-family: 'Didact Gothic',system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
   margin:0;
   padding: 0;
-  font-size: 16px;
+  font-size: 14px;
   transition: background 0.5s ease;
   overflow-x: hidden;
   @include screenBreakpoint2(desktop) {
     cursor: none;
+    font-size: 16px;
   }
   &.scroll-lock {
     @include screenBreakpoint2(desktop) {
