@@ -6,7 +6,7 @@
             <div class="products">
                 <div v-for="product in favouriteProducts" :key="product.node.id" class="product">
                     <g-link :to="product.node.path" class="product__image" :style="{'background-image' : `url(${product.node.image})`}"></g-link>
-                    <button class="remove" @click="removeFromWishList">Remove from list</button>
+                    <button class="product__cta" @click="removeFromWishList">Remove from list</button>
                 </div>
             </div>
         </div>
@@ -59,62 +59,78 @@ import {  mapState, mapMutations } from 'vuex';
 
 <style lang="scss" scoped>
 .wishlist__popup {
-    position: absolute;
-    right: 0;
-    height: 100vh;
-    width: 40%;
-    top: 6rem;
-    background: $white;
-    box-shadow: -2px 4px 4px 0 rgba(0,0,0,0.2);
-    padding: 20px;
-    @include screenBreakpoint2(phone) {
-      top: 4rem;
-      width: 100%;
-      box-shadow: inset 0 2px 4px 0 rgba(0,0,0,0.2);
+  position: absolute;
+  right: 0;
+  height: 100vh;
+  width: 40%;
+  top: 6rem;
+  background: $white;
+  box-shadow: -2px 4px 4px 0 rgba(0, 0, 0, 0.2);
+  padding: 2rem;
+  @include screenBreakpoint2(phone) {
+    top: 4rem;
+    width: 100%;
+    box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+  }
+
+  .icon.cross {
+    position: relative;
+    background-color: transparent;
+    border: none;
+    width: 30px;
+    height: 30px;
+
+    &::before, &::after {
+      position: absolute;
+      content: ' ';
+      height: 30px;
+      width: 2px;
+      background-color: $gray;
+      top: 0;
+      z-index: 10;
+      right: 50%;
     }
-    .icon.cross {
-        position: relative;
-        background-color: transparent;
-        border: none;
-        width: 30px;
-        height: 30px;
-        &::before, &::after {
-            position: absolute;
-            content: ' ';
-            height: 30px;
-            width: 2px;
-            background-color: $gray;
-            top: 0;
-            z-index: 10;
-        }
-        &::before {
-            transform: rotate(45deg);
-        }
-        &::after {
-            transform: rotate(-45deg);
-        }
+
+    &::before {
+      transform: rotate(45deg);
     }
-    .product {
-        width: 150px;
-        height: 250px;
-        position: relative;
-        margin-bottom: 15px;
-        overflow: hidden;
-        display: flex;
-        flex-direction: column;
-        &__image {
-            width: 150px;
-            height: 200px;
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            display: block;
-        }
+
+    &::after {
+      transform: rotate(-45deg);
     }
+  }
+
+  .product {
+    width: 150px;
+    height: 250px;
+    position: relative;
+    margin-bottom: 15px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    &__image {
+      width: 150px;
+      height: 200px;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      display: block;
+    }
+
+    &__cta {
+      padding: 5px;
+      font-size: 0.8rem;
+      border: 2px solid $blue;
+      margin-top: 10px;
+    }
+  }
 }
 
 .slide-right-enter-active {
-    transition: all 0.6s  ease-in;
+    transition: all 0.5s  ease;
 }
 
 .slide-right-leave-active {

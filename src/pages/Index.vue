@@ -13,7 +13,7 @@ query Posts {
 	categories: allCategoryItem {
     edges {
       node {
-        title
+        header
         image
         path
       }
@@ -24,9 +24,9 @@ query Posts {
       node {
         id
         title
-    description
-    category
-    image
+        description
+        category
+        image
       }
     }
   }

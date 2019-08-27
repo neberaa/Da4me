@@ -11,7 +11,7 @@
         <button
           data-lock
           class="category__cta">
-          {{ item.node.title }}
+          {{ item.node.header }}
         </button>
       </g-link>
       <div class="category item3" ></div>

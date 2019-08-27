@@ -1,57 +1,55 @@
 <template>
-    <Layout>
-        <div class="container">
-            <div class="journal-hero">
-                <h1 class="journal-header">
-                    a wise person once said...
-                </h1>
-            </div>
-            <g-link
-                    :to="item.node.path"
-                    v-for="item in $page.categories.edges"
-                    :key="item.node.id">
-                    {{item.node.title}}
-            </g-link>
-            <div class="products">
-                <g-link
-                        :to="item.node.path"
-                        v-for="item in $page.products.edges"
-                        :key="item.node.id"
-                        class="product__item"
-                >
-                    <div class="container journal">
-                        <h2 class="journal-title">{{ item.node.title }}</h2>
-                        <g-image :src="item.node.image" :alt="item.node.title"/>
-                    </div>
-                </g-link>
-            </div>
+  <Layout>
+    <div class="container">
+      <h1 class="header">
+         All products
+      </h1>
+      <div class="content">
+        <aside class="sidebar">
+          <g-link
+            :to="item.node.path"
+            v-for="item in $page.categories.edges"
+            :key="item.node.id">
+            {{item.node.header}}
+          </g-link>
+        </aside>
+        <div class="products">
+          <g-link
+            :to="item.node.path"
+            v-for="item in $page.products.edges"
+            :key="item.node.id"
+            class="product__item">
+            <h4 class="title" v-text="item.node.title"/>
+            <g-image :src="item.node.image" :alt="item.node.title"/>
+          </g-link>
         </div>
-
-    </Layout>
+      </div>
+    </div>
+  </Layout>
 </template>
 
 <page-query>
-    query Posts {
-        products: allProductItem {
-        edges {
-         node {
-            id
-            path
-            title
-            image
-         }
+  query Posts {
+    products: allProductItem {
+      edges {
+        node {
+          id
+          path
+          title
+          image
+        }
       }
     },
     categories: allCategoryItem {
-        edges{
-    node {
-        id
-        path
-        title
+      edges{
+        node {
+          id
+          path
+          header
+        }
+      }
     }
-    }
-    }
-    }
+  }
 </page-query>
 
 <script>
@@ -60,15 +58,26 @@
 </script>
 
 <style scoped>
-    .products {
-        display: flex;
-    }
-    .product__item {
-        display: block;
-        width: 300px;
-        height: 600px;
-        overflow: hidden;
-        border: 1px solid darkgray;
-        margin: 0 20px;
-    }
+  .content {
+    display: flex;
+  }
+  .sidebar {
+    flex: 0 0 20%;
+    display: flex;
+    flex-direction: column;
+  }
+  .products {
+    flex: 0 0 80%;
+    display: flex;
+   }
+  .product__item {
+    display: block;
+    width: 200px;
+    height: 300px;
+    overflow: hidden;
+    margin: 0 20px;
+  }
+  .title {
+    margin-top: 0;
+  }
 </style>

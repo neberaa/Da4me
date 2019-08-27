@@ -22,7 +22,7 @@
               :to="product.node.path"
               :key="product.node.id"
               class="product__item">
-              {{product.node.title}}
+              <p v-text="product.node.title"/>
               <g-image
                 :src="product.node.image"
                 :alt="product.node.title"/>
@@ -37,7 +37,7 @@
 <page-query>
 query CategoryItem ($path: String!) {
   category: categoryItem (path: $path) {
-    title
+    header
     image
     description
     path
@@ -91,18 +91,22 @@ export default {
     .sidebar {
       display: flex;
       flex-direction: column;
+      flex: 0 0 20%;
     }
 
     .products {
+      flex: 0 0 80%;
       display: flex;
-
+      flex-wrap: wrap;
       .product__item {
         display: flex;
-        flex-wrap: wrap;
-        min-width: 100px;
+        flex-direction: column;
+        flex: 0 0 200px;
         overflow: hidden;
-        border: 1px solid darkgray;
-        margin: 0 20px;
+        margin: 0 20px 20px;
+        p {
+          margin-top: 0;
+        }
       }
     }
   }
