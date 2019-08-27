@@ -6,14 +6,14 @@
           <g-link to="/">Главная/</g-link>
           <g-link to="/categories">Категории</g-link>
         </nav>
-        <h1 v-html="$page.category.title" class="category-title" />
+        <h1 v-html="$page.category.header" class="category-title" />
         <div class="content">
           <aside class="sidebar">
             <g-link
               :to="item.node.path"
               v-for="item in $page.categories.edges"
               :key="item.node.id">
-              {{item.node.title}}
+              {{item.node.header}}
             </g-link>
           </aside>
           <div class="products">
@@ -47,7 +47,7 @@ query CategoryItem ($path: String!) {
       node {
         id
         path
-        title
+        header
       }
     }
   },

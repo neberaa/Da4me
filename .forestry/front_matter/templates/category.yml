@@ -34,6 +34,7 @@ fields:
   default: https://res.cloudinary.com/da4me/fl_progressive/v1565021018/uploads/logo2_lawxwe.png
   label: Картинка
 pages:
+- categories/new-category3.md
 - categories/новая-категория2.md
 - categories/новая-категория.md
 - categories/верхняя-одежда.md
