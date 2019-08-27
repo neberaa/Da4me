@@ -108,6 +108,6 @@ fields:
   label: Ключ для АПИ
   description: Ключ для АПИ должен быть на английском(product_...)
 pages:
-- products/t-shirt.md
 - products/платье-в-пол.md
+- products/t-shirt.md
 - products/Kids/kids-dress.md
