@@ -100,6 +100,12 @@ fields:
     description: 'Выбрать картинки для продукта с другим цветом '
   label: Другие цвета
   description: 'Выберите цвет и картинки '
+- name: api_key
+  type: text
+  config:
+    required: true
+  label: Ключ для АПИ
+  description: Ключ для АПИ должен быть на английском(product_...)
 pages:
 - products/t-shirt.md
 - products/платье-в-пол.md
