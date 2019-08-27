@@ -70,8 +70,8 @@ query CategoryItem ($path: String!) {
 export default {
   computed: {
     filteredProducts() {
-      console.log('page products', this.$page.products.edges);
       return this.$page.products.edges.filter(p => {
+        console.log('page products', p.node.category, p.node, this.$page.categories);
         const category = `/${p.node.category}.md`;
         return category.indexOf(this.$route.path) > -1;
       });
@@ -96,9 +96,9 @@ export default {
         .products {
             display: flex;
             .product__item {
-                display: block;
-                width: 300px;
-                height: 600px;
+                display: flex;
+              flex-wrap: wrap;
+                min-width: 100px;
                 overflow: hidden;
                 border: 1px solid darkgray;
                 margin: 0 20px;
