@@ -1,7 +1,7 @@
 ---
 label: Product
 hide_body: true
-display_field: api_key
+display_field: title
 fields:
 - name: title
   type: text
@@ -101,12 +101,6 @@ fields:
     description: 'Выбрать картинки для продукта с другим цветом '
   label: Другие цвета
   description: 'Выберите цвет и картинки '
-- name: api_key
-  type: text
-  config:
-    required: true
-  label: Ключ для АПИ
-  description: Ключ для АПИ должен быть на английском(product_...)
 pages:
 - products/Kids/kids-dress.md
 - products/платье-в-пол.md

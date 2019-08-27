@@ -1,6 +1,7 @@
 ---
 label: Category
 hide_body: true
+display_field: key
 fields:
 - name: title
   type: text
