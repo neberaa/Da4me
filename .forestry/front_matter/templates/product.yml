@@ -1,6 +1,7 @@
 ---
 label: Product
 hide_body: true
+display_field: api_key
 fields:
 - name: title
   type: text
