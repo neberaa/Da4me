@@ -64,7 +64,7 @@ module.exports = {
           externalLinksTarget: "_blank",
           externalLinksRel: ["nofollow", "noopener", "noreferrer"]
         },
-        route: '/categories/:title'
+        route: '/categories/:slug'
       }
     },
     {

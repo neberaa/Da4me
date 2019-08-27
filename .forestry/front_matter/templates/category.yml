@@ -1,8 +1,15 @@
 ---
 label: Category
 hide_body: true
-display_field: key
+display_field: title
 fields:
+- name: key
+  type: text
+  config:
+    required: true
+  hidden: false
+  label: Ключ
+  description: Поле будет использоваться как путь к странице. Должно быть на английском
 - name: title
   type: text
   config:
@@ -24,16 +31,12 @@ fields:
   config:
     maxSize: '20'
   description: Вставьте главную картинку категории
-  default: "/uploads/logo3.png"
+  default: https://res.cloudinary.com/da4me/fl_progressive/v1565021018/uploads/logo2_lawxwe.png
   label: Картинка
-- name: key
-  type: text
-  config:
-    required: true
-  hidden: false
-  description: Ключ для АПИ на английском языке(category_....)
-  label: Ключ
 pages:
+- categories/новая-категория.md
+- categories/верхняя-одежда.md
+- categories/category-t-shirts.md
 - categories/платья.md
 - categories/category-kids.md
 - categories/family-look.md

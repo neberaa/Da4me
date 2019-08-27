@@ -2,34 +2,33 @@
   <Layout>
     <div class="category">
       <div class="container category-container">
-
-          <nav class="breadcrumbs">
-              <g-link to="/">Главная/</g-link>
-              <g-link to="/categories">Категории</g-link>
-          </nav>
-          <h1 v-html="$page.category.title" class="category-title" />
-          <div class="content">
-              <aside class="sidebar">
-                  <g-link
-                          :to="item.node.path"
-                          v-for="item in $page.categories.edges"
-                          :key="item.node.id">
-                      {{item.node.title}}
-                  </g-link>
-              </aside>
-              <div class="products">
-                  <g-link
-                          v-for="product in filteredProducts"
-                          :to="product.node.path"
-                          :key="product.node.id"
-                          class="product__item">
-                      {{product.node.title}}
-                      <g-image
-                              :src="product.node.image"
-                              :alt="product.node.title"/>
-                  </g-link>
-              </div>
+        <nav class="breadcrumbs">
+          <g-link to="/">Главная/</g-link>
+          <g-link to="/categories">Категории</g-link>
+        </nav>
+        <h1 v-html="$page.category.title" class="category-title" />
+        <div class="content">
+          <aside class="sidebar">
+            <g-link
+              :to="item.node.path"
+              v-for="item in $page.categories.edges"
+              :key="item.node.id">
+              {{item.node.title}}
+            </g-link>
+          </aside>
+          <div class="products">
+            <g-link
+              v-for="product in filteredProducts"
+              :to="product.node.path"
+              :key="product.node.id"
+              class="product__item">
+              {{product.node.title}}
+              <g-image
+                :src="product.node.image"
+                :alt="product.node.title"/>
+            </g-link>
           </div>
+        </div>
       </div>
     </div>
   </Layout>
@@ -71,7 +70,6 @@ export default {
   computed: {
     filteredProducts() {
       return this.$page.products.edges.filter(p => {
-        console.log('page products', p.node.category, p.node, this.$page.categories);
         const category = `/${p.node.category}.md`;
         return category.indexOf(this.$route.path) > -1;
       });
@@ -81,29 +79,32 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    a.active {
-        color: red;
+  a.active {
+    color: red;
+  }
+  .breadcrumbs {
+    margin: 20px 0;
+  }
+  .content {
+    display: flex;
+
+    .sidebar {
+      display: flex;
+      flex-direction: column;
     }
-    .breadcrumbs {
-        margin: 20px 0;
-    }
-    .content {
+
+    .products {
+      display: flex;
+
+      .product__item {
         display: flex;
-        .sidebar {
-            display: flex;
-            flex-direction: column;
-        }
-        .products {
-            display: flex;
-            .product__item {
-                display: flex;
-              flex-wrap: wrap;
-                min-width: 100px;
-                overflow: hidden;
-                border: 1px solid darkgray;
-                margin: 0 20px;
-            }
-        }
+        flex-wrap: wrap;
+        min-width: 100px;
+        overflow: hidden;
+        border: 1px solid darkgray;
+        margin: 0 20px;
+      }
     }
+  }
 
 </style>
