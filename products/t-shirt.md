@@ -23,5 +23,8 @@ image_gallery:
 - https://res.cloudinary.com/da4me/v1565723995/uploads/%D0%91%D0%B5%D0%B7-%D0%B8%D0%BC%D0%B5%D0%BD%D0%B8-2_hxjl8j.jpg
 - https://res.cloudinary.com/da4me/v1565724733/uploads/IMG_3592_vhvm64.jpg
 size: ''
+colors:
+  color1: ''
+  images_color1: []
 
 ---

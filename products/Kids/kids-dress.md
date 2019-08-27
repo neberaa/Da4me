@@ -20,5 +20,9 @@ image_gallery:
 - https://res.cloudinary.com/da4me/v1565724765/uploads/IMG_3890_v8ojzl.jpg
 - https://res.cloudinary.com/da4me/v1565724759/uploads/IMG_3511_pphllh.jpg
 size: ''
+colors:
+  color1: ''
+  images_color1: []
+api_key: product_kidsdress
 
 ---
