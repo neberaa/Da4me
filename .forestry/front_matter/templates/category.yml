@@ -1,16 +1,16 @@
 ---
 label: Category
 hide_body: true
-display_field: key
+display_field: header
 fields:
-- name: key
+- name: title
   type: text
   config:
     required: true
   hidden: false
   label: Ключ
   description: Поле будет использоваться как путь к странице. Должно быть на английском
-- name: title
+- name: header
   type: text
   config:
     required: true
