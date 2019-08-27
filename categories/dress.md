@@ -1,7 +1,7 @@
 ---
-image: https://res.cloudinary.com/da4me/fl_progressive/v1565021018/uploads/logo2_lawxwe.png
-title: new_category3
-header: Новая категория 3
+image: https://res.cloudinary.com/da4me/fl_progressive/v1565724745/uploads/IMG_3447_cga75u.jpg
+title: dress
+header: Платья
 description: Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Quisque
   velit nisi, pretium ut lacinia in, elementum id enim. Quisque velit nisi, pretium
   ut lacinia in, elementum id enim. Curabitur aliquet quam id dui posuere blandit.
