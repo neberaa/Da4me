@@ -8,8 +8,8 @@ fields:
   config:
     required: true
   hidden: false
-  description: Ключ для АПИ на английском языке(category_....)
   label: Ключ
+  description: Поле будет использоваться как путь к странице. Должно быть на английском
 - name: title
   type: text
   config:
