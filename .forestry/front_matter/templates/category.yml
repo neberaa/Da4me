@@ -24,7 +24,7 @@ fields:
   config:
     maxSize: '20'
   description: Вставьте главную картинку категории
-  default: "/uploads/logo3.png"
+  default: https://res.cloudinary.com/da4me/fl_progressive/v1565021018/uploads/logo2_lawxwe.png
   label: Картинка
 - name: key
   type: text
