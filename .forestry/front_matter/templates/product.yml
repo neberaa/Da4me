@@ -101,5 +101,3 @@ fields:
     description: 'Выбрать картинки для продукта с другим цветом '
   label: Другие цвета
   description: 'Выберите цвет и картинки '
-pages:
-- products/Kids/kids-dress.md
