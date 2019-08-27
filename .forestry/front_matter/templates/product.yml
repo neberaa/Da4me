@@ -102,4 +102,5 @@ fields:
   label: Другие цвета
   description: 'Выберите цвет и картинки '
 pages:
+- products/Kids/комбинезон.md
 - products/Платья/платье-в-пол.md
