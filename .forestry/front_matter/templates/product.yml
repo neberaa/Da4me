@@ -36,7 +36,7 @@ fields:
   type: file
   config:
     maxSize: '20'
-  default: "/uploads/logo3.png"
+  default: https://res.cloudinary.com/da4me/fl_progressive/v1565021018/uploads/logo2_lawxwe.png
   label: 'Основная картинка '
   description: Выберите основную картинку
 - name: price
