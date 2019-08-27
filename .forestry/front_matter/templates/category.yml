@@ -33,3 +33,5 @@ fields:
   description: Вставьте главную картинку категории
   default: https://res.cloudinary.com/da4me/fl_progressive/v1565021018/uploads/logo2_lawxwe.png
   label: Картинка
+pages:
+- categories/dress.md
