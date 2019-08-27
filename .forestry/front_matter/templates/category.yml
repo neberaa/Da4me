@@ -34,6 +34,7 @@ fields:
   description: Ключ для АПИ на английском языке(category_....)
   label: Ключ
 pages:
+- categories/category-t-shirts.md
 - categories/платья.md
 - categories/category-kids.md
 - categories/family-look.md
