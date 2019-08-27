@@ -3,6 +3,13 @@ label: Category
 hide_body: true
 display_field: key
 fields:
+- name: key
+  type: text
+  config:
+    required: true
+  hidden: false
+  description: Ключ для АПИ на английском языке(category_....)
+  label: Ключ
 - name: title
   type: text
   config:
@@ -26,13 +33,6 @@ fields:
   description: Вставьте главную картинку категории
   default: https://res.cloudinary.com/da4me/fl_progressive/v1565021018/uploads/logo2_lawxwe.png
   label: Картинка
-- name: key
-  type: text
-  config:
-    required: true
-  hidden: false
-  description: Ключ для АПИ на английском языке(category_....)
-  label: Ключ
 pages:
 - categories/верхняя-одежда.md
 - categories/category-t-shirts.md
