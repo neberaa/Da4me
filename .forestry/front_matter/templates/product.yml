@@ -102,6 +102,6 @@ fields:
   label: Другие цвета
   description: 'Выберите цвет и картинки '
 pages:
-- products/Kids/футболка.md
 - products/Kids/комбинезон.md
+- products/Kids/футболка.md
 - products/Платья/платье-в-пол.md
