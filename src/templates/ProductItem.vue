@@ -5,23 +5,25 @@
         <div class="product__item">
           <h1 class="title" v-html="$page.product.title" />
           <g-image class="image" v-if="$page.product.image && $page.product.imageGallery.length === 0" :src="$page.product.image" :alt="$page.product.title"/>
-          <agile
-            ref="carousel"
-            class="carousel"
-            :options="carouselOptions">
-            <img
-              class="slide"
-              v-for="(img, i) in $page.product.imageGallery"
-              :src="img"
-              :alt="`${$page.product.title}-${i}`"
-              :key="`imagegallery${i}`">
-            <template slot="prevButton">
-              <ArrowIcon class="icon prev"></ArrowIcon>
-            </template>
-            <template slot="nextButton">
-              <ArrowIcon class="icon next"></ArrowIcon>
-            </template>
-          </agile>
+          <ClientOnly>
+            <agile
+              ref="carousel"
+              class="carousel"
+              :options="carouselOptions">
+              <img
+                class="slide"
+                v-for="(img, i) in $page.product.imageGallery"
+                :src="img"
+                :alt="`${$page.product.title}-${i}`"
+                :key="`imagegallery${i}`">
+              <template slot="prevButton">
+                <ArrowIcon class="icon prev"></ArrowIcon>
+              </template>
+              <template slot="nextButton">
+                <ArrowIcon class="icon next"></ArrowIcon>
+              </template>
+            </agile>
+          </ClientOnly>
           <div class="description" v-html="$page.product.description"/>
           <div class="price">
             <SignIcon class="icon price__icon"/>
@@ -66,6 +68,10 @@ export default {
     CartIcon,
     SignIcon,
     ArrowIcon,
+    agile: () =>
+      import ('vue-agile')
+        .then(m => m.VueAgile)
+        .catch(),
   },
   metaInfo () {
     return {
