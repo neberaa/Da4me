@@ -1,6 +1,6 @@
 import DefaultLayout from "~/layouts/Default.vue";
 import store from './store';
-import VueAgile from 'vue-agile'
+import VueAgile from 'vue-agile/src/Agile'
 
 export default function(Vue, { head, appOptions }) {
   Vue.component('agile', VueAgile);
