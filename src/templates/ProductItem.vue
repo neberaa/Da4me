@@ -60,14 +60,12 @@ import { mapGetters, mapMutations } from 'vuex';
 import CartIcon from "../assets/icons/shopping-bag.svg";
 import SignIcon from "../assets/icons/sign.svg";
 import ArrowIcon from "../assets/icons/back.svg";
-import { VueAgile } from 'vue-agile'
 
 export default {
   components: {
     CartIcon,
     SignIcon,
     ArrowIcon,
-    agile: VueAgile
   },
   metaInfo () {
     return {
@@ -153,6 +151,7 @@ export default {
           @include center('both');
           font-size: 2rem;
           z-index: -1;
+          color: $gray;
         }
         .icon {
           width: 40px;
