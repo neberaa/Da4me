@@ -13,7 +13,7 @@
     "gridsome": "^0.5.7",
     "gsap": "^2.1.3",
     "hamburgers": "^1.1.3",
-    "vue-owl-carousel": "^2.0.3",
+    "vue-agile": "^1.0.11",
     "vue-svg-loader": "^0.12.0"
   },
   "devDependencies": {

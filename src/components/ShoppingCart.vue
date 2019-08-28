@@ -84,7 +84,6 @@
       top: 4rem;
       width: 100%;
       box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.2);
-      padding-bottom: 6rem;
     }
 
     .icon.cross {

@@ -2,13 +2,14 @@
     <transition name="slide-right">
         <div class="wishlist__popup" v-click-outside="manageWishList"  v-show="wishListIsOpen">
             <button class="icon cross" @click="closeWishList"/>
-            <h2>Wishlist</h2>
+            <h2>Избранные товары</h2>
             <div class="products">
                 <div v-for="product in favouriteProducts" :key="product.node.id" class="product">
                     <g-link :to="product.node.path" class="product__image" :style="{'background-image' : `url(${product.node.image})`}"></g-link>
-                    <button class="product__cta" @click="removeFromWishList">Remove from list</button>
+                    <button class="product__cta" @click="removeFromWishList">Убрать из списка</button>
                 </div>
             </div>
+          <p v-show="wishList.length === 0">Список желаний пуст...</p>
         </div>
     </transition>
 </template>

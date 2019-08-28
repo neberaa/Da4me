@@ -4,7 +4,24 @@
       <div class="container">
         <div class="product__item">
           <h1 class="title" v-html="$page.product.title" />
-          <g-image class="image" :src="$page.product.image" :alt="$page.product.title"/>
+          <g-image class="image" v-if="$page.product.image && $page.product.imageGallery.length === 0" :src="$page.product.image" :alt="$page.product.title"/>
+          <agile
+            ref="carousel"
+            class="carousel"
+            :options="carouselOptions">
+            <img
+              class="slide"
+              v-for="(img, i) in $page.product.imageGallery"
+              :src="img"
+              :alt="`${$page.product.title}-${i}`"
+              :key="`imagegallery${i}`">
+            <template slot="prevButton">
+              <ArrowIcon class="icon prev"></ArrowIcon>
+            </template>
+            <template slot="nextButton">
+              <ArrowIcon class="icon next"></ArrowIcon>
+            </template>
+          </agile>
           <div class="description" v-html="$page.product.description"/>
           <div class="price">
             <SignIcon class="icon price__icon"/>
@@ -30,6 +47,7 @@ query ProductItem ($path: String!) {
   product: productItem (path: $path) {
     title
     image
+    imageGallery
     description
     id
     price
@@ -38,17 +56,30 @@ query ProductItem ($path: String!) {
 </page-query>
 
 <script>
-    import { mapGetters, mapMutations } from 'vuex';
-    import CartIcon from "../assets/icons/shopping-bag.svg";
-    import SignIcon from "../assets/icons/sign.svg";
+import { mapGetters, mapMutations } from 'vuex';
+import CartIcon from "../assets/icons/shopping-bag.svg";
+import SignIcon from "../assets/icons/sign.svg";
+import ArrowIcon from "../assets/icons/back.svg";
+
 export default {
   components: {
     CartIcon,
-    SignIcon
+    SignIcon,
+    ArrowIcon
   },
   metaInfo () {
     return {
       title: this.$page.product.title,
+    }
+  },
+  data() {
+    return {
+      carouselOptions: {
+        slidesToShow: 3,
+        dots: false,
+        navButtons: true,
+        centerMode: true,
+      }
     }
   },
   computed: {
@@ -74,6 +105,28 @@ export default {
     flex: 1 1 300px;
     justify-content: center;
     align-items: flex-start;
+    .carousel {
+      width: 100%;
+      margin: auto;
+      position: relative;
+      img {
+        object-fit: cover;
+        object-position: center;
+        padding: 0 10px;
+      }
+      .icon {
+        width: 40px;
+        height: 40px;
+        @include center('y');
+        &.next {
+          transform: rotate(180deg);
+          right: 5px;
+        }
+        &.prev {
+          left: 13px;
+        }
+      }
+    }
     .price {
       display: flex;
       justify-content: flex-start;
