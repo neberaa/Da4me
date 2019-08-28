@@ -99,9 +99,21 @@ fields:
     config: {}
     label: Картинки для изделий с цветом 1
     description: 'Выбрать картинки для продукта с другим цветом '
+  - name: color2
+    type: color
+    config:
+      required: false
+      color_format: Hex
+    label: Цвет 2
+    description: Выберите цвет № 2
+  - name: images_color2
+    type: image_gallery
+    config: {}
+    label: Картинки для изделия с цветом 2
+    description: Выберите картинки для изделия с цветом №2
   label: Другие цвета
   description: 'Выберите цвет и картинки '
 pages:
-- products/Kids/футболка.md
 - products/Kids/комбинезон.md
+- products/Kids/футболка.md
 - products/Платья/платье-в-пол.md
