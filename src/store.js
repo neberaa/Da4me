@@ -10,6 +10,7 @@ const store = new Vuex.Store({
     wishListIsOpen: false,
     cartIsOpen: false,
     menuIsOpen: false,
+    cart: [],
   },
   mutations: {
     toggleWishList(state) {
@@ -17,6 +18,9 @@ const store = new Vuex.Store({
     },
     toggleMenu(state) {
         state.menuIsOpen = !state.menuIsOpen;
+    },
+    toggleCart(state) {
+      state.cartIsOpen = !state.cartIsOpen;
     },
     closeMenu(state) {
       if (state.menuIsOpen) {
@@ -36,16 +40,32 @@ const store = new Vuex.Store({
       state.wishList.splice(state.wishList.indexOf(id), 1);
       localStorage.setItem('wishList', JSON.stringify(state.wishList));
     },
-    wishListLoadJSON(state) {
-      const json = localStorage.getItem('wishList');
+    closeCart(state) {
+      if (state.cartIsOpen) {
+        state.cartIsOpen = false;
+      }
+    },
+    addToCart (state, id ) {
+      state.cart.push(id);
+      localStorage.setItem('cart', JSON.stringify(state.cart));
+    },
+    removeFromCart (state, id) {
+      state.cart.splice(state.cart.indexOf(id), 1);
+      localStorage.setItem('cart', JSON.stringify(state.cart));
+    },
+    loadJSON(state, name) {
+      const json = localStorage.getItem(name);
       if (json) {
-        state.wishList = JSON.parse(json);
+        state[name] = JSON.parse(json);
       }
     }
   },
   getters: {
     isAddedToWishList: (state) => (id) => {
       return state.wishList.includes(id);
+    },
+    isAddedToCart: (state) => (id) => {
+      return state.cart.includes(id);
     },
   }
 });

@@ -1,86 +1,149 @@
 <template>
-    <header class="header sticky" v-click-outside="closeMenu">
-        <div class="nav-container">
-            <div class="container">
-                <div class="column column--left">
-                    <div class="hamburger hamburger--spin js-hamburger" data-lock :class="{'is-active': menuIsOpen}" @click="toggleMenu">
-                        <div class="hamburger-box">
-                            <div class="hamburger-inner"></div>
-                        </div>
-                    </div>
-                    <div class="social-icons">
-                        <a :href="contacts.instagram" data-lock class="social-icons__item">
-                            <InstagramIcon class="icon"/>
-                        </a>
-                        <a :href="contacts.facebook" data-lock class="social-icons__item">
-                            <FacebookIcon class="icon"/>
-                        </a>
-                    </div>
-                </div>
-                <div class="column column--center">
-                    <g-link :to="{ name: 'home' }" class="home-link">
-                        <img
-                          src="../../static/logo.png"
-                          :alt="settings.site_name"
-                          class="logo"/>
-                    </g-link>
-                </div>
-                <div class="column column--right">
-                    <a :href="`tel:+38${contacts.phone}`" class="phone-number">+38 {{contacts.phone}}</a>
-                    <a href="" class="icon wishlist" data-lock @click="toggleWishList">
-                        <HeartIcon class="icon"/>
-                    </a>
-                    <a href="" data-lock class="icon cart">
-                        <CartIcon class="icon"/>
-                    </a>
-                </div>
+  <header class="header sticky" v-click-outside="closeMenu">
+    <div class="nav-container">
+      <div class="container">
+        <div class="column column--left">
+          <div
+            class="hamburger hamburger--spin js-hamburger"
+            data-lock
+            :class="{'is-active': menuIsOpen}"
+            @click="toggleMenu">
+            <div class="hamburger-box">
+              <div class="hamburger-inner"/>
             </div>
+          </div>
+          <div class="social-icons">
+            <a
+              :href="contacts.instagram"
+              data-lock
+              class="social-icons__item">
+              <InstagramIcon class="icon"/>
+            </a>
+            <a
+              :href="contacts.facebook"
+              data-lock
+              class="social-icons__item">
+              <FacebookIcon class="icon"/>
+            </a>
+          </div>
         </div>
-        <transition name="slide">
-            <div class="nav-container nav-container--expandable" id="navigation-container" v-show="menuIsOpen">
-                <div class="bg-wrapper"/>
-                <div class="container" @click="closeMenu">
-                    <div class="column column--left">
-                        <h4 class="nav-title">MENU</h4>
-                        <nav id="nav" class="nav">
-                            <g-link
-                                    v-for="(page, ind) in $static.pages.edges"
-                                    :key="`page-${ind}`"
-                                    class="nav__link"
-                                    :to="page.node.path">{{ page.node.title }}</g-link>
-                        </nav>
-                        <div class="social-icons">
-                            <a :href="contacts.instagram" data-lock class="social-icons__item">
-                                <InstagramIcon class="icon icon--white"/>
-                            </a>
-                            <a :href="contacts.facebook" data-lock class="social-icons__item">
-                                <FacebookIcon class="icon icon--white"/>
-                            </a>
-                        </div>
-                        <a :href="`tel:+38${contacts.phone}`" class="phone-number phone-number--mobile">+38 {{contacts.phone}}</a>
-                    </div>
-                    <div class="column column--center">
-                        <g-link :to="{ name: 'home' }" class="home-link">
-                            <img
-                                    src="../assets/icons/logo5.png"
-                                    :alt="settings.site_name"
-                                    class="logo"/>
-                        </g-link>
-                    </div>
-                    <div class="column column--right">
-                        <a :href="`tel:+38${contacts.phone}`" class="phone-number">+38 {{contacts.phone}}</a>
-                        <a href="" class="icon wishlist" data-lock @click="toggleWishList">
-                            <HeartIcon class="icon icon--white"/>
-                        </a>
-                        <a href="" data-lock class="icon cart">
-                            <CartIcon class="icon icon--white"/>
-                        </a>
-                    </div>
-                </div>
+        <div class="column column--center">
+          <g-link
+            :to="{ name: 'home' }"
+            class="home-link">
+            <img
+              src="../../static/logo.png"
+              :alt="settings.site_name"
+              class="logo"/>
+          </g-link>
+        </div>
+        <div class="column column--right">
+          <a
+            :href="`tel:+38${contacts.phone}`"
+            class="phone-number">
+            +38 {{contacts.phone}}
+          </a>
+          <a
+            href=""
+            class="icon wishlist"
+            data-lock
+            @click.prevent="toggleWishList">
+            <HeartIcon
+              class="icon"
+              :class="{'icon--blue': wishListIsOpen}"/>
+          </a>
+          <a
+            href=""
+            data-lock
+            class="icon cart"
+            :class="{'cart--blue': cartIsOpen}"
+            :data-products-count="cart.length"
+            @click.prevent="toggleCart">
+            <CartIcon
+              class="icon"
+              :class="{'icon--blue': cartIsOpen}"/>
+          </a>
+        </div>
+      </div>
+    </div>
+    <transition name="slide">
+      <div
+        class="nav-container nav-container--expandable"
+        id="navigation-container"
+        v-show="menuIsOpen">
+        <div class="bg-wrapper"/>
+          <div
+            class="container"
+            @click="closeMenu">
+            <div class="column column--left">
+              <h4 class="nav-title">MENU</h4>
+              <nav id="nav" class="nav">
+                <g-link
+                  v-for="(page, ind) in $static.pages.edges"
+                  :key="`page-${ind}`"
+                  class="nav__link"
+                  :to="page.node.path">
+                  {{ page.node.title }}
+                </g-link>
+              </nav>
+              <div class="social-icons">
+                <a
+                  :href="contacts.instagram"
+                  data-lock
+                  class="social-icons__item">
+                  <InstagramIcon class="icon icon--white"/>
+                </a>
+                <a
+                  :href="contacts.facebook"
+                  data-lock
+                  class="social-icons__item">
+                  <FacebookIcon class="icon icon--white"/>
+                </a>
+              </div>
+                <a
+                  :href="`tel:+38${contacts.phone}`"
+                  class="phone-number phone-number--mobile">
+                  +38 {{contacts.phone}}
+                </a>
+              </div>
+            <div class="column column--center">
+              <g-link
+                :to="{ name: 'home' }"
+                class="home-link">
+                <img
+                  src="../assets/icons/logo5.png"
+                  :alt="settings.site_name"
+                  class="logo"/>
+              </g-link>
             </div>
-        </transition>
-        <WishList :Products="$static.products.edges"/>
-    </header>
+            <div class="column column--right">
+              <a
+                :href="`tel:+38${contacts.phone}`"
+                class="phone-number">
+                +38 {{contacts.phone}}
+              </a>
+              <a
+                href=""
+                class="icon wishlist"
+                data-lock
+                @click.prevent="toggleWishList">
+                <HeartIcon class="icon icon--white"/>
+              </a>
+              <a
+                href=""
+                data-lock
+                class="icon cart cart--white"
+                :data-products-count="cart.length"
+                @click.prevent="toggleCart">
+                <CartIcon class="icon icon--white"/>
+              </a>
+            </div>
+          </div>
+      </div>
+      </transition>
+    <WishList :Products="$static.products.edges"/>
+    <ShoppingCart :Products="$static.products.edges"/>
+  </header>
 </template>
 
 <static-query>
@@ -100,6 +163,7 @@ query Posts  {
         image
         id
         path
+        price
       }
     }
   }
@@ -114,13 +178,15 @@ import FacebookIcon from '../assets/icons/facebook.svg';
 import CartIcon from '../assets/icons/shopping-bag.svg';
 import HeartIcon from '../assets/icons/heart.svg';
 import WishList from "./WishList";
-import {mapMutations, mapState} from 'vuex';
+import { mapMutations, mapState } from 'vuex';
+import ShoppingCart from "./ShoppingCart";
 
 export default {
   directives: {
     ClickOutside
   },
   components: {
+    ShoppingCart,
     InstagramIcon,
     FacebookIcon,
     CartIcon,
@@ -138,7 +204,9 @@ export default {
   computed: {
     ...mapState([
       'menuIsOpen',
-      'wishListIsOpen'
+      'wishListIsOpen',
+      'cartIsOpen',
+      'cart'
     ]),
   },
   methods: {
@@ -146,7 +214,9 @@ export default {
       'toggleWishList',
       'toggleMenu',
       'closeMenu',
-      'closeWishList'
+      'closeWishList',
+      'closeCart',
+      'toggleCart'
     ]),
     checkHeader() {
       let scrollPosition = Math.round(window.scrollY);
@@ -174,14 +244,22 @@ export default {
   },
   watch: {
     menuIsOpen(cond) {
-        if (cond) {
-          this.closeWishList();
-        }
-        this.switchScroll(cond);
+      if (cond) {
+        this.closeWishList();
+        this.closeCart();
+      }
+      this.switchScroll(cond);
     },
     wishListIsOpen(cond) {
       if (cond) {
         this.closeMenu();
+        this.closeCart();
+      }
+    },
+    cartIsOpen(cond) {
+      if (cond) {
+        this.closeMenu();
+        this.closeWishList();
       }
     },
     href() {
@@ -191,6 +269,10 @@ export default {
       }
       if (this.wishListIsOpen) {
         this.closeWishList();
+        this.switchScroll(false);
+      }
+      if (this.cartIsOpen) {
+        this.closeCart();
         this.switchScroll(false);
       }
     }
@@ -209,201 +291,255 @@ export default {
 @import "~hamburgers/_sass/hamburgers/hamburgers";
 
 .header {
-    height: 6rem;
-    z-index: 10;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background: $white;
-    position: fixed;
-    box-shadow: none;
-    transition: box-shadow 400ms ease;
-    @include screenBreakpoint2(phone) {
-        height: 4rem;
+  height: 6rem;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: $white;
+  position: fixed;
+  box-shadow: none;
+  transition: box-shadow 400ms ease;
+  @include screenBreakpoint2(phone) {
+    height: 4rem;
+  }
+
+  &.sticky {
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+  }
+
+  .nav-container {
+    height: inherit;
+
+    .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 100%;
+
+      .icon {
+        width: 30px;
+        height: 30px;
+        &.cart {
+          position: relative;
+          &::after {
+            display: block;
+            content: attr(data-products-count);
+            @include center('both');
+            height: 15px;
+            color: $gray;
+          }
+          &.cart--blue {
+            &::after {
+              color: $blue;
+            }
+          }
+          &.cart--white {
+            &::after {
+              color: $white;
+            }
+          }
+        }
+      }
+
+      .column {
+        display: flex;
+        align-items: center;
+
+        &--left {
+          justify-content: flex-start;
+
+          .hamburger {
+            position: relative;
+            padding: 0;
+            height: 22px;
+            z-index: 100;
+
+            &-inner,
+            &-inner::before,
+            &-inner::after {
+              height: 2px;
+              background-color: $gray;
+            }
+
+            &.is-active {
+              .hamburger-inner,
+              .hamburger-inner::before,
+              .hamburger-inner::after {
+                background-color: $white;
+              }
+            }
+          }
+
+          .social-icons {
+            padding-left: 100px;
+            display: none;
+            @include screenBreakpoint2(desktop) {
+              display: flex;
+            }
+
+            &__item {
+              display: block;
+              width: 30px;
+              height: 30px;
+
+              &:not(:first-of-type) {
+                margin-left: 20px;
+              }
+            }
+          }
+        }
+
+        &--center {
+          justify-content: center;
+          @include center('x');
+
+          .logo {
+            width: 150px;
+            @include screenBreakpoint2(phone) {
+              width: 100px;
+            }
+          }
+        }
+
+        &--right {
+          justify-content: flex-end;
+
+          a:not(:last-of-type) {
+            margin-right: 20px;
+          }
+
+          .phone-number {
+            color: $gray;
+            display: none;
+            @include screenBreakpoint2(desktop) {
+              display: block;
+            }
+          }
+        }
+      }
     }
-    &.sticky {
-      box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
-    }
-    .nav-container {
-        height: inherit;
-        .container {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            height: 100%;
-            .icon {
+
+    &--expandable {
+      background: rgba($gray, 0.8);
+      position: fixed;
+      left: 0;
+      right: 0;
+      top: 0;
+      height: 30rem;
+      box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+
+      .bg-wrapper {
+        background: $gray;
+        height: 6rem;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: -1;
+        @include screenBreakpoint2(phone) {
+          height: 4rem;
+        }
+      }
+
+      .container {
+        position: relative;
+        align-items: flex-start;
+        padding-top: 1rem;
+        overflow: hidden;
+        @include screenBreakpoint2(phone) {
+          padding-top: 0;
+        }
+
+        .column {
+          position: absolute;
+
+          &--left {
+            flex-direction: column;
+            align-items: flex-start;
+            margin-top: 5rem;
+            @include screenBreakpoint2(phone) {
+              margin-top: 4rem;
+            }
+
+            .nav-title {
+              text-transform: uppercase;
+              color: $white;
+              margin-bottom: 40px;
+              margin-top: 0;
+            }
+
+            .nav {
+              display: flex;
+              flex-direction: column;
+              text-align: left;
+
+              &__link {
+                text-decoration: none;
+                color: $white;
+                margin-bottom: 5px;
+
+                &:last-of-type {
+                  margin-bottom: 20px;
+                }
+              }
+            }
+
+            .social-icons {
+              padding-left: 0;
+              display: flex;
+              margin-bottom: 10px;
+
+              &__item {
                 width: 30px;
                 height: 30px;
+                display: block;
+
+                &:not(:first-of-type) {
+                  margin-left: 10px;
+                }
+              }
             }
-            .column {
-                display: flex;
-                align-items: center;
-                &--left {
-                    justify-content: flex-start;
-                    .hamburger {
-                        position: relative;
-                        padding: 0;
-                        height: 22px;
-                        z-index: 100;
-                        &-inner,
-                        &-inner::before,
-                        &-inner::after {
-                            height: 2px;
-                            background-color: $gray;
-                        }
-                        &.is-active {
-                            .hamburger-inner,
-                            .hamburger-inner::before,
-                            .hamburger-inner::after {
-                                background-color: $white;
-                            }
-                        }
-                    }
-                    .social-icons {
-                        padding-left: 100px;
-                        display: none;
-                        @include screenBreakpoint2(desktop) {
-                            display: flex;
-                        }
-                        &__item {
-                          display: block;
-                          width: 30px;
-                          height: 30px;
-                          &:not(:first-of-type) {
-                            margin-left: 20px;
-                          }
-                        }
-                    }
-                }
-                &--center {
-                    justify-content: center;
-                    @include center('x');
-                    .logo {
-                        width: 150px;
-                        @include screenBreakpoint2(phone) {
-                            width: 100px;
-                        }
-                    }
-                }
-                &--right {
-                    justify-content: flex-end;
-                    a:not(:last-of-type) {
-                        margin-right: 20px;
-                    }
-                    .phone-number {
-                        color: $gray;
-                        display: none;
-                        @include screenBreakpoint2(desktop) {
-                            display: block;
-                        }
-                    }
-                }
+
+            .phone-number {
+              display: block;
+              color: $white;
+              @include screenBreakpoint2(desktop) {
+                display: none;
+              }
             }
+          }
+
+          &--center {
+            @include center('x');
+            margin-top: 0;
+            @include screenBreakpoint2(phone) {
+              margin-top: 1rem;
+            }
+
+            .logo {
+              width: 120px;
+              @include screenBreakpoint2(phone) {
+                width: 80px;
+              }
+            }
+          }
+
+          &--right {
+            margin-top: 1rem;
+            right: 2rem;
+            @include screenBreakpoint2(desktop) {
+              right: 6rem;
+            }
+
+            .phone-number {
+              color: $white;
+            }
+          }
         }
-        &--expandable {
-            background: rgba($gray, 0.8);
-            position: fixed;
-            left: 0;
-            right: 0;
-            top: 0;
-            height: 30rem;
-            box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
-            .bg-wrapper {
-                background: $gray;
-                height: 6rem;
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                z-index: -1;
-                @include screenBreakpoint2(phone) {
-                    height: 4rem;
-                }
-            }
-            .container {
-                position: relative;
-                align-items: flex-start;
-                padding-top: 1rem;
-                overflow: hidden;
-                @include screenBreakpoint2(phone) {
-                    padding-top: 0;
-                }
-                .column {
-                    position: absolute;
-                    &--left {
-                        flex-direction: column;
-                        align-items: flex-start;
-                        margin-top: 5rem;
-                        @include screenBreakpoint2(phone) {
-                            margin-top: 4rem;
-                        }
-                        .nav-title {
-                            text-transform: uppercase;
-                            color: $white;
-                            margin-bottom: 40px;
-                            margin-top: 0;
-                        }
-                        .nav {
-                            display: flex;
-                            flex-direction: column;
-                            text-align: left;
-                            &__link {
-                                text-decoration: none;
-                                color: $white;
-                                margin-bottom: 5px;
-                                &:last-of-type {
-                                    margin-bottom: 20px;
-                                }
-                            }
-                        }
-                        .social-icons {
-                            padding-left: 0;
-                            display: flex;
-                            margin-bottom: 10px;
-                            &__item {
-                              width: 30px;
-                              height: 30px;
-                              display: block;
-                              &:not(:first-of-type) {
-                                margin-left: 10px;
-                              }
-                            }
-                        }
-                        .phone-number {
-                            display: block;
-                            color: $white;
-                            @include screenBreakpoint2(desktop) {
-                                display: none;
-                            }
-                        }
-                    }
-                    &--center {
-                        @include center('x');
-                        margin-top: 0;
-                        @include screenBreakpoint2(phone) {
-                            margin-top: 1rem;
-                        }
-                        .logo {
-                            width: 120px;
-                            @include screenBreakpoint2(phone) {
-                                width: 80px;
-                            }
-                        }
-                    }
-                    &--right {
-                        margin-top: 1rem;
-                        right: 2rem;
-                        @include screenBreakpoint2(desktop) {
-                            right: 6rem;
-                        }
-                        .phone-number {
-                            color: $white;
-                        }
-                    }
-                }
-            }
-        }
+      }
     }
+  }
 }
 
 

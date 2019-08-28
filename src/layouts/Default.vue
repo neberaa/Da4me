@@ -201,6 +201,32 @@ main.page-content {
   &--white {
     fill: $white;
   }
+  &--blue {
+    fill: $blue;
+  }
+  &.cross {
+    position: relative;
+    background-color: transparent;
+    border: none;
+
+    &::before, &::after {
+      position: absolute;
+      content: ' ';
+      width: 2px;
+      background-color: $gray;
+      top: 0;
+      z-index: 10;
+      right: 50%;
+    }
+
+    &::before {
+      transform: rotate(45deg);
+    }
+
+    &::after {
+      transform: rotate(-45deg);
+    }
+  }
 }
 // Custom cursor
 .cursor {
@@ -256,14 +282,16 @@ main.page-content {
   }
 }
 
+
 // Vue js animation
+// Fade
 .fade-enter-active {
     transition: opacity 2s;
 }
 .fade-enter {
     opacity: 0;
 }
-
+// Slide from top
 .slide-enter-active {
     -moz-transition-duration: 0.3s;
     -webkit-transition-duration: 0.3s;
@@ -294,5 +322,19 @@ main.page-content {
 .slide-enter, .slide-leave-to {
     overflow: hidden;
     max-height: 0;
+}
+
+//slide-right
+.slide-right-enter-active {
+  transition: all 0.5s  ease-in;
+}
+.slide-right-leave-active {
+  transition: all 0.6s cubic-bezier(0, 1, 0.5, 1);
+}
+.slide-right-enter-to, .slide-right-leave {
+  transform: translateX(0);
+}
+.slide-right-enter, .slide-right-leave-to {
+  transform: translateX(100%);
 }
 </style>

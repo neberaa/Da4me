@@ -40,7 +40,7 @@ import {  mapState, mapMutations } from 'vuex';
       ...mapMutations([
         'closeWishList',
         'removeFromWishList',
-        'wishListLoadJSON',
+        'loadJSON',
       ]),
       manageWishList(e) {
         if (this.wishListIsOpen) {
@@ -52,7 +52,7 @@ import {  mapState, mapMutations } from 'vuex';
       }
     },
     beforeMount() {
-      this.wishListLoadJSON();
+      this.loadJSON('wishList');
     },
   }
 </script>
@@ -76,29 +76,11 @@ import {  mapState, mapMutations } from 'vuex';
   }
 
   .icon.cross {
-    position: relative;
-    background-color: transparent;
-    border: none;
     width: 30px;
     height: 30px;
 
     &::before, &::after {
-      position: absolute;
-      content: ' ';
       height: 30px;
-      width: 2px;
-      background-color: $gray;
-      top: 0;
-      z-index: 10;
-      right: 50%;
-    }
-
-    &::before {
-      transform: rotate(45deg);
-    }
-
-    &::after {
-      transform: rotate(-45deg);
     }
   }
 
