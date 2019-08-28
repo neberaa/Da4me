@@ -17,45 +17,45 @@
 <script>
 import ClickOutside from 'vue-click-outside';
 import {  mapState, mapMutations } from 'vuex';
-  export default {
-    name: "WishList",
-    directives: {
-      ClickOutside
+export default {
+  name: "WishList",
+  directives: {
+    ClickOutside
+  },
+  props: {
+    Products: {
+      type: Array,
+      required: false,
     },
-    props: {
-      Products: {
-        type: Array,
-        required: false,
-      },
-    },
-    computed: {
-      ...mapState([
-        'wishListIsOpen',
-        'wishList'
-      ]),
-      favouriteProducts() {
-        return this.Products.filter(item => this.wishList.includes(item.node.id));
-      }
-    },
-    methods: {
-      ...mapMutations([
-        'closeWishList',
-        'removeFromWishList',
-        'loadJSON',
-      ]),
-      manageWishList(e) {
-        if (this.wishListIsOpen) {
-          const listIcon = e.target.className.baseVal ? true: e.target.className.indexOf('wishlist') >= 0;
-          if (!listIcon) {
-            this.closeWishList();
-          }
+  },
+  computed: {
+    ...mapState([
+      'wishListIsOpen',
+      'wishList'
+    ]),
+    favouriteProducts() {
+      return this.Products.filter(item => this.wishList.includes(item.node.id));
+    }
+  },
+  methods: {
+    ...mapMutations([
+      'closeWishList',
+      'removeFromWishList',
+      'loadJSON',
+    ]),
+    manageWishList(e) {
+      if (this.wishListIsOpen) {
+        const listIcon = e.target.className.baseVal ? true: e.target.className.indexOf('wishlist') >= 0;
+        if (!listIcon) {
+          this.closeWishList();
         }
       }
-    },
-    beforeMount() {
-      this.loadJSON('wishList');
-    },
-  }
+    }
+  },
+  beforeMount() {
+    this.loadJSON('wishList');
+  },
+}
 </script>
 
 <style lang="scss" scoped>
@@ -112,24 +112,5 @@ import {  mapState, mapMutations } from 'vuex';
       margin-top: 10px;
     }
   }
-}
-
-.slide-right-enter-active {
-    transition: all 0.5s  ease;
-}
-
-.slide-right-leave-active {
-    transition: all 0.6s cubic-bezier(0, 1, 0.5, 1);
-}
-
-.slide-right-enter-to, .slide-right-leave {
-    right: 0;
-}
-
-.slide-right-enter, .slide-right-leave-to {
-    right: -50%;
-    @include screenBreakpoint2(phone) {
-        right: -100%;
-    }
 }
 </style>
