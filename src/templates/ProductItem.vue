@@ -6,23 +6,20 @@
           <h1 class="title" v-html="$page.product.title" />
           <g-image class="image" v-if="$page.product.image && $page.product.imageGallery.length === 0" :src="$page.product.image" :alt="$page.product.title"/>
           <ClientOnly>
-            <agile
+            <carousel
+              :perPage="1"
               ref="carousel"
-              class="carousel"
-              :options="carouselOptions">
-              <img
+              class="carousel">
+              <slide
                 class="slide"
-                v-for="(img, i) in $page.product.imageGallery"
-                :src="img"
-                :alt="`${$page.product.title}-${i}`"
+               v-for="(img, i) in $page.product.imageGallery"
                 :key="`imagegallery${i}`">
-              <template slot="prevButton">
-                <ArrowIcon class="icon prev"></ArrowIcon>
-              </template>
-              <template slot="nextButton">
-                <ArrowIcon class="icon next"></ArrowIcon>
-              </template>
-            </agile>
+                <img
+                  :src="img"
+                  :alt="`${$page.product.title}-${i}`"
+                  >
+              </slide>
+            </carousel>
           </ClientOnly>
           <div class="description" v-html="$page.product.description"/>
           <div class="price">
@@ -68,24 +65,18 @@ export default {
     CartIcon,
     SignIcon,
     ArrowIcon,
-    agile: () =>
-      import ('vue-agile')
-        .then(m => m.VueAgile)
+    Carousel: () =>
+      import ('vue-carousel')
+        .then(m => m.Carousel)
         .catch(),
+    Slide: () =>
+      import ('vue-carousel')
+        .then(m => m.Slide)
+        .catch()
   },
   metaInfo () {
     return {
       title: this.$page.product.title,
-    }
-  },
-  data() {
-    return {
-      carouselOptions: {
-        slidesToShow: 3,
-        dots: false,
-        navButtons: true,
-        centerMode: true,
-      }
     }
   },
   computed: {
