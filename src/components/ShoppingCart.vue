@@ -12,7 +12,7 @@
           </div>
         </div>
       </div>
-      <button class="cta cart-order" v-show="cart.length > 0">Оформить заказ</button>
+      <button class="cta cart-order" v-show="cart.length > 0" @click="prepareOrder">Оформить заказ</button>
       <p v-show="cart.length === 0" class="empty-text">Ваша корзина пуста...</p>
     </div>
   </transition>
@@ -62,6 +62,10 @@
           }
         }
       },
+      prepareOrder() {
+        console.log('products', this.addedProducts);
+        this.$router.push('/order');
+      }
     },
     beforeMount() {
       this.loadJSON('cart');
