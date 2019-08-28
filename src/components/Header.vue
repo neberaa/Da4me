@@ -57,7 +57,7 @@
             data-lock
             class="icon cart"
             :class="{'cart--blue': cartIsOpen}"
-            :data-products-count="cart.length"
+            :data-products-count="[cart.length === 0 ? null : cart.length]"
             @click.prevent="toggleCart">
             <CartIcon
               class="icon"
@@ -133,7 +133,7 @@
                 href=""
                 data-lock
                 class="icon cart cart--white"
-                :data-products-count="cart.length"
+                :data-products-count="[cart.length === 0 ? null : cart.length]"
                 @click.prevent="toggleCart">
                 <CartIcon class="icon icon--white"/>
               </a>

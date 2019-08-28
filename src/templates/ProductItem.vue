@@ -29,8 +29,8 @@
           </div>
           <div class="cta-wrapper">
             <div class="wishlist-cta">
-              <button @click="addToWishList($page.product.id)" v-show="!isAddedToWishList($page.product.id)">Add to favourite</button>
-              <button @click="removeFromWishList($page.product.id)" v-show="isAddedToWishList($page.product.id)">Remove from favourite</button>
+              <button @click="addToWishList($page.product.id)" v-show="!isAddedToWishList($page.product.id)">Добавить в избранное</button>
+              <button @click="removeFromWishList($page.product.id)" v-show="isAddedToWishList($page.product.id)">Убрать с избранного</button>
             </div>
             <div class="cart-cta" v-show="!isAddedToCart($page.product.id)">
               <CartIcon class="icon" @click="addToCart($page.product.id)"/>
@@ -60,12 +60,14 @@ import { mapGetters, mapMutations } from 'vuex';
 import CartIcon from "../assets/icons/shopping-bag.svg";
 import SignIcon from "../assets/icons/sign.svg";
 import ArrowIcon from "../assets/icons/back.svg";
+import { VueAgile } from 'vue-agile'
 
 export default {
   components: {
     CartIcon,
     SignIcon,
-    ArrowIcon
+    ArrowIcon,
+    agile: VueAgile
   },
   metaInfo () {
     return {
@@ -144,6 +146,14 @@ export default {
       align-items: flex-end;
       .cart-cta {
         margin-left: 2rem;
+        position: relative;
+        &:before {
+          content: '+';
+          display: block;
+          @include center('both');
+          font-size: 2rem;
+          z-index: -1;
+        }
         .icon {
           width: 40px;
           height: 40px;
