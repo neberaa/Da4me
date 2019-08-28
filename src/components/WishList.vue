@@ -66,11 +66,13 @@ import {  mapState, mapMutations } from 'vuex';
   top: 6rem;
   background: $white;
   box-shadow: -2px 4px 4px 0 rgba(0, 0, 0, 0.2);
-  padding: 2rem;
+  padding: 2rem 2rem 8rem 2rem;
+  overflow-y: auto;
   @include screenBreakpoint2(phone) {
     top: 4rem;
     width: 100%;
     box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+    padding-bottom: 6rem;
   }
 
   .icon.cross {

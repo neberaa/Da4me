@@ -69,6 +69,7 @@
   .products {
     flex: 0 0 80%;
     display: flex;
+    flex-wrap: wrap;
    }
   .product__item {
     display: block;

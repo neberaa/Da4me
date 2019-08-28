@@ -72,7 +72,7 @@ export default {
     }
   },
   mounted() {
-this.initCustomCursor();
+    this.initCustomCursor();
   }
 }
 </script>
@@ -107,13 +107,13 @@ h1 {
   font-size: 2.2rem;
 }
 h2 {
-font-size: 2rem;
+  font-size: 2rem;
 }
 h3 {
- font-size: 1.8rem;
+  font-size: 1.8rem;
 }
 h4 {
- font-size: 1.4rem;
+  font-size: 1.4rem;
 }
 a {
   color: inherit;
@@ -150,6 +150,16 @@ button {
     border: 0;
     padding: 0;
   }
+  &.cta {
+    padding: 10px 15px;
+    background: $white;
+    outline: 2px solid $blue;
+    font-size: 1rem;
+    color: $gray;
+    outline-offset: -4px;
+    white-space: nowrap;
+    font-weight: bold;
+  }
 }
 
 .layout {
@@ -160,6 +170,9 @@ button {
   justify-content: space-between;
   &.sticky-header {
     padding: 6rem 0 0 0;
+    @include screenBreakpoint2(phone) {
+      padding-top: 4rem;
+    }
   }
 }
 
@@ -189,7 +202,7 @@ main.page-content {
     fill: $white;
   }
 }
-
+// Custom cursor
 .cursor {
   @include screenBreakpoint2(desktop) {
     display: block;
@@ -216,7 +229,6 @@ main.page-content {
     opacity: 0.08;
   }
 }
-
 .cursor-follower {
   @include screenBreakpoint2(desktop) {
     display: block;
