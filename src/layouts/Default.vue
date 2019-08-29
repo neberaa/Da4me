@@ -15,7 +15,7 @@
 <script>
 import Header from "@/components/Header"
 import Footer from "@/components/Footer"
-import {TweenMax} from "gsap/TweenMax";
+import { TweenMax } from "gsap/TweenMax";
 import $ from 'jquery';
 
 export default {

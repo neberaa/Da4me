@@ -5,13 +5,21 @@
       <h2>Корзина</h2>
       <div class="products">
         <div v-for="product in addedProducts" :key="product.node.id" class="product">
-          <div class="column column--left"><g-link :to="product.node.path" class="product__image" :style="{'background-image' : `url(${product.node.image})`}"></g-link></div>
+          <div class="column column--left">
+            <g-link :to="product.node.path" class="product__image" :style="{'background-image' : `url(${product.node.image})`}"/>
+          </div>
           <div class="column column--right">
             <button class="icon cross" data-lock @click="removeFromCart(product.node.id)"/>
-            <p class="product__price">{{product.node.price}}, 00 грн</p>
+            <p class="product__price">Цена: {{product.node.price}}, 00 грн</p>
+            <label :for="`quantity-select-${product.node.id}`">Кол-во</label>
+            <select :id="`quantity-select-${product.node.id}`" v-model="product.node.quantity">
+              <option v-for="i in 10" :key="i" :value="i">{{i}}</option>
+            </select>
+            <div class="summary">ИТОГО: {{totalAmount(product.node.price, product.node.quantity)}}, 00 грн</div>
           </div>
         </div>
       </div>
+      <p>Общая сумма заказа: {{totalOrderAmount}}</p>
       <button class="cta cart-order" v-show="cart.length > 0" @click="prepareOrder">Оформить заказ</button>
       <p v-show="cart.length === 0" class="empty-text">Ваша корзина пуста...</p>
     </div>
@@ -32,12 +40,6 @@
         required: false,
       },
     },
-    data() {
-      return {
-        counter: [],
-        product: {}
-      }
-    },
     computed: {
       ...mapState([
         'cartIsOpen',
@@ -45,6 +47,14 @@
       ]),
       addedProducts() {
         return this.Products.filter(item => this.cart.includes(item.node.id));
+      },
+      totalOrderAmount() {
+        let total = 0;
+        this.addedProducts.forEach(p => {
+          const productTotal = parseInt(p.node.price) * p.node.quantity;
+          total += productTotal;
+        });
+        return total;
       }
     },
     methods: {
@@ -65,6 +75,12 @@
       prepareOrder() {
         console.log('products', this.addedProducts);
         this.$router.push('/order');
+      },
+      totalAmount(price, q) {
+        return parseInt(price) * q;
+      },
+      quantityOnChange(e, id) {
+        console.log('e on change', e.target.value, id);
       }
     },
     beforeMount() {
