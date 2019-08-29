@@ -114,6 +114,7 @@ fields:
   label: Другие цвета
   description: 'Выберите цвет и картинки '
 pages:
+- products/Сарафаны/сарафан-бархат.md
 - products/Kids/футболка.md
 - products/Платья/платье-летнее.md
 - products/Kids/комбинезон.md
