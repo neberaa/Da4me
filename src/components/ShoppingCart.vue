@@ -13,13 +13,13 @@
             <p class="product__price">Цена: {{product.node.price}}, 00 грн</p>
             <label :for="`quantity-select-${product.node.id}`">Кол-во</label>
             <select :id="`quantity-select-${product.node.id}`" v-model="product.node.quantity">
-              <option v-for="i in 10" :key="i" :value="i">{{i}}</option>
+              <option v-for="i in 10" :key="i" :value="i">{{i || 1}}</option>
             </select>
-            <div class="summary">ИТОГО: {{totalAmount(product.node.price, product.node.quantity)}}, 00 грн</div>
+            <div class="summary">ИТОГО: {{totalAmount(product.node.price, product.node.quantity || 1)}}, 00 грн</div>
           </div>
         </div>
       </div>
-      <p>Общая сумма заказа: {{totalOrderAmount}}</p>
+      <p>Общая сумма заказа: {{totalOrderAmount}}, 00 грн</p>
       <button class="cta cart-order" v-show="cart.length > 0" @click="prepareOrder">Оформить заказ</button>
       <p v-show="cart.length === 0" class="empty-text">Ваша корзина пуста...</p>
     </div>
@@ -29,6 +29,8 @@
 <script>
   import ClickOutside from 'vue-click-outside';
   import {  mapState, mapMutations } from 'vuex';
+  import eventBus from '../eventBus';
+
   export default {
     name: "ShoppingCart",
     directives: {
@@ -51,7 +53,7 @@
       totalOrderAmount() {
         let total = 0;
         this.addedProducts.forEach(p => {
-          const productTotal = parseInt(p.node.price) * p.node.quantity;
+          const productTotal = parseInt(p.node.price) * parseInt(p.node.quantity || 1);
           total += productTotal;
         });
         return total;
@@ -73,15 +75,12 @@
         }
       },
       prepareOrder() {
-        console.log('products', this.addedProducts);
+        eventBus.$emit('data-from-cart', this.addedProducts);
         this.$router.push('/order');
       },
       totalAmount(price, q) {
         return parseInt(price) * q;
       },
-      quantityOnChange(e, id) {
-        console.log('e on change', e.target.value, id);
-      }
     },
     beforeMount() {
       this.loadJSON('cart');
