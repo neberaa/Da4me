@@ -19,7 +19,7 @@
           </div>
         </div>
       </div>
-      <p>Общая сумма заказа: {{totalOrderAmount}}, 00 грн</p>
+      <p v-show="cart.length > 0">Общая сумма заказа: {{totalOrderAmount}}, 00 грн</p>
       <button class="cta cart-order" v-show="cart.length > 0" @click="prepareOrder">Оформить заказ</button>
       <p v-show="cart.length === 0" class="empty-text">Ваша корзина пуста...</p>
     </div>
