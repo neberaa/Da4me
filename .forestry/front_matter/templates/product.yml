@@ -120,8 +120,8 @@ fields:
   label: Артикул товара
   description: 'Введите артикул товара для учета  '
 pages:
+- products/Kids/комбинезон.md
 - products/Сарафаны/сарафан-бархат.md
 - products/Kids/футболка.md
 - products/Платья/платье-летнее.md
-- products/Kids/комбинезон.md
 - products/Платья/платье-в-пол.md
