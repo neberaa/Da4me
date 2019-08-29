@@ -111,6 +111,17 @@ fields:
     config: {}
     label: Картинки для изделия с цветом 2
     description: Выберите картинки для изделия с цветом №2
+  - name: quantity
+    type: number
+    description: ''
+    default: '1'
+    required: true
+    config:
+      min: 
+      max: 
+      step: 
+    label: Количество
+    hidden: true
   label: Другие цвета
   description: 'Выберите цвет и картинки '
 pages:
