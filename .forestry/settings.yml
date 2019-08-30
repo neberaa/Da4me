@@ -2,7 +2,7 @@
 new_page_extension: md
 auto_deploy: false
 admin_path: "/static/admin"
-webhook_url:
+webhook_url: 
 sections:
 - type: heading
   label: INFO
@@ -45,11 +45,11 @@ sections:
   - project
   - page-block
 upload_dir: uploads
-public_path:
-front_matter_path: https://res.cloudinary.com/da4me/
-use_front_matter_path:
+public_path: https://res.cloudinary.com/da4me/fl_progressive,q_80
+front_matter_path: ''
+use_front_matter_path: 
 file_template: ":filename:"
-instant_preview:
+instant_preview: 
 build:
   preview_output_directory: dist
   install_dependencies_command: yarn install
