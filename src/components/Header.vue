@@ -265,15 +265,15 @@ export default {
     href() {
       if (this.menuIsOpen) {
         this.closeMenu();
-        this.switchScroll(false);
+        // this.switchScroll(false);
       }
       if (this.wishListIsOpen) {
         this.closeWishList();
-        this.switchScroll(false);
+        // this.switchScroll(false);
       }
       if (this.cartIsOpen) {
         this.closeCart();
-        this.switchScroll(false);
+        // this.switchScroll(false);
       }
     }
   },
@@ -421,13 +421,17 @@ export default {
     }
 
     &--expandable {
-      background: rgba($gray, 0.8);
+      background: rgba($gray, 0.9);
       position: fixed;
       left: 0;
       right: 0;
       top: 0;
       height: 30rem;
       box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+      @include screenBreakpoint2(phone) {
+        height: auto;
+        bottom: 0;
+      }
 
       .bg-wrapper {
         background: $gray;
@@ -465,7 +469,7 @@ export default {
             .nav-title {
               text-transform: uppercase;
               color: $white;
-              margin-bottom: 40px;
+              margin-bottom: 4rem;
               margin-top: 0;
             }
 
@@ -473,14 +477,18 @@ export default {
               display: flex;
               flex-direction: column;
               text-align: left;
+              margin-bottom: 1rem;
+              @include screenBreakpoint2(phone) {
+                margin-bottom: 4rem;
+              }
 
               &__link {
                 text-decoration: none;
                 color: $white;
                 margin-bottom: 5px;
-
-                &:last-of-type {
-                  margin-bottom: 20px;
+                @include screenBreakpoint2(phone) {
+                  font-size: 1rem;
+                  margin-bottom: 0.5rem;
                 }
               }
             }
@@ -488,7 +496,8 @@ export default {
             .social-icons {
               padding-left: 0;
               display: flex;
-              margin-bottom: 10px;
+              margin-bottom: 1rem;
+
 
               &__item {
                 width: 30px;
