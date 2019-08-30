@@ -113,7 +113,16 @@ fields:
     description: Выберите картинки для изделия с цветом №2
   label: Другие цвета
   description: 'Выберите цвет и картинки '
+- name: artikul
+  type: text
+  config:
+    required: true
+  label: Артикул товара
+  description: 'Введите артикул товара для учета  '
 pages:
-- products/Kids/комбинезон.md
-- products/Kids/футболка.md
+- products/Юбки/юбка-в-пол.md
+- products/Сарафаны/сарафан-бархат.md
+- products/Платья/платье-летнее.md
 - products/Платья/платье-в-пол.md
+- products/Kids/футболка.md
+- products/Kids/комбинезон.md
