@@ -172,7 +172,7 @@ query Posts  {
 
 <script>
 import ClickOutside from 'vue-click-outside';
-import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
+import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from "body-scroll-lock";
 import InstagramIcon from '../assets/icons/instagram.svg';
 import FacebookIcon from '../assets/icons/facebook.svg';
 import CartIcon from '../assets/icons/shopping-bag.svg';
@@ -234,6 +234,7 @@ export default {
       }
     },
     switchScroll(cond) {
+      console.log('switch scroll', cond, this.isMobile);
       if (!this.isMobile) {
         const navContainer = document.getElementById('navigation-container');
         if (cond) {
@@ -242,6 +243,7 @@ export default {
             document.body.classList.add('scroll-lock');
           }, 0);
         } else {
+          console.log('enable body scroll');
           enableBodyScroll(navContainer);
           setTimeout(() => {
             document.body.classList.remove('scroll-lock');
@@ -273,7 +275,7 @@ export default {
     href() {
       if (this.menuIsOpen) {
         this.closeMenu();
-        this.switchScroll(false);
+        clearAllBodyScrollLocks();
       }
       if (this.wishListIsOpen) {
         this.closeWishList();
