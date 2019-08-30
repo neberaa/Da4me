@@ -30,9 +30,3 @@ fields:
   config:
     color_format: Hex
   label: Background color
-pages:
-- projects/chelsea-landmark.md
-- projects/banana.md
-- projects/3d-graff.md
-- projects/ios-concept.md
-- projects/sunk.md
