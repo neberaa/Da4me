@@ -45,9 +45,9 @@ sections:
   - project
   - page-block
 upload_dir: uploads
-public_path: https://res.cloudinary.com/da4me/fl_progressive,q_80
+public_path: https://res.cloudinary.com/da4me/fl_progressive,q_auto:best
 front_matter_path: https://res.cloudinary.com/da4me
-use_front_matter_path: true
+use_front_matter_path: false
 file_template: ":filename:"
 instant_preview: 
 build:
