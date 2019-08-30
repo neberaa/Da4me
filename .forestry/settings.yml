@@ -4,6 +4,13 @@ auto_deploy: false
 admin_path: "/static/admin"
 webhook_url: 
 sections:
+- type: directory
+  path: blocks
+  label: Блоки страниц
+  create: all
+  match: "**/*.md"
+  templates:
+  - page-block
 - type: heading
   label: INFO
 - type: document
