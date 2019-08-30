@@ -234,17 +234,19 @@ export default {
       }
     },
     switchScroll(cond) {
-      const navContainer = document.getElementById('navigation-container');
-      if (cond) {
-        disableBodyScroll(navContainer);
-        setTimeout(() => {
-          document.body.classList.add('scroll-lock');
-        }, 0);
-      } else {
-        enableBodyScroll(navContainer);
-        setTimeout(() => {
-          document.body.classList.remove('scroll-lock');
-        }, 0);
+      if (!this.isMobile) {
+        const navContainer = document.getElementById('navigation-container');
+        if (cond) {
+          disableBodyScroll(navContainer);
+          setTimeout(() => {
+            document.body.classList.add('scroll-lock');
+          }, 0);
+        } else {
+          enableBodyScroll(navContainer);
+          setTimeout(() => {
+            document.body.classList.remove('scroll-lock');
+          }, 0);
+        }
       }
     },
   },
@@ -254,9 +256,7 @@ export default {
         this.closeWishList();
         this.closeCart();
       }
-      if (!this.isMobile) {
-        this.switchScroll(cond);
-      }
+      this.switchScroll(cond);
     },
     wishListIsOpen(cond) {
       if (cond) {
@@ -273,6 +273,7 @@ export default {
     href() {
       if (this.menuIsOpen) {
         this.closeMenu();
+        this.switchScroll(false);
       }
       if (this.wishListIsOpen) {
         this.closeWishList();
