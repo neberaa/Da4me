@@ -120,8 +120,8 @@ fields:
   label: Артикул товара
   description: 'Введите артикул товара для учета  '
 pages:
-- products/Сарафаны/сарафан-бомба.md
 - products/Family look/сарафаны-для-мамы-и-малышки.md
+- products/Сарафаны/сарафан-бомба.md
 - products/Юбки/юбка-летняя.md
 - products/Платья/платье-в-пол.md
 - products/Платья/платье-летнее.md
