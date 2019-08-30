@@ -37,19 +37,13 @@ sections:
   templates:
   - page
 - type: directory
-  path: projects
-  label: Projects
-  create: documents
+  path: blocks
+  label: Блоки страниц
+  create: all
   match: "**/*.md"
   templates:
   - project
-- type: directory
-  path: journal
-  label: Journal
-  create: documents
-  match: "**/*.md"
-  templates:
-  - journal
+  - page-block
 upload_dir: uploads
 public_path: https://res.cloudinary.com/da4me/fl_progressive,q_80
 front_matter_path: ''
