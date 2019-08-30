@@ -234,21 +234,18 @@ export default {
       }
     },
     switchScroll(cond) {
-      console.log('switch scroll', cond, this.isMobile);
-      if (!this.isMobile) {
-        const navContainer = document.getElementById('navigation-container');
-        if (cond) {
-          disableBodyScroll(navContainer);
-          setTimeout(() => {
-            document.body.classList.add('scroll-lock');
-          }, 0);
-        } else {
-          console.log('enable body scroll');
-          enableBodyScroll(navContainer);
-          setTimeout(() => {
-            document.body.classList.remove('scroll-lock');
-          }, 0);
-        }
+      const navContainer = document.getElementById('navigation-container');
+      if (cond) {
+        disableBodyScroll(navContainer);
+        setTimeout(() => {
+          document.body.classList.add('scroll-lock');
+        }, 0);
+      } else {
+        console.log('enable body scroll');
+        enableBodyScroll(navContainer);
+        setTimeout(() => {
+          document.body.classList.remove('scroll-lock');
+        }, 0);
       }
     },
   },
@@ -436,10 +433,6 @@ export default {
       top: 0;
       height: 30rem;
       box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
-      @include screenBreakpoint2(phone) {
-        height: auto;
-        bottom: 0;
-      }
 
       .bg-wrapper {
         background: $gray;
@@ -486,18 +479,11 @@ export default {
               flex-direction: column;
               text-align: left;
               margin-bottom: 1rem;
-              @include screenBreakpoint2(phone) {
-                margin-bottom: 4rem;
-              }
 
               &__link {
                 text-decoration: none;
                 color: $white;
                 margin-bottom: 5px;
-                @include screenBreakpoint2(phone) {
-                  font-size: 1rem;
-                  margin-bottom: 0.5rem;
-                }
               }
             }
 
