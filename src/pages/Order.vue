@@ -33,7 +33,6 @@
 </template>
 
 <script>
-  import eventBus from "../eventBus";
   export default {
     name: "Order",
     data() {
@@ -47,10 +46,6 @@
       }
     },
     mounted() {
-      eventBus.$on('data-from-cart', (data) => {
-        this.formData = data;
-        console.log('form data', this.formData);
-      });
     }
   }
 </script>

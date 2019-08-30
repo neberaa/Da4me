@@ -29,7 +29,6 @@
 <script>
   import ClickOutside from 'vue-click-outside';
   import {  mapState, mapMutations } from 'vuex';
-  import eventBus from '../eventBus';
 
   export default {
     name: "ShoppingCart",
@@ -75,7 +74,7 @@
         }
       },
       prepareOrder() {
-        eventBus.$emit('data-from-cart', this.addedProducts);
+        console.log('order prepared');
         this.$router.push('/order');
       },
       totalAmount(price, q) {
