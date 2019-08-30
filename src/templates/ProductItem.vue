@@ -7,7 +7,8 @@
           <g-image class="image" v-if="$page.product.image && $page.product.imageGallery.length === 0" :src="$page.product.image" :alt="$page.product.title"/>
           <ClientOnly>
             <carousel
-              :perPage="1"
+              :perPageCustom="[[300, 1], [768, 3]]"
+              :paginationActiveColor="gray"
               ref="carousel"
               class="carousel">
               <slide
@@ -76,6 +77,11 @@ export default {
       title: this.$page.product.title,
     }
   },
+  data() {
+    return {
+      gray: "#414141"
+    }
+  },
   computed: {
     ...mapGetters([
       'isAddedToWishList',
@@ -100,27 +106,27 @@ export default {
     justify-content: center;
     align-items: flex-start;
     .carousel {
-      width: 40%;
-      margin-left: 0;
+      width: 100%;
+      margin: auto;
       position: relative;
-      @include screenBreakpoint2(phone) {
-        width: 100%;
-        margin: auto;
-      }
-      @include screenBreakpoint2(tablet) {
-        width: 60%;
-      }
       .slide {
         position: relative;
-        padding-bottom: 150%;
+        padding-bottom: 56%;
+        @include screenBreakpoint2(phone) {
+          padding-bottom: 140%;
+        }
         &__image {
           position: absolute;
-          width: 98%;
-          padding: 0 1%;
+          width: 96%;
+          padding: 0 2%;
           height: 100%;
           background-size: cover;
           background-repeat: no-repeat;
           background-position: center center;
+          @include screenBreakpoint2(phone) {
+            width: 98%;
+            padding: 0 1%;
+          }
         }
       }
       .icon {
