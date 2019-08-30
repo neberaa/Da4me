@@ -185,6 +185,7 @@ export default {
   directives: {
     ClickOutside
   },
+  inject: ['resp'],
   components: {
     ShoppingCart,
     InstagramIcon,
@@ -208,6 +209,11 @@ export default {
       'cartIsOpen',
       'cart'
     ]),
+    isMobile() {
+      const { width, height } = window.screen;
+      const iPhoneXR = this.resp.device.tablet && height === 896 && width === 414;
+      return this.resp.device.mobile || iPhoneXR;
+    }
   },
   methods: {
     ...mapMutations([
@@ -248,7 +254,9 @@ export default {
         this.closeWishList();
         this.closeCart();
       }
-      this.switchScroll(cond);
+      if (!this.isMobile) {
+        this.switchScroll(cond);
+      }
     },
     wishListIsOpen(cond) {
       if (cond) {
@@ -265,15 +273,12 @@ export default {
     href() {
       if (this.menuIsOpen) {
         this.closeMenu();
-        // this.switchScroll(false);
       }
       if (this.wishListIsOpen) {
         this.closeWishList();
-        // this.switchScroll(false);
       }
       if (this.cartIsOpen) {
         this.closeCart();
-        // this.switchScroll(false);
       }
     }
   },
