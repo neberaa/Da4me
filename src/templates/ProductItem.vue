@@ -14,10 +14,7 @@
                 class="slide"
                v-for="(img, i) in $page.product.imageGallery"
                 :key="`imagegallery${i}`">
-                <img
-                  :src="img"
-                  :alt="`${$page.product.title}-${i}`"
-                  >
+                <div class="slide__image" :style="{'background-image' : `url(${img})`}"/>
               </slide>
             </carousel>
           </ClientOnly>
@@ -103,13 +100,28 @@ export default {
     justify-content: center;
     align-items: flex-start;
     .carousel {
-      width: 100%;
-      margin: auto;
+      width: 40%;
+      margin-left: 0;
       position: relative;
-      img {
-        object-fit: cover;
-        object-position: center;
-        padding: 0 10px;
+      @include screenBreakpoint2(phone) {
+        width: 100%;
+        margin: auto;
+      }
+      @include screenBreakpoint2(tablet) {
+        width: 60%;
+      }
+      .slide {
+        position: relative;
+        padding-bottom: 150%;
+        &__image {
+          position: absolute;
+          width: 98%;
+          padding: 0 1%;
+          height: 100%;
+          background-size: cover;
+          background-repeat: no-repeat;
+          background-position: center center;
+        }
       }
       .icon {
         width: 40px;

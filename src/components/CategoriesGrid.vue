@@ -33,7 +33,7 @@ export default {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     grid-auto-rows: 350px;
-    grid-gap: 1rem;
+    grid-gap: 1.5rem;
     grid-auto-flow: dense;
     @include screenBreakpoint2(phone) {
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -58,7 +58,7 @@ export default {
           grid-row: span 1;
         }
       }
-      &:nth-child(6n) {
+      &:nth-child(5n) {
         grid-column: span 2;
         grid-row: span 1;
         @include screenBreakpoint2(phone) {
@@ -69,6 +69,14 @@ export default {
       &:nth-child(8n) {
         grid-column: span 2;
         grid-row: span 2;
+        @include screenBreakpoint2(phone) {
+          grid-column: span 1;
+          grid-row: span 1;
+        }
+      }
+      &:nth-child(9n) {
+        grid-column: span 2;
+        grid-row: span 1;
         @include screenBreakpoint2(phone) {
           grid-column: span 1;
           grid-row: span 1;
