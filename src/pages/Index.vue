@@ -4,6 +4,26 @@
       <h1 class="hero-title" v-html="settings.hero_title" />
       <h2 class="hero-subtitle" v-html="settings.hero_subtitle" />
       <categories-grid :categories="$page.categories.edges" />
+      <section class="page-block page-block--paint">
+        <h2 class="page-block__title" v-text="paintBlock.title"/>
+        <div class="page-block__content" v-html="paintBlock.description"/>
+        <div class="page-block__bg" :style="{'background-image' : `url(${paintBlock.bgImage})`}"/>
+        <ClientOnly>
+          <carousel
+            :perPageCustom="[[300, 1], [768, 3]]"
+            :paginationActiveColor="gray"
+            :scrollPerPage="1"
+            ref="blockcarousel"
+            class="page-block__carousel">
+            <slide
+              class="slide"
+              v-for="(img, i) in paintBlock.gallery"
+              :key="`imagegallery${i}`">
+              <div class="slide__image" :style="{'background-image' : `url(${img})`}"/>
+            </slide>
+          </carousel>
+        </ClientOnly>
+      </section>
     </div>
   </Layout>
 </template>
@@ -29,6 +49,16 @@ query Posts {
         image
       }
     }
+  },
+  paintBlock: allBlockItem(filter: {key: {eq: "block_paint"}}) {
+    edges {
+      node {
+        title
+        description
+        bgImage
+        gallery
+      }
+    }
   }
 }
 </page-query>
@@ -38,11 +68,25 @@ import CategoriesGrid from "@/components/CategoriesGrid"
 
 export default {
   components: {
-    CategoriesGrid
+    CategoriesGrid,
+    Carousel: () =>
+      import ('vue-carousel')
+        .then(m => m.Carousel)
+        .catch(),
+    Slide: () =>
+      import ('vue-carousel')
+        .then(m => m.Slide)
+        .catch()
   },
   data() {
     return {
-      settings: require("../../data/theme.json")
+      settings: require("../../data/theme.json"),
+      gray: "#414141"
+    }
+  },
+  computed: {
+    paintBlock() {
+      return this.$page.paintBlock.edges[0].node;
     }
   }
 }
@@ -51,5 +95,57 @@ export default {
   .hero-title,
   .hero-subtitle {
     text-align: center;
+  }
+  .page-block {
+    margin-top: 2rem;
+    position: relative;
+    &__title {
+      text-align: center;
+      color: $red;
+    }
+    &__content {
+      margin: 0 0 0 auto;
+      width: 60%;
+    }
+    &__bg {
+      position: absolute;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+      top: -5%;
+      left: -10%;
+      width: 50%;
+      height: 100%;
+    }
+    &__carousel {
+      width: 60%;
+      margin: 2rem 0 0 auto;
+      position: relative;
+      @include screenBreakpoint2(phone) {
+        width: 100%;
+        margin: 2rem auto 0;
+      }
+      .slide {
+        position: relative;
+        padding-bottom: 30%;
+        @include screenBreakpoint2(phone) {
+          padding-bottom: 100%;
+        }
+        &__image {
+          position: absolute;
+          width: 95%;
+          margin: 0 5%;
+          height: 100%;
+          background-size: cover;
+          background-repeat: no-repeat;
+          background-position: center center;
+          @include screenBreakpoint2(phone) {
+            width: 100%;
+            margin: 0;
+          }
+        }
+      }
+    }
+
   }
 </style>

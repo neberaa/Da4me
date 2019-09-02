@@ -67,6 +67,18 @@ module.exports = {
         }
       }
     },
+    {
+      use: "@gridsome/source-filesystem",
+      options: {
+        path: "blocks/**/*.md",
+        typeName: "BlockItem",
+        resolveAbsolutePaths: true,
+        remark: {
+          externalLinksTarget: "_blank",
+          externalLinksRel: ["nofollow", "noopener", "noreferrer"]
+        }
+      }
+    },
   ],
   transformers: {
     remark: {
