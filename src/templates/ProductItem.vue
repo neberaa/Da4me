@@ -48,6 +48,7 @@ query ProductItem ($path: String!) {
     description
     id
     price
+    oldPrice
   }
 }
 </page-query>

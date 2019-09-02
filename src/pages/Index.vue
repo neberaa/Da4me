@@ -12,7 +12,7 @@
           <carousel
             :perPageCustom="[[300, 1], [768, 3]]"
             :paginationActiveColor="gray"
-            :scrollPerPage="1"
+            :scrollPerPage="true"
             ref="blockcarousel"
             class="page-block__carousel">
             <slide

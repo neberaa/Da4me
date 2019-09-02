@@ -164,6 +164,7 @@ query Posts  {
         id
         path
         price
+        article
       }
     }
   }

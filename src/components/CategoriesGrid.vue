@@ -98,6 +98,9 @@ export default {
       &__cta {
         @include center('x');
         bottom: 15px;
+        width: 150px;
+        text-align: center;
+        white-space: normal;
       }
     }
   }

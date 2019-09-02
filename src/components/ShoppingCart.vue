@@ -74,7 +74,7 @@
         }
       },
       prepareOrder() {
-        console.log('order prepared');
+        console.log('order prepared', this.addedProducts);
         this.$router.push('/order');
       },
       totalAmount(price, q) {
