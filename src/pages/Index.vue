@@ -106,6 +106,10 @@ export default {
     &__content {
       margin: 0 0 0 auto;
       width: 60%;
+      @include screenBreakpoint2(phone) {
+        width: 100%;
+        margin: auto;
+      }
     }
     &__bg {
       position: absolute;
@@ -116,6 +120,9 @@ export default {
       left: -10%;
       width: 50%;
       height: 100%;
+      @include screenBreakpoint2(phone) {
+        display: none;
+      }
     }
     &__carousel {
       width: 60%;
