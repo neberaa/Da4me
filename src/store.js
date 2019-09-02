@@ -11,6 +11,7 @@ const store = new Vuex.Store({
     cartIsOpen: false,
     menuIsOpen: false,
     cart: [],
+    orderData: [],
   },
   mutations: {
     toggleWishList(state) {
@@ -58,6 +59,9 @@ const store = new Vuex.Store({
       if (json) {
         state[name] = JSON.parse(json);
       }
+    },
+    setOrderData(state, data) {
+      state.orderData = data;
     }
   },
   getters: {

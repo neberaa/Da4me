@@ -44,7 +44,8 @@
     computed: {
       ...mapState([
         'cartIsOpen',
-        'cart'
+        'cart',
+        'orderData'
       ]),
       addedProducts() {
         return this.Products.filter(item => this.cart.includes(item.node.id));
@@ -63,6 +64,7 @@
         'closeCart',
         'removeFromCart',
         'loadJSON',
+        'setOrderData'
       ]),
       manageCart(e) {
         if (this.cartIsOpen) {
@@ -75,6 +77,7 @@
       },
       prepareOrder() {
         console.log('order prepared', this.addedProducts);
+        const arr = [];
         this.$router.push('/order');
       },
       totalAmount(price, q) {
