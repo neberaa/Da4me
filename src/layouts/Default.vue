@@ -72,6 +72,11 @@ export default {
     }
   },
   mounted() {
+    // Add active cursor to all cta buttons
+    const buttons = document.querySelectorAll('button.cta');
+    buttons.forEach(b => {
+      b.setAttribute('data-lock', '');
+    });
     this.initCustomCursor();
   }
 }
