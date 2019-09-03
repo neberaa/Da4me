@@ -131,7 +131,9 @@
             "/",
             this.encode({
               "form-name": "ask-question",
-              ...this.formData
+              "name": this.formData.name,
+              "email": this.formData.email,
+              ...this.formData.order
             }),
             axiosConfig
           )
