@@ -138,7 +138,9 @@
           .post(
             "/",
             this.encode({
-              ...this.formData
+              "name": this.formData.name,
+              "email": this.formData.email,
+              "order": JSON.stringify(this.formData.order),
             }),
             axiosConfig
           )
