@@ -121,7 +121,7 @@
             orderItem.totalCost = orderItem.quantity * parseInt(orderItem.price);
             this.formData.order.push(orderItem);
         });
-        console.log('form data', this.formData);
+        console.log('form data', ...this.formData.order);
       },
       handleSubmit () {
         this.prepareFormData();
@@ -135,7 +135,7 @@
               "form-name": "order",
               "name": this.formData.name,
               "email": this.formData.email,
-              "order": {...this.formData.order}
+              ...this.formData.order
             }),
             axiosConfig
           )
