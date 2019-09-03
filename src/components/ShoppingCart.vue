@@ -20,7 +20,7 @@
         </div>
       </div>
       <p v-show="cart.length > 0">Общая сумма заказа: {{totalOrderAmount}}, 00 грн</p>
-      <button class="cta cart-order" v-show="cart.length > 0" @click="prepareOrder">Оформить заказ</button>
+      <g-link class="cta cart-order" :to="{ name: 'order' }" v-show="cart.length > 0">Оформить заказ</g-link>
       <p v-show="cart.length === 0" class="empty-text">Ваша корзина пуста...</p>
     </div>
   </transition>
@@ -79,25 +79,6 @@
             this.closeCart();
           }
         }
-      },
-      prepareOrder() {
-        // const arr = [];
-        // this.addedProducts.map(i => i.node).forEach(item => {
-        //   let prodItem = {};
-        //   if (!item.hasOwnProperty('quantity')) {
-        //     prodItem.quantity = 1;
-        //   } else {
-        //     prodItem.quantity = item.quantity;
-        //   }
-        //   prodItem.title = item.title;
-        //   prodItem.price = item.price;
-        //   prodItem.article = item.article;
-        //   prodItem.totalCost = prodItem.quantity * parseInt(prodItem.price);
-        //   arr.push(prodItem);
-        // });
-        // console.log('arr', arr);
-        // this.setOrderData(arr);
-        this.$router.push('/order');
       },
       totalAmount(price, q) {
         return parseInt(price) * q;

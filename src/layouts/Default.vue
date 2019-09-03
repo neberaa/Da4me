@@ -73,7 +73,7 @@ export default {
   },
   mounted() {
     // Add active cursor to all cta buttons
-    const buttons = document.querySelectorAll('button.cta');
+    const buttons = document.querySelectorAll('.cta');
     buttons.forEach(b => {
       b.setAttribute('data-lock', '');
     });
@@ -151,20 +151,23 @@ button {
   &:focus {
     outline: none;
   }
+  &.cta:focus {
+    outline: 2px solid $blue;
+  }
   &::-moz-focus-inner {
     border: 0;
     padding: 0;
   }
-  &.cta {
-    padding: 10px 15px;
-    background: $white;
-    outline: 2px solid $blue;
-    font-size: 1rem;
-    color: $gray;
-    outline-offset: -4px;
-    white-space: nowrap;
-    font-weight: bold;
-  }
+}
+.cta {
+  padding: 10px 15px;
+  background: $white;
+  outline: 2px solid $blue;
+  font-size: 1rem;
+  color: $gray;
+  outline-offset: -4px;
+  white-space: nowrap;
+  font-weight: bold;
 }
 
 .layout {
