@@ -17,12 +17,12 @@
           </p>
           <div class="sender-info">
             <div>
-              <label for="name" class="label" >Введите свое имя</label>
-              <input type="text" name="name" v-model="formData.name" />
+              <label for="order-name" class="label" >Введите свое имя</label>
+              <input type="text" id="order-name" name="name" v-model="formData.name" />
             </div>
             <div>
-              <label for="email">Введите свой email</label>
-              <input type="email" name="email" v-model="formData.email" />
+              <label for="order-email">Введите свой email</label>
+              <input type="email" id="order-email" name="email" v-model="formData.email" />
             </div>
           </div>
           <div class="order-preview">

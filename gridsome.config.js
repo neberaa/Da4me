@@ -1,6 +1,7 @@
 // This is where project configuration and installed plugin options are located.
 // Learn more: https://gridsome.org/docs/config
 const path = require('path');
+const PrerenderSPAPlugin = require('prerender-spa-plugin');
 
 function addStyleResource (rule) {
   rule.use('style-resource')
@@ -96,4 +97,14 @@ module.exports = {
       .use('vue-svg-loader')
       .loader('vue-svg-loader');
   },
+  configureWebpack: () => {
+    return {
+      plugins: [
+        new PrerenderSPAPlugin(
+          path.resolve(__dirname, 'dist'),
+          ['/'],
+        ),
+      ]
+    }
+  }
 };
