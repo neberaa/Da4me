@@ -123,18 +123,20 @@
       handleSubmit () {
         this.prepareFormData();
         const axiosConfig = {
-          header: { 'Content-Type': 'multipart/form-data' }
+          header: { "Content-Type": "application/x-www-form-urlencoded" }
         };
-        let formData = new FormData();
 
-        formData.append('form-name', 'order');
-        formData.append('name', this.formData.name);
-        formData.append('email', this.formData.email);
-        formData.append('order', JSON.stringify(this.formData.order));
-
-        console.log('formdata', formData);
         axios
-          .post("/", this.encode(formData), axiosConfig)
+          .post(
+            "/",
+            this.encode({
+              "form-name": "order",
+              "name": this.formData.name,
+              "email": this.formData.email,
+              "body": JSON.stringify(this.encode(...this.formData.order)),
+            }),
+            axiosConfig
+          )
           .then(() => {
             this.formSubmitted = true;
             this.clearCart();
