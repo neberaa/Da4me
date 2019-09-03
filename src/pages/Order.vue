@@ -34,9 +34,9 @@
                 <th>Кол-во</th>
                 <th>Общая сумма</th>
               </tr>
-              <tr class="order__item" v-for="(item, ind) in orderData">
-                <td v-text="item.node.title" v-model="formData.order[i].title"/>
-                <td v-text="item.node.price" v-model="formData.order[i].price"/>
+              <tr class="order__item" v-for="item in orderData">
+                <td v-text="item.node.title"/>
+                <td v-text="item.node.price"/>
                 <td v-text="item.node.quantity || 1"/>
                 <td v-text="parseInt(item.node.price * (item.node.quantity || 1))"/>
               </tr>
