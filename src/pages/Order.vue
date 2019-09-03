@@ -135,7 +135,7 @@
               "form-name": "order",
               "name": this.formData.name,
               "email": this.formData.email,
-              ...this.formData.order
+              "order": this.encode(...this.formData.order)
             }),
             axiosConfig
           )
