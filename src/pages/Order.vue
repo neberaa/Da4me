@@ -7,7 +7,6 @@
           name="order"
           method="post"
           @submit.prevent="handleSubmit"
-          action="/success/"
           data-netlify="true"
           data-netlify-honeypot="bot-field">
           <input type="hidden" name="order" value="order-hidden" />
