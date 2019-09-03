@@ -24,10 +24,6 @@
               <label for="order-email">Введите свой email</label>
               <input type="email" id="order-email" name="email" v-model="formData.email" />
             </div>
-            <div v-show="false" v-for="(item, i) in orderData">
-              <label :for="`order-product-${item.node.id}`">{{item.node.title}}</label>
-              <input type="text" hidden :id="`order-product-${item.node.id}`" :name="`order-product${item.node.id}`" v-model="formData.order[i]" />
-            </div>
           </div>
           <div class="order-preview">
             <p>Заказ:</p>
@@ -85,7 +81,10 @@
         formData: {
           email: '',
           name: '',
-          order: ''
+          title: [],
+          articles: [],
+          quantity: [],
+          price: []
         },
         formSubmitted: false,
       }
@@ -113,19 +112,15 @@
           .join("&");
       },
       prepareFormData() {
-        this.formData.order = [];
         this.orderData.map(d => d.node).forEach(d => {
-          let orderItem = {};
-            if (!d.hasOwnProperty('quantity')) {
-              orderItem.quantity = 1;
-            } else {
-              orderItem.quantity = d.quantity;
-            }
-            orderItem.title = d.title;
-            orderItem.price = d.price;
-            orderItem.article = d.article;
-            orderItem.totalCost = orderItem.quantity * parseInt(orderItem.price);
-            this.formData.order.push(orderItem);
+            this.formData.title.push(d.title);
+            this.formData.articles.push(d.article);
+          if (!d.hasOwnProperty('quantity')) {
+            this.formData.quantity.push(1);
+          } else {
+            this.formData.quantity.push(d.quantity);
+          }
+            this.formData.price.push(d.price);
         });
       },
       handleSubmit () {
@@ -133,14 +128,11 @@
         const axiosConfig = {
           header: { "Content-Type": "application/x-www-form-urlencoded" }
         };
-        console.log('form data', this.formData);
         axios
           .post(
             "/",
             this.encode({
-              "name": this.formData.name,
-              "email": this.formData.email,
-              "order": JSON.stringify(this.formData.order),
+              ...this.formData
             }),
             axiosConfig
           )
