@@ -123,7 +123,7 @@
       handleSubmit () {
         this.prepareFormData();
         const axiosConfig = {
-          header: { "Content-Type": "application/x-www-form-urlencoded" }
+          header: { 'Content-Type': 'multipart/form-data' }
         };
         let formData = new FormData();
 
@@ -132,6 +132,7 @@
         formData.append('email', this.formData.email);
         formData.append('order', JSON.stringify(this.formData.order));
 
+        console.log('formdata', formData);
         axios
           .post("/", this.encode(formData), axiosConfig)
           .then(() => {
