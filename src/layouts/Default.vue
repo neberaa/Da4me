@@ -169,6 +169,21 @@ button {
   white-space: nowrap;
   font-weight: bold;
 }
+input {
+  height: 35px;
+  border: 1px solid rgba($gray, 0.3);
+  transition: all 300ms ease;
+  font-family: 'Didact Gothic';
+  font-size: 1.2rem;
+  line-height: 35px;
+  &:invalid {
+    border: 1px solid rgba($red, 0.5);
+  }
+  &:focus {
+    border: 1px solid rgba($blue, 0.5);
+    outline: none;
+  }
+}
 
 .layout {
   padding: 0;

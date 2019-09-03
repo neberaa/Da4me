@@ -18,15 +18,19 @@
           <div class="sender-info">
             <div>
               <label for="order-name" class="label" >Введите свое имя</label>
-              <input type="text" id="order-name" name="name" v-model="formData.name" />
+              <input type="text" id="order-name" name="name" v-model="formData.name" placeholder="Имя" />
             </div>
             <div>
-              <label for="order-email">Введите свой email</label>
-              <input type="email" id="order-email" name="email" v-model="formData.email" />
+              <label for="order-phone" class="label" >Введите свой номер телефона</label>
+              <input type="tel" pattern="\+380[0-9]{9}" required id="order-phone" name="phone" v-model="formData.phone" placeholder="+380......"/>
+            </div>
+            <div>
+              <label for="order-email" class="label">Введите свой email</label>
+              <input type="email" required id="order-email" name="email" v-model="formData.email" placeholder="Электронная почта"/>
             </div>
           </div>
           <div class="order-preview">
-            <p>Заказ:</p>
+            <h4>Заказ:</h4>
             <table>
               <tr class="header">
                 <th>Наименование</th>
@@ -125,7 +129,6 @@
         const axiosConfig = {
           header: { "Content-Type": "application/x-www-form-urlencoded" }
         };
-        console.log('form data', JSON.stringify(...this.formData.order));
         axios
           .post(
             "/",
@@ -133,6 +136,7 @@
               "form-name": "order",
               "name": this.formData.name,
               "email": this.formData.email,
+              "phone": this.formData.phone,
               "order": JSON.stringify(this.formData.order),
             }),
             axiosConfig
