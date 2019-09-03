@@ -78,14 +78,7 @@
     name: "Order",
     data() {
       return {
-        formData: {
-          email: '',
-          name: '',
-          title: [],
-          articles: [],
-          quantity: [],
-          price: []
-        },
+        formData: {},
         formSubmitted: false,
       }
     },
@@ -112,15 +105,19 @@
           .join("&");
       },
       prepareFormData() {
+        this.formData.order = [];
         this.orderData.map(d => d.node).forEach(d => {
-            this.formData.title.push(d.title);
-            this.formData.articles.push(d.article);
-          if (!d.hasOwnProperty('quantity')) {
-            this.formData.quantity.push(1);
-          } else {
-            this.formData.quantity.push(d.quantity);
-          }
-            this.formData.price.push(d.price);
+          let orderItem = {};
+            if (!d.hasOwnProperty('quantity')) {
+              orderItem['Кол-во'] = 1;
+            } else {
+              orderItem['Кол-во'] = d.quantity;
+            }
+            orderItem['Название'] = d.title;
+            orderItem['Цена'] = d.price;
+            orderItem['Артикул'] = d.article;
+            orderItem['Итого'] = orderItem['Кол-во'] * parseInt(orderItem['Цена']);
+            this.formData.order.push(orderItem);
         });
       },
       handleSubmit () {
@@ -128,19 +125,15 @@
         const axiosConfig = {
           header: { "Content-Type": "application/x-www-form-urlencoded" }
         };
-        const { title, name, email, articles, price, quantity } = this.formData;
-
+        console.log('form data', JSON.stringify(...this.formData.order));
         axios
           .post(
             "/",
             this.encode({
               "form-name": "order",
-              "name": name,
-              "email": email,
-              "title": title,
-              "articles": articles,
-              "price": price,
-              "quantity": quantity
+              "name": this.formData.name,
+              "email": this.formData.email,
+              "order": JSON.stringify(...this.formData.order),
             }),
             axiosConfig
           )
@@ -151,14 +144,6 @@
           .catch(error => {
             console.log(error);
             // this.$router.push('error');
-            this.formData = {
-              email: '',
-              name: '',
-              title: [],
-              articles: [],
-              quantity: [],
-              price: []
-            };
           });
       }
     },
