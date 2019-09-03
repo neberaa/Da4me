@@ -96,6 +96,9 @@
       }
     },
     methods: {
+      ...mapMutations([
+        'clearCart',
+      ]),
       encode (data) {
         return Object.keys(data)
           .map(
@@ -136,7 +139,10 @@
             }),
             axiosConfig
           )
-          .then(() => this.formSubmitted = true)
+          .then(() => {
+            this.formSubmitted = true;
+            this.clearCart();
+          })
           .catch(error => {
             console.log(error);
             // this.$router.push('error');

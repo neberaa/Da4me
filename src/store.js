@@ -54,6 +54,10 @@ const store = new Vuex.Store({
       state.cart.splice(state.cart.indexOf(id), 1);
       localStorage.setItem('cart', JSON.stringify(state.cart));
     },
+    clearCart(state) {
+      state.cart = [];
+      localStorage.setItem('cart', JSON.stringify(state.cart));
+    },
     loadJSON(state, name) {
       const json = localStorage.getItem(name);
       if (json) {
