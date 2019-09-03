@@ -133,7 +133,7 @@
               "form-name": "order",
               "name": this.formData.name,
               "email": this.formData.email,
-              "order": JSON.stringify(...this.formData.order),
+              "order": JSON.stringify(this.formData.order),
             }),
             axiosConfig
           )
