@@ -128,17 +128,19 @@
         const axiosConfig = {
           header: { "Content-Type": "application/x-www-form-urlencoded" }
         };
-        const {title, name, email, articles, price, quantity} = this.formData;
+        const { title, name, email, articles, price, quantity } = this.formData;
+
         axios
           .post(
             "/",
             this.encode({
+              "form-name": "order",
               "name": name,
               "email": email,
-              "product-title": title,
-              "product-articles": articles,
-              "product-price": price,
-              "product-quantity": quantity
+              "title": title,
+              "articles": articles,
+              "price": price,
+              "quantity": quantity
             }),
             axiosConfig
           )
@@ -149,6 +151,14 @@
           .catch(error => {
             console.log(error);
             // this.$router.push('error');
+            this.formData = {
+              email: '',
+              name: '',
+              title: [],
+              articles: [],
+              quantity: [],
+              price: []
+            };
           });
       }
     },
