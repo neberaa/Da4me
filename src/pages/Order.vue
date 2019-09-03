@@ -133,7 +133,8 @@
               "form-name": "order",
               "name": this.formData.name,
               "email": this.formData.email,
-              "body": JSON.stringify(this.encode(...this.formData.order)),
+              ...this.formData.order,
+              "order": JSON.stringify(...this.formData.order),
             }),
             axiosConfig
           )
