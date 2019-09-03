@@ -24,6 +24,10 @@
               <label for="order-email">Введите свой email</label>
               <input type="email" id="order-email" name="email" v-model="formData.email" />
             </div>
+            <div v-show="false" v-for="(item, i) in orderData">
+              <label :for="`order-product-${item.node.id}`">{{item.node.title}}</label>
+              <input type="text" hidden :id="`order-product-${item.node.id}`" :name="`order-product${item.node.id}`" v-model="formData.order[i]" />
+            </div>
           </div>
           <div class="order-preview">
             <p>Заказ:</p>
@@ -78,7 +82,11 @@
     name: "Order",
     data() {
       return {
-        formData: {},
+        formData: {
+          email: '',
+          name: '',
+          order: ''
+        },
         formSubmitted: false,
       }
     },
@@ -125,16 +133,12 @@
         const axiosConfig = {
           header: { "Content-Type": "application/x-www-form-urlencoded" }
         };
-
+        console.log('form data', this.formData);
         axios
           .post(
             "/",
             this.encode({
-              "form-name": "order",
-              "name": this.formData.name,
-              "email": this.formData.email,
-              ...this.formData.order,
-              "order": JSON.stringify(...this.formData.order),
+              ...this.formData
             }),
             axiosConfig
           )
