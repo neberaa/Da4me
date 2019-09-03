@@ -128,11 +128,17 @@
         const axiosConfig = {
           header: { "Content-Type": "application/x-www-form-urlencoded" }
         };
+        const {title, name, email, articles, price, quantity} = this.formData;
         axios
           .post(
             "/",
             this.encode({
-              ...this.formData
+              "name": name,
+              "email": email,
+              "product-title": title,
+              "product-articles": articles,
+              "product-price": price,
+              "product-quantity": quantity
             }),
             axiosConfig
           )
