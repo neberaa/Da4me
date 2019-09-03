@@ -73,7 +73,7 @@
 
 <script>
   import axios from 'axios'
-  import { mapState } from 'vuex';
+  import { mapState, mapMutations } from 'vuex';
   export default {
     name: "Order",
     data() {
