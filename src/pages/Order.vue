@@ -100,10 +100,11 @@
         'clearCart',
       ]),
       encode (data) {
+        console.log('encode',data,  Object.keys(data)
+          .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`)
+          .join("&"));
         return Object.keys(data)
-          .map(
-            key => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`
-          )
+          .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`)
           .join("&");
       },
       prepareFormData() {
@@ -134,7 +135,7 @@
               "form-name": "order",
               "name": this.formData.name,
               "email": this.formData.email,
-              "body": JSON.stringify(...this.formData.order)
+              "body": JSON.stringify(this.formData.order)
             }),
             axiosConfig
           )
