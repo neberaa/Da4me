@@ -34,9 +34,9 @@
                 <th>Кол-во</th>
                 <th>Общая сумма</th>
               </tr>
-              <tr class="order__item" v-for="item in orderData">
-                <td v-text="item.node.title"/>
-                <td v-text="item.node.price"/>
+              <tr class="order__item" v-for="(item, ind) in orderData">
+                <td v-text="item.node.title" v-model="formData.order[i].title"/>
+                <td v-text="item.node.price" v-model="formData.order[i].price"/>
                 <td v-text="item.node.quantity || 1"/>
                 <td v-text="parseInt(item.node.price * (item.node.quantity || 1))"/>
               </tr>
@@ -125,17 +125,15 @@
         const axiosConfig = {
           header: { "Content-Type": "application/x-www-form-urlencoded" }
         };
+        let formData = new FormData();
+
+        formData.append('form-name', 'order');
+        formData.append('name', this.formData.name);
+        formData.append('email', this.formData.email);
+        formData.append('order', JSON.stringify(this.formData.order));
+
         axios
-          .post(
-            "/",
-            this.encode({
-              "form-name": "order",
-              "name": this.formData.name,
-              "email": this.formData.email,
-              "body": JSON.stringify(this.formData.order)
-            }),
-            axiosConfig
-          )
+          .post("/", this.encode(formData), axiosConfig)
           .then(() => {
             this.formSubmitted = true;
             this.clearCart();
