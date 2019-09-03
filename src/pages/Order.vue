@@ -100,9 +100,6 @@
         'clearCart',
       ]),
       encode (data) {
-        console.log('encode',data,  Object.keys(data)
-          .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`)
-          .join("&"));
         return Object.keys(data)
           .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`)
           .join("&");
