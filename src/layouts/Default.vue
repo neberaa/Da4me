@@ -174,8 +174,8 @@ input {
   border: 1px solid rgba($gray, 0.3);
   transition: all 300ms ease;
   font-family: 'Didact Gothic';
-  font-size: 1.2rem;
-  line-height: 35px;
+  font-size: 1rem;
+  padding: 10px;
   &:invalid {
     border: 1px solid rgba($red, 0.5);
   }
