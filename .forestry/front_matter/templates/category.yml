@@ -35,8 +35,8 @@ fields:
   label: Картинка
 pages:
 - categories/skirt.md
-- categories/dress.md
 - categories/sarafan.md
+- categories/dress.md
 - categories/combi.md
-- categories/family-look.md
 - categories/kids.md
+- categories/family-look.md

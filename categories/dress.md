@@ -1,5 +1,5 @@
 ---
-image: https://res.cloudinary.com/da4me/fl_progressive/v1565724745/uploads/IMG_3447_cga75u.jpg
+image: "/v1565724745/uploads/IMG_3447_cga75u.jpg"
 title: dress
 header: Платья
 description: Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Quisque
