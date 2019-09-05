@@ -165,6 +165,7 @@ button {
   outline: 2px solid $blue;
   font-size: 1rem;
   color: $gray;
+  outline-offset: -4px;
   white-space: nowrap;
   font-weight: bold;
 }
