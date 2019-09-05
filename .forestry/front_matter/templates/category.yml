@@ -34,9 +34,9 @@ fields:
   default: https://res.cloudinary.com/da4me/fl_progressive/v1565021018/uploads/logo2_lawxwe.png
   label: Картинка
 pages:
+- categories/combi.md
 - categories/kids.md
 - categories/family-look.md
 - categories/skirt.md
 - categories/dress.md
 - categories/sarafan.md
-- categories/combi.md
