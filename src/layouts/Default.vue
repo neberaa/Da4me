@@ -165,7 +165,6 @@ button {
   outline: 2px solid $blue;
   font-size: 1rem;
   color: $gray;
-  outline-offset: -4px;
   white-space: nowrap;
   font-weight: bold;
 }
@@ -182,6 +181,20 @@ input {
   &:focus {
     border: 1px solid rgba($blue, 0.5);
     outline: none;
+  }
+}
+picture {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
   }
 }
 

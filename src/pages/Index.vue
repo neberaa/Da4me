@@ -19,7 +19,9 @@
               class="slide"
               v-for="(img, i) in paintBlock.gallery"
               :key="`imagegallery${i}`">
-              <div class="slide__image" :style="{'background-image' : `url(${img})`}"/>
+              <div
+                class="slide__image"
+                :style="{'background-image' : `url(${setImage(img, 'w_300,h_300,c_fill')})`}"/>
             </slide>
           </carousel>
         </ClientOnly>

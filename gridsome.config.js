@@ -24,7 +24,7 @@ module.exports = {
       options: {
         path: "products/**/*.md",
         typeName: "ProductItem",
-        resolveAbsolutePaths: true,
+        resolveAbsolutePaths: false,
         remark: {
           externalLinksTarget: "_blank",
           externalLinksRel: ["nofollow", "noopener", "noreferrer"]
@@ -36,7 +36,7 @@ module.exports = {
       options: {
         path: "categories/**/*.md",
         typeName: "CategoryItem",
-        resolveAbsolutePaths: true,
+        resolveAbsolutePaths: false,
         remark: {
           externalLinksTarget: "_blank",
           externalLinksRel: ["nofollow", "noopener", "noreferrer"]
@@ -49,7 +49,7 @@ module.exports = {
       options: {
         path: "pages/**/*.md",
         typeName: "PageItem",
-        resolveAbsolutePaths: true,
+        resolveAbsolutePaths: false,
         remark: {
           externalLinksTarget: "_blank",
           externalLinksRel: ["nofollow", "noopener", "noreferrer"]
@@ -61,7 +61,7 @@ module.exports = {
       options: {
         path: "socials/**/*.md",
         typeName: "SocialItem",
-        resolveAbsolutePaths: true,
+        resolveAbsolutePaths: false,
         remark: {
           externalLinksTarget: "_blank",
           externalLinksRel: ["nofollow", "noopener", "noreferrer"]
@@ -73,7 +73,7 @@ module.exports = {
       options: {
         path: "blocks/**/*.md",
         typeName: "BlockItem",
-        resolveAbsolutePaths: true,
+        resolveAbsolutePaths: false,
         remark: {
           externalLinksTarget: "_blank",
           externalLinksRel: ["nofollow", "noopener", "noreferrer"]

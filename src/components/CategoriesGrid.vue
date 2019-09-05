@@ -5,9 +5,22 @@
       class="category"
       v-for="(item, ind) in categories"
       :key="item.node.id">
-      <div
-        class="category__image"
-        :style="{'background-image' : `url(${item.node.image})`}"/>
+      <div class="category__image">
+        <picture>
+          <source
+            media="screen and (max-width: 767px)"
+            :srcset="setImage(item.node.image, 'w_300,h_600,c_fill')">
+          <source
+            media="screen and (min-width: 768px) and (max-width: 1199px)"
+            :srcset="setImage(item.node.image, 'w_0.5,h_0.5,c_fill')">
+          <source
+            media="screen and (min-width: 1200px)"
+            :srcset="setImage(item.node.image)">
+          <img
+            :scr="setImage(item.node.image)"
+            :alt="item.node.title || null">
+        </picture>
+      </div>
       <button
         data-lock
         class="category__cta cta">
@@ -23,7 +36,7 @@ export default {
     categories: {
       type: Array,
       required: true
-      }
+    }
   },
 }
 </script>
@@ -90,10 +103,8 @@ export default {
       &__image {
         width: 100%;
         height: 100%;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
         transition: all 0.3s ease;
+        position: relative;
       }
       &__cta {
         @include center('x');
