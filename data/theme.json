@@ -5,5 +5,6 @@
   "site_description": "Designer clothes",
   "hero_title": "Интернет магазин женской одежды ",
   "hero_subtitle": "",
-  "footer_bg": "https://res.cloudinary.com/da4me/v1565724111/uploads/67183_mw52hn.jpg"
+  "footer_bg": "https://res.cloudinary.com/da4me/v1565724111/uploads/67183_mw52hn.jpg",
+  "cloudinary_url": "https://res.cloudinary.com/da4me"
 }
