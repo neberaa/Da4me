@@ -37,5 +37,12 @@ fields:
     maxSize: 250
   label: Фон для футера
   description: Картинка для футера
+- name: cloudinary_url
+  type: text
+  config:
+    required: false
+  label: Cloudinary URL
+  hidden: true
+  default: https://res.cloudinary.com/da4me
 pages:
 - data/theme.json

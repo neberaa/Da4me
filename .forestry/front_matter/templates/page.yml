@@ -31,6 +31,6 @@ fields:
   hidden: false
   default: true
 pages:
+- pages/размерная-сетка-1.md
 - pages/о-нас.md
 - pages/доставка-и-оплата.md
-- pages/размерная-сетка-1.md
