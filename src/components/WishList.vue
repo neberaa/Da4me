@@ -11,9 +11,9 @@
                       <ResponsiveImage
                         :url="product.node.image"
                         :alt="product.node.title"
-                        :settings-mobile="'w_400,h_800,c_fill'"
-                        :settings-tablet="'w_300,h_600,c_fill'"
-                        :settings-desktop="'w_300,h_600,c_fill'"/>
+                        :settings-mobile="'w_400,h_800,c_fit'"
+                        :settings-tablet="'w_300,h_600,c_fit'"
+                        :settings-desktop="'w_300,h_600,c_fit'"/>
                     </g-link>
                     <button class="product__cta" @click="removeFromWishList">Убрать из списка</button>
                 </div>

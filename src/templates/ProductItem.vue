@@ -10,8 +10,8 @@
             <ResponsiveImage
               :url="$page.product.image"
               :alt="$page.product.title"
-              :settings-mobile="'w_400,h_800,c_fill'"
-              :settings-tablet="'w_400,h_800,c_fill'"/>
+              :settings-mobile="'w_400,h_800,c_fit'"
+              :settings-tablet="'w_400,h_800,c_fit'"/>
           </div>
           <ClientOnly>
             <carousel
@@ -27,9 +27,9 @@
                   <ResponsiveImage
                     :url="img"
                     :alt="$page.product.title + i"
-                    :settings-mobile="'w_400,h_800,c_fill'"
-                    :settings-tablet="'w_300,h_600,c_fill'"
-                    :settings-desktop="'w_300,h_600,c_fill'"/>
+                    :settings-mobile="'w_400,h_800,c_fit'"
+                    :settings-tablet="'w_300,h_600,c_fit'"
+                    :settings-desktop="'w_300,h_600,c_fit'"/>
                 </div>
               </slide>
             </carousel>

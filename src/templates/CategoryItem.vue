@@ -27,8 +27,8 @@
                 <ResponsiveImage
                   :url="product.node.image"
                   :alt="product.node.title"
-                  :settings-mobile="'w_400,h_800,c_fill'"
-                  :settings-tablet="'w_0.5,h_0.5,c_fill'"/>
+                  :settings-mobile="'w_400,h_800,c_fit'"
+                  :settings-tablet="'w_0.5,h_0.5,c_fit'"/>
               </div>
             </g-link>
           </div>

@@ -9,8 +9,8 @@
         <ResponsiveImage
           :url="item.node.image"
           :alt="item.node.title"
-          :settings-mobile="'w_300,h_600,c_fill'"
-          :settings-tablet="'w_0.5,h_0.5,c_fill'"/>
+          :settings-mobile="'w_300,h_600,c_fit'"
+          :settings-tablet="'w_0.5,h_0.5,c_fit'"/>
       </div>
       <button
         data-lock

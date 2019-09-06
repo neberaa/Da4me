@@ -23,9 +23,9 @@
                 <ResponsiveImage
                   :url="img"
                   :alt="`${paintBlock.title}-${i}`"
-                  :settings-mobile="'w_300,h_300,c_fill'"
-                  :settings-tablet="'w_300,h_300,c_fill'"
-                  :settings-desktop="'w_300,h_300,c_fill'"/>
+                  :settings-mobile="'w_300,h_300,c_fit'"
+                  :settings-tablet="'w_300,h_300,c_fit'"
+                  :settings-desktop="'w_300,h_300,c_fit'"/>
               </div>
             </slide>
           </carousel>
