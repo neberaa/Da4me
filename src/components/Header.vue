@@ -399,6 +399,7 @@ export default {
         &--center {
           justify-content: center;
           @include center('x');
+          top: 0;
 
           .logo {
             width: 150px;
