@@ -42,7 +42,8 @@ fields:
   config:
     required: false
   label: Cloudinary URL
-  hidden: true
+  hidden: false
   default: https://res.cloudinary.com/da4me
+  description: Не редактировать
 pages:
 - data/theme.json
