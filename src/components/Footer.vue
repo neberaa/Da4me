@@ -67,9 +67,6 @@ export default {
       settings: require("../../data/theme.json"),
     }
   },
-  mounted() {
-    console.log('settings', this.settings);
-  }
 }
 </script>
 
