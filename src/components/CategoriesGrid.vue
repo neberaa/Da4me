@@ -6,20 +6,11 @@
       v-for="(item, ind) in categories"
       :key="item.node.id">
       <div class="category__image">
-        <picture>
-          <source
-            media="screen and (max-width: 767px)"
-            :srcset="setImage(item.node.image, 'w_300,h_600,c_fill')">
-          <source
-            media="screen and (min-width: 768px) and (max-width: 1199px)"
-            :srcset="setImage(item.node.image, 'w_0.5,h_0.5,c_fill')">
-          <source
-            media="screen and (min-width: 1200px)"
-            :srcset="setImage(item.node.image)">
-          <img
-            :scr="setImage(item.node.image)"
-            :alt="item.node.title || null">
-        </picture>
+        <ResponsiveImage
+          :url="item.node.image"
+          :alt="item.node.title"
+          :settings-mobile="'w_300,h_600,c_fill'"
+          :settings-tablet="'w_0.5,h_0.5,c_fill'"/>
       </div>
       <button
         data-lock
@@ -31,6 +22,7 @@
 </template>
 
 <script>
+import ResponsiveImage from './ResponsiveImage';
 export default {
   props: {
     categories: {
@@ -38,6 +30,9 @@ export default {
       required: true
     }
   },
+  components: {
+    ResponsiveImage,
+  }
 }
 </script>
 

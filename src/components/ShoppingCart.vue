@@ -6,7 +6,16 @@
       <div class="products">
         <div v-for="product in addedProducts" :key="product.node.id" class="product">
           <div class="column column--left">
-            <g-link :to="product.node.path" class="product__image" :style="{'background-image' : `url(${product.node.image})`}"/>
+            <g-link
+              :to="product.node.path"
+              class="product__image">
+              <ResponsiveImage
+                :url="product.node.image"
+                :alt="product.node.title"
+                :settings-mobile="'w_400,h_800,c_fill'"
+                :settings-tablet="'w_300,h_600,c_fill'"
+                :settings-desktop="'w_300,h_600,c_fill'"/>
+            </g-link>
           </div>
           <div class="column column--right">
             <button class="icon cross" data-lock @click="removeFromCart(product.node.id)"/>
@@ -128,9 +137,6 @@
       &__image {
         width: 150px;
         height: 200px;
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
         display: block;
       }
 

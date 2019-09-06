@@ -4,7 +4,12 @@
       <div class="container">
         <div class="product__item">
           <h1 class="title" v-html="$page.product.title" />
-          <g-image class="image" v-if="$page.product.image && $page.product.imageGallery.length === 0" :src="$page.product.image" :alt="$page.product.title"/>
+          <ResponsiveImage
+            v-if="$page.product.image && $page.product.imageGallery.length === 0"
+            :url="$page.product.image"
+            :alt="$page.product.title"
+            :settings-mobile="'w_400,h_800,c_fill'"
+            :settings-tablet="'w_400,h_800,c_fill'"/>
           <ClientOnly>
             <carousel
               :perPageCustom="[[300, 1], [768, 3]]"

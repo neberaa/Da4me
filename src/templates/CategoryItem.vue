@@ -23,9 +23,11 @@
               :key="product.node.id"
               class="product__item">
               <p v-text="product.node.title"/>
-              <g-image
-                :src="product.node.image"
-                :alt="product.node.title"/>
+              <ResponsiveImage
+                :url="product.node.image"
+                :alt="product.node.title"
+                :settings-mobile="'w_400,h_800,c_fill'"
+                :settings-tablet="'w_0.5,h_0.5,c_fill'"/>
             </g-link>
           </div>
         </div>

@@ -20,7 +20,11 @@
             :key="item.node.id"
             class="product__item">
             <h4 class="title" v-text="item.node.title"/>
-            <g-image :src="item.node.image" :alt="item.node.title"/>
+            <ResponsiveImage
+              :url="item.node.image"
+              :alt="item.node.title"
+              :settings-mobile="'w_400,h_800,c_fill'"
+              :settings-tablet="'w_0.5,h_0.5,c_fill'"/>
           </g-link>
         </div>
       </div>

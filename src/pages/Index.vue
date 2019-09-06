@@ -19,9 +19,14 @@
               class="slide"
               v-for="(img, i) in paintBlock.gallery"
               :key="`imagegallery${i}`">
-              <div
-                class="slide__image"
-                :style="{'background-image' : `url(${setImage(img, 'w_300,h_300,c_fill')})`}"/>
+              <div class="slide__image">
+                <ResponsiveImage
+                  :url="img"
+                  :alt="`${paintBlock.title}-${i}`"
+                  :settings-mobile="'w_300,h_300,c_fill'"
+                  :settings-tablet="'w_300,h_300,c_fill'"
+                  :settings-desktop="'w_300,h_300,c_fill'"/>
+              </div>
             </slide>
           </carousel>
         </ClientOnly>
@@ -67,6 +72,7 @@ query Posts {
 
 <script>
 import CategoriesGrid from "@/components/CategoriesGrid"
+import ResponsiveImage from "@/components/ResponsiveImage"
 
 export default {
   components: {
@@ -78,7 +84,8 @@ export default {
     Slide: () =>
       import ('vue-carousel')
         .then(m => m.Slide)
-        .catch()
+        .catch(),
+    ResponsiveImage
   },
   data() {
     return {
