@@ -43,5 +43,6 @@ fields:
     required: false
   label: Cloudinary URL
   hidden: true
+  default: https://res.cloudinary.com/da4me
 pages:
 - data/theme.json
