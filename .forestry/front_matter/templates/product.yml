@@ -120,6 +120,7 @@ fields:
   label: Артикул товара
   description: 'Введите артикул товара для учета  '
 pages:
+- products/Kids/комбинезон.md
 - products/Family look/сарафаны-для-мамы-и-малышки.md
 - products/Юбки/юбка-летняя.md
 - products/Юбки/юбка-в-пол.md
@@ -128,4 +129,3 @@ pages:
 - products/Платья/платье-летнее.md
 - products/Платья/платье-в-пол.md
 - products/Kids/футболка.md
-- products/Kids/комбинезон.md
