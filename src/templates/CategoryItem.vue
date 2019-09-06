@@ -67,7 +67,6 @@ query CategoryItem ($path: String!) {
 </page-query>
 
 <script>
-
 export default {
   computed: {
     filteredProducts() {

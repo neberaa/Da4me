@@ -72,7 +72,6 @@ query Posts {
 
 <script>
 import CategoriesGrid from "@/components/CategoriesGrid"
-import ResponsiveImage from "@/components/ResponsiveImage"
 
 export default {
   components: {
@@ -85,7 +84,6 @@ export default {
       import ('vue-carousel')
         .then(m => m.Slide)
         .catch(),
-    ResponsiveImage
   },
   data() {
     return {

@@ -1,5 +1,5 @@
 <template>
-  <footer class="footer" :style="{'background-image' : `url(${settings.footer_bg})`}">
+  <footer class="footer" :style="{'background-image' : `url(${settings.cloudinary_url}${settings.footer_bg})`}">
     <div class="container">
       <div class="column logo column--left">
         <g-link :to="{ name: 'home' }" class="home-link">
@@ -66,6 +66,9 @@ export default {
       contacts: require("../../data/contacts.json"),
       settings: require("../../data/theme.json"),
     }
+  },
+  mounted() {
+    console.log('settings', this.settings);
   }
 }
 </script>

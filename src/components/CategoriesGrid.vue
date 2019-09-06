@@ -22,7 +22,6 @@
 </template>
 
 <script>
-import ResponsiveImage from './ResponsiveImage';
 export default {
   props: {
     categories: {
@@ -30,9 +29,6 @@ export default {
       required: true
     }
   },
-  components: {
-    ResponsiveImage,
-  }
 }
 </script>
 
