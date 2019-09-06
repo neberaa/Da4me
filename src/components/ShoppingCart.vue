@@ -138,6 +138,7 @@
         width: 150px;
         height: 200px;
         display: block;
+        position: relative;
       }
 
       &__cta {

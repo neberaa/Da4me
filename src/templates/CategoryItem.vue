@@ -23,11 +23,13 @@
               :key="product.node.id"
               class="product__item">
               <p v-text="product.node.title"/>
-              <ResponsiveImage
-                :url="product.node.image"
-                :alt="product.node.title"
-                :settings-mobile="'w_400,h_800,c_fill'"
-                :settings-tablet="'w_0.5,h_0.5,c_fill'"/>
+              <div class="image-container">
+                <ResponsiveImage
+                  :url="product.node.image"
+                  :alt="product.node.title"
+                  :settings-mobile="'w_400,h_800,c_fill'"
+                  :settings-tablet="'w_0.5,h_0.5,c_fill'"/>
+              </div>
             </g-link>
           </div>
         </div>
@@ -105,6 +107,12 @@ export default {
         flex: 0 0 200px;
         overflow: hidden;
         margin: 0 20px 20px;
+        .image-container {
+          position: relative;
+          width: 100%;
+          height: 100%;
+          min-height: 300px;
+        }
         p {
           margin-top: 0;
         }

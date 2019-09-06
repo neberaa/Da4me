@@ -4,12 +4,15 @@
       <div class="container">
         <div class="product__item">
           <h1 class="title" v-html="$page.product.title" />
-          <ResponsiveImage
-            v-if="$page.product.image && $page.product.imageGallery.length === 0"
-            :url="$page.product.image"
-            :alt="$page.product.title"
-            :settings-mobile="'w_400,h_800,c_fill'"
-            :settings-tablet="'w_400,h_800,c_fill'"/>
+          <div
+            class="image-container"
+            v-if="$page.product.image && $page.product.imageGallery.length === 0">
+            <ResponsiveImage
+              :url="$page.product.image"
+              :alt="$page.product.title"
+              :settings-mobile="'w_400,h_800,c_fill'"
+              :settings-tablet="'w_400,h_800,c_fill'"/>
+          </div>
           <ClientOnly>
             <carousel
               :perPageCustom="[[300, 1], [768, 3]]"
@@ -20,7 +23,14 @@
                 class="slide"
                v-for="(img, i) in $page.product.imageGallery"
                 :key="`imagegallery${i}`">
-                <div class="slide__image" :style="{'background-image' : `url(${img})`}"/>
+                <div class="slide__image">
+                  <ResponsiveImage
+                    :url="img"
+                    :alt="$page.product.title + i"
+                    :settings-mobile="'w_400,h_800,c_fill'"
+                    :settings-tablet="'w_300,h_600,c_fill'"
+                    :settings-desktop="'w_300,h_600,c_fill'"/>
+                </div>
               </slide>
             </carousel>
           </ClientOnly>
@@ -111,6 +121,12 @@ export default {
     flex: 1 1 300px;
     justify-content: center;
     align-items: flex-start;
+    .image-container {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      padding-bottom: 150%;
+    }
     .carousel {
       width: 100%;
       margin: auto;

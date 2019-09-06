@@ -111,6 +111,7 @@ export default {
       background-position: center;
       background-repeat: no-repeat;
       display: block;
+      position: relative;
     }
 
     &__cta {

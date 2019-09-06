@@ -20,11 +20,13 @@
             :key="item.node.id"
             class="product__item">
             <h4 class="title" v-text="item.node.title"/>
-            <ResponsiveImage
-              :url="item.node.image"
-              :alt="item.node.title"
-              :settings-mobile="'w_400,h_800,c_fill'"
-              :settings-tablet="'w_0.5,h_0.5,c_fill'"/>
+            <div class="image-container">
+              <ResponsiveImage
+                :url="item.node.image"
+                :alt="item.node.title"
+                :settings-mobile="'w_400,h_800,c_fill'"
+                :settings-tablet="'w_0.5,h_0.5,c_fill'"/>
+            </div>
           </g-link>
         </div>
       </div>
@@ -84,5 +86,10 @@
   }
   .title {
     margin-top: 0;
+  }
+  .image-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
   }
 </style>
