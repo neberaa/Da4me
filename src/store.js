@@ -7,16 +7,12 @@ Vue.use(Vuex);
 const store = new Vuex.Store({
   state: {
     wishList: [],
-    wishListIsOpen: false,
     cartIsOpen: false,
     menuIsOpen: false,
     cart: [],
     orderData: [],
   },
   mutations: {
-    toggleWishList(state) {
-        state.wishListIsOpen = !state.wishListIsOpen;
-    },
     toggleMenu(state) {
         state.menuIsOpen = !state.menuIsOpen;
     },
@@ -26,11 +22,6 @@ const store = new Vuex.Store({
     closeMenu(state) {
       if (state.menuIsOpen) {
         state.menuIsOpen = false;
-      }
-    },
-    closeWishList(state) {
-      if (state.wishListIsOpen) {
-        state.wishListIsOpen = false;
       }
     },
     addToWishList (state, id ) {

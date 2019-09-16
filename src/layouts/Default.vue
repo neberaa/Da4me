@@ -227,6 +227,9 @@ main.page-content {
   &--blue {
     fill: $blue;
   }
+  &--coral {
+    fill: $coral;
+  }
   &.cross {
     position: relative;
     background-color: transparent;

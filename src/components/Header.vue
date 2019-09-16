@@ -43,25 +43,23 @@
             class="phone-number">
             +38 {{contacts.phone}}
           </a>
-          <a
-            href=""
+          <g-link
+            to="/wish-list"
             class="icon wishlist"
-            data-lock
-            @click.prevent="toggleWishList">
+            data-lock>
             <HeartIcon
-              class="icon"
-              :class="{'icon--blue': wishListIsOpen}"/>
-          </a>
+              class="icon"/>
+          </g-link>
           <a
             href=""
             data-lock
             class="icon cart"
-            :class="{'cart--blue': cartIsOpen}"
+            :class="{'cart--coral': cartIsOpen}"
             :data-products-count="[cart.length === 0 ? null : cart.length]"
             @click.prevent="toggleCart">
             <CartIcon
               class="icon"
-              :class="{'icon--blue': cartIsOpen}"/>
+              :class="{'icon--coral': cartIsOpen}"/>
           </a>
         </div>
       </div>
@@ -122,13 +120,12 @@
                 class="phone-number">
                 +38 {{contacts.phone}}
               </a>
-              <a
-                href=""
+              <g-link
+                to="/wish-list"
                 class="icon wishlist"
-                data-lock
-                @click.prevent="toggleWishList">
+                data-lock>
                 <HeartIcon class="icon icon--white"/>
-              </a>
+              </g-link>
               <a
                 href=""
                 data-lock
@@ -141,7 +138,6 @@
           </div>
       </div>
       </transition>
-    <WishList :Products="$static.products.edges"/>
     <ShoppingCart :Products="$static.products.edges"/>
   </header>
 </template>
@@ -178,7 +174,6 @@ import InstagramIcon from '../assets/icons/instagram.svg';
 import FacebookIcon from '../assets/icons/facebook.svg';
 import CartIcon from '../assets/icons/shopping-bag.svg';
 import HeartIcon from '../assets/icons/heart.svg';
-import WishList from "./WishList";
 import { mapMutations, mapState } from 'vuex';
 import ShoppingCart from "./ShoppingCart";
 
@@ -193,7 +188,6 @@ export default {
     FacebookIcon,
     CartIcon,
     HeartIcon,
-    WishList,
   },
   data() {
     return {
@@ -206,7 +200,6 @@ export default {
   computed: {
     ...mapState([
       'menuIsOpen',
-      'wishListIsOpen',
       'cartIsOpen',
       'cart'
     ]),
@@ -218,10 +211,8 @@ export default {
   },
   methods: {
     ...mapMutations([
-      'toggleWishList',
       'toggleMenu',
       'closeMenu',
-      'closeWishList',
       'closeCart',
       'toggleCart'
     ]),
@@ -253,30 +244,19 @@ export default {
   watch: {
     menuIsOpen(cond) {
       if (cond) {
-        this.closeWishList();
         this.closeCart();
       }
       this.switchScroll(cond);
     },
-    wishListIsOpen(cond) {
-      if (cond) {
-        this.closeMenu();
-        this.closeCart();
-      }
-    },
     cartIsOpen(cond) {
       if (cond) {
         this.closeMenu();
-        this.closeWishList();
       }
     },
     href() {
       if (this.menuIsOpen) {
         this.closeMenu();
         clearAllBodyScrollLocks();
-      }
-      if (this.wishListIsOpen) {
-        this.closeWishList();
       }
       if (this.cartIsOpen) {
         this.closeCart();
@@ -335,14 +315,21 @@ export default {
             height: 15px;
             color: $gray;
           }
-          &.cart--blue {
+          &.cart--coral {
             &::after {
-              color: $blue;
+              color: $coral;
             }
           }
           &.cart--white {
             &::after {
               color: $white;
+            }
+          }
+        }
+        &.wishlist {
+          &.active {
+            svg {
+              fill: $coral;
             }
           }
         }
