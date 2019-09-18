@@ -14,14 +14,19 @@
               <h4 class="sidebar__title">Категории</h4>
               <g-link
                 :to="item.node.path"
-                v-for="item in $page.categories.edges"
+                v-for="(item, i) in $page.categories.edges"
                 :key="item.node.id">
                 {{item.node.header}}
               </g-link>
             </div>
             <div class="category-sort">
               <h4 class="category-sort__title">Сортировать:</h4>
-              <button class="category-sort__item cta" v-for="item in sortItems" @click="sortBy(item.sortBy, item.index)" :class="{active: activeSortItem === item.index}" v-text="item.name"/>
+              <button
+                class="category-sort__item cta"
+                v-for="item in sortItems"
+                @click="sortBy(item.sortBy, item.index)"
+                :class="{active: activeSortItem === item.index}"
+                v-text="item.name"/>
             </div>
           </aside>
           <div class="products">
@@ -106,6 +111,11 @@ export default {
       });
     }
   },
+  watch: {
+    $route() {
+      this.activeSortItem = 0;
+    }
+  },
   methods: {
     sortBy(value, ind) {
       this.activeSortItem = ind;
@@ -140,7 +150,7 @@ export default {
         }
       })
     }
-  }
+  },
 }
 </script>
 
