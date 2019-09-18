@@ -29,7 +29,7 @@
         </div>
       </div>
       <p v-show="cart.length > 0">Общая сумма заказа: {{totalOrderAmount}}, 00 грн</p>
-      <g-link class="cta cart-order" :to="{ name: 'order' }" v-show="cart.length > 0 && $route.name !== 'order'">Оформить заказ</g-link>
+      <g-link class="cta cart-order blue" :to="{ name: 'order' }" v-show="cart.length > 0 && $route.name !== 'order'">Оформить заказ</g-link>
       <p v-show="cart.length === 0" class="empty-text">Ваша корзина пуста...</p>
     </div>
   </transition>
@@ -144,7 +144,6 @@
       &__cta {
         padding: 5px;
         font-size: 0.8rem;
-        border: 2px solid $blue;
         margin-top: 10px;
       }
       .column--right {

@@ -102,17 +102,17 @@
 .header {
   display: flex;
   justify-content: flex-start;
-  align-items: baseline;
+  align-items: center;
   border-bottom: 1px solid $light-gray;
-  margin-bottom: 20px;
+  margin: 20px 0;
   .icon {
     display: block;
-    width: 40px;
-    height: 40px;
+    width: 2rem;
+    height: 2rem;
     margin-right: 20px;
   }
   .page-title {
-    margin: 20px 0 5px 0;
+    margin: 0;
   }
 
 }

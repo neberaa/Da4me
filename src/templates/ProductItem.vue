@@ -41,8 +41,8 @@
           </div>
           <div class="cta-wrapper">
             <div class="wishlist-cta">
-              <button @click="addToWishList($page.product.id)" v-show="!isAddedToWishList($page.product.id)">Добавить в избранное</button>
-              <button @click="removeFromWishList($page.product.id)" v-show="isAddedToWishList($page.product.id)">Убрать с избранного</button>
+              <button class="cta blue" @click="addToWishList($page.product.id)" v-show="!isAddedToWishList($page.product.id)">Добавить в избранное</button>
+              <button class="cta blue" @click="removeFromWishList($page.product.id)" v-show="isAddedToWishList($page.product.id)">Убрать с избранного</button>
             </div>
             <div class="cart-cta" v-show="!isAddedToCart($page.product.id)">
               <CartIcon class="icon" @click="addToCart($page.product.id)"/>
@@ -199,7 +199,6 @@ export default {
   }
   button {
     padding: 10px;
-    border: 2px solid $blue;
     margin-top: 20px;
   }
 </style>
