@@ -7,7 +7,7 @@
       <section class="page-block page-block--paint">
         <h2 class="page-block__title" v-text="paintBlock.title"/>
         <div class="page-block__content" v-html="paintBlock.description"/>
-        <div class="page-block__bg" :style="{'background-image' : `url(${paintBlock.bgImage})`}"/>
+        <div class="page-block__bg" :style="{'background-image' : `url(${settings.cloudinary_url}${paintBlock.bgImage})`}"/>
         <ClientOnly>
           <carousel
             :perPageCustom="[[300, 1], [768, 3]]"
@@ -124,8 +124,8 @@ export default {
       background-position: center;
       background-size: cover;
       top: -5%;
-      left: -10%;
-      width: 50%;
+      left: 5%;
+      width: 30%;
       height: 100%;
       @include screenBreakpoint2(phone) {
         display: none;
