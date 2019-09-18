@@ -14,7 +14,7 @@
       </div>
       <button
         data-lock
-        class="category__cta cta">
+        class="category__cta cta outline blue">
         {{ item.node.header }}
       </button>
     </g-link>

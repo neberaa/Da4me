@@ -151,8 +151,15 @@ button {
   &:focus {
     outline: none;
   }
-  &.cta:focus {
-    outline: 2px solid $blue;
+  &.cta.outline {
+    &:focus {
+      outline: 2px solid $gray;
+    }
+    &.blue {
+      &:focus {
+        outline: 2px solid $blue;
+      }
+    }
   }
   &::-moz-focus-inner {
     border: 0;
@@ -162,12 +169,22 @@ button {
 .cta {
   padding: 10px 15px;
   background: $white;
-  outline: 2px solid $blue;
   font-size: 1rem;
   color: $gray;
-  outline-offset: -4px;
   white-space: nowrap;
   font-weight: bold;
+  border: 2px solid $gray;
+  &.blue {
+    border-color: $blue;
+  }
+  &.outline {
+    border:none;
+    outline: 2px solid $gray;
+    outline-offset: -4px;
+    &.blue {
+      outline: 2px solid $blue;
+    }
+  }
 }
 input {
   height: 35px;
@@ -316,6 +333,13 @@ main.page-content {
 }
 .fade-enter {
     opacity: 0;
+}
+// Fade 400
+.fade400-enter-active {
+  transition: opacity 400ms ease;
+}
+.fade400-enter {
+  opacity: 0;
 }
 // Slide from top
 .slide-enter-active {
