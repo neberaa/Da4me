@@ -248,6 +248,7 @@ export default {
           padding: 5px 10px;
           font-family: 'Didact Gothic';
           font-size: 0.8rem;
+          background-color: $white;
           &:focus {
             outline: none;
             border: 2px solid $blue;
@@ -284,7 +285,9 @@ export default {
           width: 100%;
           height: 100%;
           min-height: 300px;
-          flex: 0 0;
+          @include screenBreakpoint2(desktop) {
+            flex: 0 0;
+          }
         }
         p {
           margin-top: 0;
