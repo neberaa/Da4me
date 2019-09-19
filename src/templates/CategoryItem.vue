@@ -126,9 +126,7 @@ export default {
       });
     },
     isMobile() {
-      const { width, height } = window.screen;
-      const iPhoneXR = this.resp.device.tablet && height === 896 && width === 414;
-      return this.resp.device.mobile || iPhoneXR;
+      return this.resp.device.mobile;
     }
   },
   watch: {
