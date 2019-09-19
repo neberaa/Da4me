@@ -22,14 +22,25 @@
             <div class="category-sort">
               <h4 class="category-sort__title">Сортировать:</h4>
               <button
+                v-show="!isMobile"
                 class="category-sort__item cta"
+                :key="`sortItem${item.index}`"
                 v-for="item in sortItems"
                 @click="sortBy(item.sortBy, item.index)"
                 :class="{active: activeSortItem === item.index}"
                 v-text="item.name"/>
+              <select v-show="isMobile" name="category-sort--mobile" class="category-sort--mobile" id="category-sort--mobile" @change="sortBy(sortByMob)" v-model="sortByMob">
+                <option value="null" selected disabled>Выберите сортировку</option>
+                <option
+                  :key="`sortItemMob${ind}`"
+                  v-for="(item, ind) in sortItems"
+                  :value="item.sortBy"
+                  v-text="item.name"/>
+              </select>
             </div>
           </aside>
           <div class="products">
+            <p v-show="filteredProducts.length === 0">Категория пуста...</p>
             <g-link
               v-for="product in filteredProducts"
               :to="product.node.path"
@@ -43,6 +54,7 @@
                   :settings-tablet="'w_0.5,h_0.5,c_fit'"/>
               </div>
               <p v-text="product.node.title"/>
+              <p class="description" v-text="product.node.description"/>
               <div class="price">
                 <SignIcon class="icon price__icon"/>
                 <span class="price__value">{{product.node.price}}, 00 грн</span>
@@ -80,6 +92,7 @@ query CategoryItem ($path: String!) {
         image
         path
         price
+        description
       }
     }
   }
@@ -89,6 +102,7 @@ query CategoryItem ($path: String!) {
 <script>
   import SignIcon from '../assets/icons/sign.svg';
 export default {
+  inject: ['resp'],
   components: {
     SignIcon,
   },
@@ -100,7 +114,8 @@ export default {
         {name: 'цена: по убыванию', sortBy: 'priceDesc', index: 2},
         {name: 'цена: по возрастанию', sortBy: 'priceAsc', index: 3},
       ],
-      activeSortItem: 0,
+      activeSortItem: null,
+      sortByMob: null,
     }
   },
   computed: {
@@ -109,16 +124,24 @@ export default {
         const category = `/${p.node.category}.md`;
         return category.indexOf(this.$route.path) > -1;
       });
+    },
+    isMobile() {
+      const { width, height } = window.screen;
+      const iPhoneXR = this.resp.device.tablet && height === 896 && width === 414;
+      return this.resp.device.mobile || iPhoneXR;
     }
   },
   watch: {
     $route() {
-      this.activeSortItem = 0;
+      this.activeSortItem = null;
+      this.sortByMob = null;
     }
   },
   methods: {
-    sortBy(value, ind) {
-      this.activeSortItem = ind;
+    sortBy(value, ind = null) {
+      if (ind !== null) {
+        this.activeSortItem = ind;
+      }
       this.filteredProducts.sort((a, b) => {
         if (value === 'nameDesc') {
           const nameA = a.node.title.toUpperCase();
@@ -187,6 +210,7 @@ export default {
         color: $blue;
         font-weight: normal;
         margin-bottom: 1rem;
+        margin-top: 0;
         @include screenBreakpoint2(phone) {
           font-size: 1.2rem;
         }
@@ -221,6 +245,17 @@ export default {
             margin-bottom: 0.5rem;
           }
         }
+        &--mobile {
+          border: 2px solid $gray;
+          padding: 5px 10px;
+          font-family: 'Didact Gothic';
+          font-size: 0.8rem;
+          &:focus {
+            outline: none;
+            border: 2px solid $blue;
+            box-shadow: none;
+          }
+        }
       }
     }
 
@@ -231,6 +266,9 @@ export default {
       @include screenBreakpoint2(phone) {
         flex-basis: 100%;
         width: 100%;
+      }
+      p {
+        margin-top: 0;
       }
       .product__item {
         display: flex;
@@ -248,9 +286,18 @@ export default {
           width: 100%;
           height: 100%;
           min-height: 300px;
+          flex: 0 0;
         }
         p {
           margin-top: 0;
+          &.description {
+            font-style: italic;
+            font-size: 0.8rem;
+          }
+          @include screenBreakpoint2(phone) {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+          }
         }
         .price {
           &__icon {

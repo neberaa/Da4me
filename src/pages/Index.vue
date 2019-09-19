@@ -130,6 +130,10 @@ export default {
       @include screenBreakpoint2(phone) {
         display: none;
       }
+      @include screenBreakpoint2(tablet) {
+        left: -20%;
+        width: 50%;
+      }
     }
     &__carousel {
       width: 60%;
