@@ -10,34 +10,29 @@
         <h1 v-html="$page.category.header" class="title" />
         <div class="content">
           <aside class="sidebar">
-            <div class="category-menu">
-              <h4 class="sidebar__title">Категории</h4>
-              <g-link
-                :to="item.node.path"
-                v-for="(item, i) in $page.categories.edges"
-                :key="item.node.id">
-                {{item.node.header}}
-              </g-link>
-            </div>
-            <div class="category-sort">
-              <h4 class="category-sort__title">Сортировать:</h4>
-              <button
-                v-show="!isMobile"
-                class="category-sort__item cta"
-                :key="`sortItem${item.index}`"
-                v-for="item in sortItems"
-                @click="sortBy(item.sortBy, item.index)"
-                :class="{active: activeSortItem === item.index}"
-                v-text="item.name"/>
-              <select v-show="isMobile" name="category-sort--mobile" class="category-sort--mobile" id="category-sort--mobile" @change="sortBy(sortByMob)" v-model="sortByMob">
-                <option value="null" selected disabled>Выберите сортировку</option>
-                <option
-                  :key="`sortItemMob${ind}`"
-                  v-for="(item, ind) in sortItems"
-                  :value="item.sortBy"
+            <section class="categories">
+              <h4 class="categories__title" :class="[{'with-arrow': isMobile}, {'with-arrow--up': categoryListIsHidden}]" @click="categoryListIsHidden = !categoryListIsHidden">Категории</h4>
+              <div class="categories__list" :class="{toggled: !categoryListIsHidden && isMobile}">
+                <g-link
+                  :to="item.node.path"
+                  v-for="(item, i) in $page.categories.edges"
+                  :key="item.node.id">
+                  {{item.node.header}}
+                </g-link>
+              </div>
+            </section>
+            <section class="sort">
+              <h4 class="sort__title" :class="[{'with-arrow': isMobile}, {'with-arrow--up': sortListIsHidden}]" @click="sortListIsHidden = !sortListIsHidden">Сортировать</h4>
+              <div class="sort__list" :class="{toggled: !sortListIsHidden && isMobile}">
+                <button
+                  class="sort-item cta"
+                  :key="`sortItem${item.index}`"
+                  v-for="item in sortItems"
+                  @click="sortBy(item.sortBy, item.index)"
+                  :class="{active: activeSortItem === item.index}"
                   v-text="item.name"/>
-              </select>
-            </div>
+              </div>
+            </section>
           </aside>
           <div class="products">
             <p v-show="filteredProducts.length === 0">Категория пуста...</p>
@@ -114,8 +109,9 @@ export default {
         {name: 'цена: по убыванию', sortBy: 'priceDesc', index: 2},
         {name: 'цена: по возрастанию', sortBy: 'priceAsc', index: 3},
       ],
+      sortListIsHidden : true,
+      categoryListIsHidden: true,
       activeSortItem: null,
-      sortByMob: null,
     }
   },
   computed: {
@@ -132,7 +128,6 @@ export default {
   watch: {
     $route() {
       this.activeSortItem = null;
-      this.sortByMob = null;
     }
   },
   methods: {
@@ -209,24 +204,64 @@ export default {
         font-weight: normal;
         margin-bottom: 1rem;
         margin-top: 0;
+        padding-right: 20px;
         @include screenBreakpoint2(phone) {
           font-size: 1.2rem;
         }
-      }
-      .category-menu {
-        display: flex;
-        flex-direction: column;
-        a.active {
-          color: $blue;
+        &.with-arrow {
+          display: inline-block;
+          position: relative;
+          transition: margin 400ms ease;
+          &::after {
+            display: block;
+            content: '';
+            @include center('y');
+            width: 0;
+            height: 0;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-bottom: 5px solid $blue;
+            right: 5px;
+            transition: all 300ms ease;
+          }
+          &--up {
+            margin-bottom: 0;
+            &::after {
+              transform: rotate(180deg);
+            }
+          }
         }
-        @include screenBreakpoint2(phone) {
-          margin-right: 1rem;
+      }
+      .categories {
+        &__list {
+          display: flex;
+          flex-direction: column;
+          max-height: 0;
+          overflow: hidden;
+          transition: max-height 400ms ease;
+          &.toggled {
+            max-height: 300px;
+          }
+          a.active {
+            color: $blue;
+          }
+          @include screenBreakpoint2(phone) {
+            margin-right: 1rem;
+          }
         }
       }
-      .category-sort {
-        display: flex;
-        flex-direction: column;
-        &__item {
+      .sort {
+        &__list {
+          display: flex;
+          flex-direction: column;
+          max-height: 0;
+          overflow: hidden;
+          transition: max-height 400ms ease;
+          &.toggled {
+            max-height: 300px;
+          }
+        }
+        &-item {
           padding: 5px 10px;
           text-align: center;
           border-radius: 2rem;
