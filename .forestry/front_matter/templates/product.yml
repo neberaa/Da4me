@@ -111,6 +111,18 @@ fields:
     config: {}
     label: Картинки для изделия с цветом 2
     description: Выберите картинки для изделия с цветом №2
+  - name: color3
+    type: color
+    label: Цвет3
+    config:
+      required: false
+      color_format: Hex
+    description: Выбрать альтернативный цвет
+  - name: images_color3
+    type: image_gallery
+    config: {}
+    label: Картинки для изделия с цветом 3
+    description: Выберите картинки для изделия с цветом №3
   label: Другие цвета
   description: 'Выберите цвет и картинки '
 - name: article
