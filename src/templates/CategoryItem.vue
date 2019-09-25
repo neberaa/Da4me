@@ -50,6 +50,9 @@
               </div>
               <p v-text="product.node.title"/>
               <p class="description" v-text="product.node.description"/>
+              <ul class="colors">
+                <li class="colors__item" v-show="color.color[colorInd].length > 0" v-for="(color, colorInd) in product.node.colors" :key="`color${product.node.id}`" :style="{'background-color': color.color[colorInd]}"/>
+              </ul>
               <div class="price">
                 <SignIcon class="icon price__icon"/>
                 <span class="price__value">{{product.node.price}}, 00 грн</span>
@@ -88,6 +91,13 @@ query CategoryItem ($path: String!) {
         path
         price
         description
+        colors {
+          color1
+          imagesColor1
+          color2
+          imagesColor2
+          color3
+        }
       }
     }
   }
@@ -167,6 +177,9 @@ export default {
       })
     }
   },
+  mounted() {
+    console.log('products', this.filteredProducts);
+  }
 }
 </script>
 
