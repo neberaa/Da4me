@@ -185,6 +185,13 @@ button {
       outline: 2px solid $blue;
     }
   }
+  &.thin {
+    border-width: 1px;
+    font-weight: normal;
+    &.outline {
+      outline-width: 1px;
+    }
+  }
 }
 input {
   height: 35px;

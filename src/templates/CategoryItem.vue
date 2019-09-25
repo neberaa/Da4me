@@ -11,8 +11,8 @@
         <div class="content">
           <aside class="sidebar">
             <section class="categories">
-              <h4 class="categories__title" :class="[{'with-arrow': isMobile}, {'with-arrow--up': categoryListIsHidden}]" @click="categoryListIsHidden = !categoryListIsHidden">Категории</h4>
-              <div class="categories__list" :class="{toggled: !categoryListIsHidden && isMobile}">
+              <h4 class="categories__title" :class="[{'with-arrow': isMobile}, {'with-arrow--up': categoryListIsHidden && isMobile}]" @click="categoryListIsHidden = !categoryListIsHidden">Категории</h4>
+              <div class="categories__list" :class="[{hide: isMobile},{toggled: !categoryListIsHidden && isMobile}]">
                 <g-link
                   :to="item.node.path"
                   v-for="(item, i) in $page.categories.edges"
@@ -22,10 +22,10 @@
               </div>
             </section>
             <section class="sort">
-              <h4 class="sort__title" :class="[{'with-arrow': isMobile}, {'with-arrow--up': sortListIsHidden}]" @click="sortListIsHidden = !sortListIsHidden">Сортировать</h4>
-              <div class="sort__list" :class="{toggled: !sortListIsHidden && isMobile}">
+              <h4 class="sort__title" :class="[{'with-arrow': isMobile}, {'with-arrow--up': sortListIsHidden && isMobile}]" @click="sortListIsHidden = !sortListIsHidden">Сортировать</h4>
+              <div class="sort__list" :class="[{hide: isMobile},{toggled: !sortListIsHidden && isMobile}]">
                 <button
-                  class="sort-item cta"
+                  class="sort-item cta thin"
                   :key="`sortItem${item.index}`"
                   v-for="item in sortItems"
                   @click="sortBy(item.sortBy, item.index)"
@@ -236,9 +236,12 @@ export default {
         &__list {
           display: flex;
           flex-direction: column;
-          max-height: 0;
-          overflow: hidden;
           transition: max-height 400ms ease;
+          margin-bottom: 0.5rem;
+          &.hide {
+            max-height: 0;
+            overflow: hidden;
+          }
           &.toggled {
             max-height: 300px;
           }
@@ -254,9 +257,11 @@ export default {
         &__list {
           display: flex;
           flex-direction: column;
-          max-height: 0;
-          overflow: hidden;
           transition: max-height 400ms ease;
+          &.hide {
+            max-height: 0;
+            overflow: hidden;
+          }
           &.toggled {
             max-height: 300px;
           }
