@@ -106,6 +106,7 @@ query CategoryItem ($path: String!) {
           color2
           imagesColor2
           color3
+          imagesColor3
         }
       }
     }
@@ -148,6 +149,7 @@ export default {
   watch: {
     $route() {
       this.activeSortItem = null;
+      this.setProductColors();
     }
   },
   methods: {
@@ -189,8 +191,7 @@ export default {
     setProductColors() {
       this.filteredProducts.forEach(p => {
         const colors = [];
-        console.log('p', p);
-        for (let i = 1; i < 3; i++) {
+        for (let i = 1; i < 4; i++) {
           const item = {
             colorId: `${p.node.id}-color-${i}`,
             color: p.node.colors[`color${i}`] || null,
@@ -207,7 +208,6 @@ export default {
     setActiveColorImage(prodId, id) {
       const item = this.filteredProducts.filter(p => p.node.id === prodId);
       const activeColor = item[0].node.colors.filter(c => c.colorId === id);
-      console.log('active color', activeColor);
       if (activeColor.length > 0) {
         item[0].node.image = activeColor[0].imageUrl;
       }
@@ -216,7 +216,6 @@ export default {
   },
   mounted() {
     this.setProductColors();
-    console.log('products', this.filteredProducts);
   }
 }
 </script>
