@@ -2,7 +2,7 @@
   <Layout>
     <div class="container">
       <h1 class="header">
-         All products
+         Все продукты
       </h1>
       <div class="content">
         <aside class="sidebar">
@@ -64,6 +64,9 @@
 </script>
 
 <style scoped>
+  .header {
+    text-align: center;
+  }
   .content {
     display: flex;
   }
@@ -76,20 +79,26 @@
     flex: 0 0 80%;
     display: flex;
     flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-end;
    }
   .product__item {
     display: block;
-    width: 200px;
-    height: 300px;
+    height: auto;
     overflow: hidden;
-    margin: 0 20px;
+    margin: 0 1rem 1rem;
   }
   .title {
     margin-top: 0;
+    margin-bottom: 0.5rem;
+    display: inline-flex;
+    flex-wrap: wrap;
+    max-width: 200px;
+    font-size: 1.2rem;
   }
   .image-container {
-    width: 100%;
-    height: 100%;
+    width: 200px;
+    height: 300px;
     position: relative;
   }
 </style>

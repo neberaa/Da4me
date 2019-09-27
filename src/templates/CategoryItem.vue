@@ -36,28 +36,36 @@
           </aside>
           <div class="products">
             <p v-show="filteredProducts.length === 0">Категория пуста...</p>
-            <g-link
+            <div
               v-for="product in filteredProducts"
-              :to="product.node.path"
               :key="product.node.id"
               class="product__item">
               <div class="image-container">
-                <ResponsiveImage
-                  :url="product.node.image"
-                  :alt="product.node.title"
-                  :settings-mobile="'w_400,h_800,c_fit'"
-                  :settings-tablet="'w_0.5,h_0.5,c_fit'"/>
+                <g-link :to="product.node.path">
+                  <ResponsiveImage
+                    :url="product.node.image"
+                    :alt="product.node.title"
+                    :settings-mobile="'w_400,h_800,c_fit'"
+                    :settings-tablet="'w_0.5,h_0.5,c_fit'"/>
+                </g-link>
               </div>
               <p v-text="product.node.title"/>
               <p class="description" v-text="product.node.description"/>
-              <ul class="colors">
-                <li class="colors__item" v-show="color.color[colorInd].length > 0" v-for="(color, colorInd) in product.node.colors" :key="`color${product.node.id}`" :style="{'background-color': color.color[colorInd]}"/>
+              <ul class="colors" v-if="product.node.colors.length > 0">
+                <li
+                  class="colors__item"
+                  :class="{active: activeColor === item.colorId}"
+                  @click="setActiveColorImage(product.node.id, item.colorId)"
+                  v-if="item.color"
+                  v-for="(item, colorInd) in product.node.colors"
+                  :key="`color${colorInd}`"
+                  :style="{'background-color': item.color}"/>
               </ul>
               <div class="price">
                 <SignIcon class="icon price__icon"/>
                 <span class="price__value">{{product.node.price}}, 00 грн</span>
               </div>
-            </g-link>
+            </div>
           </div>
         </div>
       </div>
@@ -85,6 +93,7 @@ query CategoryItem ($path: String!) {
   products: allProductItem {
     edges {
       node {
+        id
         title
         category
         image
@@ -122,6 +131,7 @@ export default {
       sortListIsHidden : true,
       categoryListIsHidden: true,
       activeSortItem: null,
+      activeColor: null,
     }
   },
   computed: {
@@ -133,7 +143,7 @@ export default {
     },
     isMobile() {
       return this.resp.device.mobile;
-    }
+    },
   },
   watch: {
     $route() {
@@ -175,9 +185,37 @@ export default {
           return b.node.price - a.node.price;
         }
       })
-    }
+    },
+    setProductColors() {
+      this.filteredProducts.forEach(p => {
+        const colors = [];
+        console.log('p', p);
+        for (let i = 1; i < 3; i++) {
+          const item = {
+            colorId: `${p.node.id}-color-${i}`,
+            color: p.node.colors[`color${i}`] || null,
+            imageUrl: p.node.colors[`imagesColor${i}`][0] || null
+          };
+
+          if (item.color !== null) {
+            colors.push(item);
+          }
+        }
+        p.node.colors = colors;
+      })
+    },
+    setActiveColorImage(prodId, id) {
+      const item = this.filteredProducts.filter(p => p.node.id === prodId);
+      const activeColor = item[0].node.colors.filter(c => c.colorId === id);
+      console.log('active color', activeColor);
+      if (activeColor.length > 0) {
+        item[0].node.image = activeColor[0].imageUrl;
+      }
+      this.activeColor = id;
+    },
   },
   mounted() {
+    this.setProductColors();
     console.log('products', this.filteredProducts);
   }
 }
@@ -315,6 +353,7 @@ export default {
       flex: 0 0 80%;
       display: flex;
       flex-wrap: wrap;
+      align-items: flex-start;
       @include screenBreakpoint2(phone) {
         flex-basis: 100%;
         width: 100%;
@@ -325,12 +364,12 @@ export default {
       .product__item {
         display: flex;
         flex-direction: column;
+        align-items: flex-start;
         flex: 0 0 200px;
         overflow: hidden;
         margin: 0 20px 20px;
         @include screenBreakpoint2(phone) {
           flex-basis: 100%;
-          height: 500px;
           margin: 0 0 2rem 0;
         }
         .image-container {
@@ -338,6 +377,10 @@ export default {
           width: 100%;
           height: 100%;
           min-height: 300px;
+          margin-bottom: 0.5rem;
+          @include screenBreakpoint2(phone) {
+            height: 500px;
+          }
           @include screenBreakpoint2(desktop) {
             flex: 0 0;
           }
@@ -351,6 +394,34 @@ export default {
           @include screenBreakpoint2(phone) {
             font-size: 1.2rem;
             margin-bottom: 0.5rem;
+          }
+        }
+        .colors {
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          padding: 0;
+          margin: 0 0 1rem;
+          list-style: none;
+          &:empty {
+            display: none;
+          }
+          &__item {
+            width: 1.5rem;
+            height: 1.5rem;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            transition: all 300ms ease;
+            margin-left: 0.5rem;
+            @include screenBreakpoint2(phone) {
+              width: 2rem;
+              height: 2rem;
+              margin-left: 1rem;
+            }
+            &.active {
+              transform: scale(1.4);
+              border-color: $light-gray;
+            }
           }
         }
         .price {
