@@ -54,7 +54,7 @@
               <ul class="colors" v-if="product.node.colors.length > 0">
                 <li
                   class="colors__item"
-                  :class="{active: activeColor === item.colorId}"
+                  :class="{active: product.node.activeColor === item.colorId}"
                   @click="setActiveColorImage(product.node.id, item.colorId)"
                   v-if="item.color"
                   v-for="(item, colorInd) in product.node.colors"
@@ -193,6 +193,7 @@ export default {
         const colors = [];
         for (let i = 1; i < 4; i++) {
           const item = {
+            prodId: p.node.id,
             colorId: `${p.node.id}-color-${i}`,
             color: p.node.colors[`color${i}`] || null,
             imageUrl: p.node.colors[`imagesColor${i}`][0] || null
@@ -211,7 +212,7 @@ export default {
       if (activeColor.length > 0) {
         item[0].node.image = activeColor[0].imageUrl;
       }
-      this.activeColor = id;
+      item[0].node.activeColor = id;
     },
   },
   mounted() {
@@ -378,7 +379,7 @@ export default {
           min-height: 300px;
           margin-bottom: 0.5rem;
           @include screenBreakpoint2(phone) {
-            height: 500px;
+            height: 70vh;
           }
           @include screenBreakpoint2(desktop) {
             flex: 0 0;
@@ -412,6 +413,7 @@ export default {
             border: 2px solid transparent;
             transition: all 300ms ease;
             margin-left: 0.5rem;
+            cursor: pointer;
             @include screenBreakpoint2(phone) {
               width: 2rem;
               height: 2rem;
