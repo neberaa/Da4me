@@ -150,6 +150,7 @@ export default {
     $route() {
       this.activeSortItem = null;
       this.setProductColors();
+      this.setDefaultColor();
     }
   },
   methods: {
@@ -214,9 +215,18 @@ export default {
       }
       item[0].node.activeColor = id;
     },
+    setDefaultColor() {
+      this.filteredProducts.forEach(p => {
+        if (p.node.colors.length > 0) {
+          p.node.activeColor = p.node.colors[0].colorId;
+          p.node.image = p.node.colors[0].imageUrl;
+        }
+      });
+    }
   },
   mounted() {
     this.setProductColors();
+    this.setDefaultColor();
   }
 }
 </script>
