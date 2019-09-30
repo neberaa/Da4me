@@ -63,7 +63,15 @@
               </ul>
               <div class="price">
                 <SignIcon class="icon price__icon"/>
-                <span class="price__value">{{product.node.price}}, 00 грн</span>
+                <div class="price__value">
+                  <span
+                    class="old"
+                    v-show="product.node.oldPrice">
+                    {{ product.node.oldPrice }}, 00
+                  </span>
+                  <span>{{ product.node.price }}, 00</span>
+                </div>
+                <span>грн</span>
               </div>
             </div>
           </div>
@@ -99,6 +107,7 @@ query CategoryItem ($path: String!) {
         image
         path
         price
+        oldPrice
         description
         colors {
           color1
@@ -436,9 +445,23 @@ export default {
           }
         }
         .price {
+          display: flex;
+          align-items: center;
+          &__value {
+            display: flex;
+            flex-direction: column;
+            span {
+              margin: 0 0.2rem 0 0;
+              &.old {
+                color: $coral;
+                text-decoration: line-through;
+              }
+            }
+          }
           &__icon {
-            width: 1rem;
-            height: 1rem;
+            width: 1.2rem;
+            height: 1.2rem;
+            margin-right: 0.2rem;
           }
         }
       }

@@ -67,12 +67,15 @@
             <span class="art" v-text="$page.product.artikul"/>
             <div class="price">
               <SignIcon class="icon price__icon"/>
-              <h4
-                class="price__value old"
-                v-show="$page.product.oldPrice !== null && $page.product.oldPrice.length > 0"
-                v-text="$page.product.oldPrice"/>
-              <h4 class="price__value" v-text="$page.product.price"/>
-              <h4>,00 грн</h4>
+              <div class="price__value">
+                <h4
+                  class="old"
+                  v-show="$page.product.oldPrice">
+                  {{ $page.product.oldPrice }}, 00
+                </h4>
+                <h4>{{ $page.product.price }}, 00</h4>
+              </div>
+              <h4>грн</h4>
             </div>
             <div class="description" v-html="$page.product.description"/>
             <div class="colors-container" v-show="$page.product.colors.length > 0">
@@ -368,15 +371,17 @@ export default {
         justify-content: flex-start;
         align-items: center;
         &__icon {
-          width: 20px;
-          height: 20px;
+          width: 30px;
+          height: 30px;
         }
         &__value {
           margin: 1rem 0 1rem 0.5rem;
-          &.old {
-            color: $light-gray;
-            text-decoration: line-through;
-            margin-right: 0.4rem;
+          h4 {
+            margin: 0 0.2rem 0 0;
+            &.old {
+              color: $coral;
+              text-decoration: line-through;
+            }
           }
         }
       }
