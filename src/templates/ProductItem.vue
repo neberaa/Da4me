@@ -10,7 +10,7 @@
         <div class="product__item">
           <div
             class="image-container"
-            v-if="$page.product.image && $page.product.imageGallery.length === 0">
+            v-if="$page.product.image && $page.product.imageGallery.length < 2">
             <a
               class="wishlist"
               data-lock
@@ -25,7 +25,7 @@
               :settings-mobile="'w_400,h_800,c_fit'"
               :settings-tablet="'w_400,h_800,c_fit'"/>
           </div>
-          <div class="gallery" v-if="$page.product.imageGallery.length > 0">
+          <div class="gallery" v-if="$page.product.imageGallery.length > 1">
             <a
               class="wishlist"
               data-lock
@@ -43,7 +43,7 @@
                       :alt="$page.product.title + i"
                       :settings-mobile="'w_400,h_800,c_fit'"
                       :settings-tablet="'w_300,h_600,c_fit'"
-                      :settings-desktop="'w_300,h_600,c_fit'"/>
+                      :settings-desktop="'w_500,h_700,c_fit'"/>
                   </div>
                 </div>
               </slick>
@@ -64,11 +64,26 @@
           </div>
           <div class="content">
             <h1 class="title" v-html="$page.product.title" />
-            <div class="description" v-html="$page.product.description"/>
+            <span class="art" v-text="$page.product.artikul"/>
             <div class="price">
               <SignIcon class="icon price__icon"/>
               <h4 class="price__value">{{$page.product.price}}, 00 грн</h4>
             </div>
+            <div class="description" v-html="$page.product.description"/>
+            <div class="colors-container" v-show="$page.product.colors.length > 0">
+              <p class="colors-title">Цвет:</p>
+              <ul class="colors" v-if="$page.product.colors.length > 0">
+                <li
+                  class="colors__item"
+                  :class="{active: $page.product.activeColor === item.colorId}"
+                  @click="setActiveColorImage($page.product.id, item.colorId)"
+                  v-if="item.color"
+                  v-for="(item, colorInd) in $page.product.colors"
+                  :key="`color${colorInd}`"
+                  :style="{'background-color': item.color}"/>
+              </ul>
+            </div>
+            <p class="size" v-text="$page.product.size"/>
             <div class="cta-wrapper">
               <button
                 data-lock
@@ -99,6 +114,16 @@ query ProductItem ($path: String!) {
     price
     oldPrice
     category
+    artikul
+    size
+    colors {
+      color1
+      imagesColor1
+      color2
+      imagesColor2
+      color3
+      imagesColor3
+    }
   },
   categories: allCategoryItem {
     edges{
@@ -149,6 +174,7 @@ export default {
         arrows: false,
         focusOnSelect: true,
       },
+      activeColor: null,
     }
   },
   computed: {
@@ -164,6 +190,12 @@ export default {
       return activeCategory[0].node;
     }
   },
+  watch: {
+    $route() {
+      this.setProductColors();
+      this.setDefaultColor();
+    }
+  },
   methods: {
     ...mapMutations([
       'addToWishList',
@@ -176,8 +208,39 @@ export default {
       } else {
         this.addToWishList(id);
       }
+    },
+    setProductColors() {
+      const colors = [];
+      for (let i = 1; i < 4; i++) {
+        const item = {
+          colorId: `${this.$page.product.id}-color-${i}`,
+          color: this.$page.product.colors[`color${i}`] || null,
+          gallery: this.$page.product.colors[`imagesColor${i}`] || null,
+        };
+        if (item.color !== null) {
+          colors.push(item);
+        }
+      }
+      this.$page.product.colors = colors;
+    },
+    setActiveColorImage(prodId, id) {
+      const activeColor = this.$page.product.colors.filter(c => c.colorId === id);
+      if (activeColor.length > 0) {
+        this.$page.product.image = activeColor[0].gallery[0];
+        this.$page.product.imageGallery = activeColor[0].gallery;
+      }
+      this.$page.product.activeColor = id;
+    },
+    setDefaultColor() {
+      this.$page.product.activeColor = this.$page.product.colors[0].colorId;
+      this.$page.product.image = this.$page.product.colors[0].gallery[0];
+      this.$page.product.imageGallery = this.$page.product.colors[0].gallery;
     }
   },
+  mounted() {
+    this.setProductColors();
+    this.setDefaultColor();
+  }
 }
 </script>
 
@@ -305,6 +368,43 @@ export default {
         }
         &__value {
           margin: 1rem 0 1rem 0.5rem;
+        }
+      }
+      .colors-container {
+        margin-top: 1rem;
+        display: flex;
+        flex-direction: column;
+        .colors-title {
+          font-weight: bold;
+        }
+        .colors {
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          padding: 0;
+          margin: 0 0 1rem;
+          list-style: none;
+          &:empty {
+            display: none;
+          }
+          &__item {
+            width: 1.5rem;
+            height: 1.5rem;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            transition: all 300ms ease;
+            margin-left: 0.5rem;
+            cursor: pointer;
+            @include screenBreakpoint2(phone) {
+              width: 2rem;
+              height: 2rem;
+              margin-left: 1rem;
+            }
+            &.active {
+              transform: scale(1.4);
+              border-color: $light-gray;
+            }
+          }
         }
       }
       .cta-wrapper {
