@@ -89,7 +89,7 @@
                 data-lock
                 class="cta blue"
                 :class="{inactive: isAddedToCart($page.product.id)}"
-                @click="addToCart($page.product.id)">
+                @click="[isAddedToCart($page.product.id) ? false : addToCart($page.product.id)]">
                 Добавить в корзину
               </button>
               <span class="small" v-show="isAddedToCart($page.product.id)">
