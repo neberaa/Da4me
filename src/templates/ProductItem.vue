@@ -5,6 +5,7 @@
         <nav class="breadcrumbs">
           <g-link class="breadcrumbs__item" to="/">Главная/</g-link>
           <g-link class="breadcrumbs__item" to="/categories">Категории/</g-link>
+          <g-link class="breadcrumbs__item" :to="activeCategory.path">{{ activeCategory.header }}</g-link>
         </nav>
         <div class="product__item">
           <div
@@ -97,7 +98,16 @@ query ProductItem ($path: String!) {
     id
     price
     oldPrice
-  }
+    category
+  },
+  categories: allCategoryItem {
+    edges{
+      node {
+        path
+        header
+      }
+    }
+  },
 }
 </page-query>
 
@@ -145,7 +155,14 @@ export default {
     ...mapGetters([
       'isAddedToWishList',
       'isAddedToCart'
-    ])
+    ]),
+    activeCategory() {
+      const {categories, product} = this.$page;
+      const prodCategory = product.category.substring(11, product.category.length - 3);
+      const activeCategory = categories.edges.filter(c =>  c.node.path.substring(12, c.node.path.length) === prodCategory);
+
+      return activeCategory[0].node;
+    }
   },
   methods: {
     ...mapMutations([
