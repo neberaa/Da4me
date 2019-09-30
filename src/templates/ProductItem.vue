@@ -10,6 +10,14 @@
           <div
             class="image-container"
             v-if="$page.product.image && $page.product.imageGallery.length === 0">
+            <a
+              class="wishlist"
+              data-lock
+              @click.prevent="toggleWishList($page.product.id)">
+              <HeartIcon
+                class="icon"
+                :class="{'icon--coral': isAddedToWishList($page.product.id)}"/>
+            </a>
             <ResponsiveImage
               :url="$page.product.image"
               :alt="$page.product.title"
@@ -17,6 +25,14 @@
               :settings-tablet="'w_400,h_800,c_fit'"/>
           </div>
           <div class="gallery" v-if="$page.product.imageGallery.length > 0">
+            <a
+              class="wishlist"
+              data-lock
+              @click.prevent="toggleWishList($page.product.id)">
+              <HeartIcon
+                class="icon"
+                :class="{'icon--coral': isAddedToWishList($page.product.id)}"/>
+            </a>
             <ClientOnly>
               <slick ref="slider" :options="sliderOptions" class="slider">
                 <div class="slide" :key="`imagegallery${i}`" v-for="(img, i) in $page.product.imageGallery">
@@ -53,13 +69,16 @@
               <h4 class="price__value">{{$page.product.price}}, 00 грн</h4>
             </div>
             <div class="cta-wrapper">
-              <div class="wishlist-cta">
-                <button class="cta blue" @click="addToWishList($page.product.id)" v-show="!isAddedToWishList($page.product.id)">Добавить в избранное</button>
-                <button class="cta blue" @click="removeFromWishList($page.product.id)" v-show="isAddedToWishList($page.product.id)">Убрать с избранного</button>
-              </div>
-              <div class="cart-cta" v-show="!isAddedToCart($page.product.id)">
-                <CartIcon class="icon" @click="addToCart($page.product.id)"/>
-              </div>
+              <button
+                data-lock
+                class="cta blue"
+                :class="{inactive: isAddedToCart($page.product.id)}"
+                @click="addToCart($page.product.id)">
+                Добавить в корзину
+              </button>
+              <span class="small" v-show="isAddedToCart($page.product.id)">
+                Товар успешно добавлен в корзину
+              </span>
             </div>
           </div>
         </div>
@@ -86,6 +105,7 @@ query ProductItem ($path: String!) {
 import { mapGetters, mapMutations } from 'vuex';
 import CartIcon from "../assets/icons/shopping-bag.svg";
 import SignIcon from "../assets/icons/sign.svg";
+import HeartIcon from "../assets/icons/heart.svg";
 import ArrowIcon from "../assets/icons/back.svg";
 import '../../node_modules/slick-carousel/slick/slick.css';
 
@@ -94,6 +114,7 @@ export default {
     CartIcon,
     SignIcon,
     ArrowIcon,
+    HeartIcon,
     Slick: () => import('vue-slick').catch()
   },
   metaInfo () {
@@ -103,7 +124,6 @@ export default {
   },
   data() {
     return {
-      // gray: "#414141",
       sliderOptions: {
         slidesToShow: 1,
         slidesToScroll: 1,
@@ -133,6 +153,13 @@ export default {
       'removeFromWishList',
       'addToCart'
     ]),
+    toggleWishList(id) {
+      if (this.isAddedToWishList(id)) {
+        this.removeFromWishList(id)
+      } else {
+        this.addToWishList(id);
+      }
+    }
   },
 }
 </script>
@@ -147,6 +174,37 @@ export default {
       flex-direction: column;
       justify-content: flex-start;
       align-items: flex-start;
+    }
+    .wishlist {
+      position: absolute;
+      cursor: pointer;
+      z-index: 2;
+      background: $white;
+      width: 40px;
+      height: 40px;
+      top: 15px;
+      right: 15px;
+      border-radius: 50%;
+      @include screenBreakpoint2(desktop) {
+        top: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+      }
+      .icon {
+
+        width: 25px;
+        height: 25px;
+        top: 8px;
+        left: 8px;
+        position: relative;
+        @include screenBreakpoint2(desktop) {
+          width: 30px;
+          height: 30px;
+          top: 10px;
+          left: 10px;
+        }
+      }
     }
     .image-container {
       position: relative;
@@ -169,9 +227,16 @@ export default {
       flex-direction: column;
       max-height: 90vh;
       margin-right: 2rem;
+      position: relative;
       @include screenBreakpoint2(phone) {
         margin: auto;
         max-height: calc(100vh - 100px);
+      }
+      .wishlist {
+        top: calc(1.2rem + 15px);
+        @include screenBreakpoint2(desktop) {
+          top: calc(1.2rem + 20px);
+        }
       }
       .slide__image {
         position: relative;
@@ -227,22 +292,12 @@ export default {
       }
       .cta-wrapper {
         display: flex;
-        align-items: flex-end;
-        .cart-cta {
-          margin-left: 2rem;
-          position: relative;
-          &:before {
-            content: '+';
-            display: block;
-            @include center('both');
-            font-size: 2rem;
-            z-index: -1;
-            color: $gray;
-          }
-          .icon {
-            width: 40px;
-            height: 40px;
-          }
+        align-items: flex-start;
+        flex-direction: column;
+        .small {
+          font-size: 0.7rem;
+          padding: 0.2rem 0;
+          font-style: italic;
         }
       }
     }

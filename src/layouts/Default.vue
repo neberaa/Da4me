@@ -192,6 +192,11 @@ button {
       outline-width: 1px;
     }
   }
+  &.inactive {
+    cursor: not-allowed;
+    border: 2px solid $light-gray;
+    color: $light-gray;
+  }
 }
 input {
   height: 35px;
@@ -245,6 +250,7 @@ main.page-content {
 
 .icon {
   fill: $gray;
+  transition: fill 300ms ease;
   &--white {
     fill: $white;
   }
