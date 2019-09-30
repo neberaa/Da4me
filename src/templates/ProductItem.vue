@@ -7,15 +7,15 @@
           <g-link class="breadcrumbs__item" to="/categories">Категории/</g-link>
         </nav>
         <div class="product__item">
-<!--          <div-->
-<!--            class="image-container"-->
-<!--            v-if="$page.product.image && $page.product.imageGallery.length === 0">-->
-<!--            <ResponsiveImage-->
-<!--              :url="$page.product.image"-->
-<!--              :alt="$page.product.title"-->
-<!--              :settings-mobile="'w_400,h_800,c_fit'"-->
-<!--              :settings-tablet="'w_400,h_800,c_fit'"/>-->
-<!--          </div>-->
+          <div
+            class="image-container"
+            v-if="$page.product.image && $page.product.imageGallery.length === 0">
+            <ResponsiveImage
+              :url="$page.product.image"
+              :alt="$page.product.title"
+              :settings-mobile="'w_400,h_800,c_fit'"
+              :settings-tablet="'w_400,h_800,c_fit'"/>
+          </div>
 
 <!--            <carousel-->
 <!--              :perPageCustom="[[300, 1], [768, 3]]"-->
@@ -36,7 +36,7 @@
 <!--                </div>-->
 <!--              </slide>-->
 <!--            </carousel>-->
-            <div class="gallery">
+            <div class="gallery" v-if="$page.product.imageGallery.length > 0">
               <ClientOnly>
                 <slick ref="slider" :options="sliderOptions" class="slider">
                   <div class="slide" :key="`imagegallery${i}`" v-for="(img, i) in $page.product.imageGallery">
@@ -167,12 +167,24 @@ export default {
     @include screenBreakpoint2(phone) {
       flex-direction: column;
       justify-content: flex-start;
-      align-items: center;
+      align-items: flex-start;
     }
-
+    .image-container {
+      position: relative;
+      width: 100%;
+      flex: 0 0;
+      flex-basis: calc(45% - 2rem);
+      overflow: hidden;
+      margin: 1.2rem 2rem 1.2rem 0;
+      padding-bottom: 60%;
+      @include screenBreakpoint2(phone) {
+        margin: 1.2rem auto;
+        padding-bottom: 150%;
+      }
+    }
     .gallery {
       flex: 0 0;
-      flex-basis: calc(40% - 2rem);
+      flex-basis: calc(45% - 2rem);
       overflow: hidden;
       display: flex;
       flex-direction: column;
@@ -182,8 +194,13 @@ export default {
         margin: auto;
         max-height: calc(100vh - 100px);
       }
-      picture {
+      .slide__image {
         position: relative;
+        width: 100%;
+        overflow: hidden;
+        padding-bottom: 130%;
+      }
+      picture {
         img {
           @include screenBreakpoint2(phone) {
             max-width: calc(100vw - 4rem);
@@ -210,7 +227,7 @@ export default {
       }
     }
     .content {
-      flex: 0 0 60%;
+      flex: 0 0 55%;
       @include screenBreakpoint2(phone) {
         flex-basis: 100%;
       }
