@@ -4,7 +4,7 @@
       <div class="container">
         <nav class="breadcrumbs">
           <g-link class="breadcrumbs__item" to="/">Главная/</g-link>
-          <g-link class="breadcrumbs__item" to="/categories">Категории/</g-link>
+          <g-link class="breadcrumbs__item" to="/">Категории/</g-link>
           <g-link class="breadcrumbs__item" :to="activeCategory.path">{{ activeCategory.header }}</g-link>
         </nav>
         <div class="product__item">

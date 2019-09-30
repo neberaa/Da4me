@@ -4,7 +4,7 @@
       <div class="container category-container">
         <nav class="breadcrumbs">
           <g-link class="breadcrumbs__item" to="/">Главная/</g-link>
-          <g-link class="breadcrumbs__item" to="/categories">Категории/</g-link>
+          <g-link class="breadcrumbs__item" to="/">Категории/</g-link>
           <g-link class="breadcrumbs__item" to="">{{$page.category.header}}</g-link>
         </nav>
         <h1 v-html="$page.category.header" class="title" />
