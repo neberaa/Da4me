@@ -67,7 +67,12 @@
             <span class="art" v-text="$page.product.artikul"/>
             <div class="price">
               <SignIcon class="icon price__icon"/>
-              <h4 class="price__value">{{$page.product.price}}, 00 грн</h4>
+              <h4
+                class="price__value old"
+                v-show="$page.product.oldPrice !== null && $page.product.oldPrice.length > 0"
+                v-text="$page.product.oldPrice"/>
+              <h4 class="price__value" v-text="$page.product.price"/>
+              <h4>,00 грн</h4>
             </div>
             <div class="description" v-html="$page.product.description"/>
             <div class="colors-container" v-show="$page.product.colors.length > 0">
@@ -368,6 +373,11 @@ export default {
         }
         &__value {
           margin: 1rem 0 1rem 0.5rem;
+          &.old {
+            color: $light-gray;
+            text-decoration: line-through;
+            margin-right: 0.4rem;
+          }
         }
       }
       .colors-container {
