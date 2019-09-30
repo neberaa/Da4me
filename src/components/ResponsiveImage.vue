@@ -1,5 +1,5 @@
 <template>
-  <picture>
+  <picture :class="{thumb: isThumbCar}">
     <source
       media="screen and (max-width: 767px)"
       :srcset="setImage(url, settingsMobile)">
@@ -42,6 +42,11 @@ export default {
       required: false,
       type: String,
       default: null
+    },
+    isThumbCar: {
+      required: false,
+      type: Boolean,
+      default: false,
     }
   },
   data() {
@@ -74,6 +79,19 @@ export default {
       height: 100%;
       object-fit: cover;
       object-position: center;
+    }
+    &.thumb {
+      img {
+        margin: 0 0.4rem;
+        width: calc(100% - 0.4rem);
+      }
+    }
+  }
+  .slick-current {
+    picture.thumb {
+      img {
+        border: 2px solid $blue;
+      }
     }
   }
 </style>
