@@ -16,56 +16,35 @@
               :settings-mobile="'w_400,h_800,c_fit'"
               :settings-tablet="'w_400,h_800,c_fit'"/>
           </div>
-
-<!--            <carousel-->
-<!--              :perPageCustom="[[300, 1], [768, 3]]"-->
-<!--              :paginationActiveColor="gray"-->
-<!--              ref="carousel"-->
-<!--              class="carousel">-->
-<!--              <slide-->
-<!--                class="slide"-->
-<!--               v-for="(img, i) in $page.product.imageGallery"-->
-<!--                :key="`imagegallery${i}`">-->
-<!--                <div class="slide__image">-->
-<!--                  <ResponsiveImage-->
-<!--                    :url="img"-->
-<!--                    :alt="$page.product.title + i"-->
-<!--                    :settings-mobile="'w_400,h_800,c_fit'"-->
-<!--                    :settings-tablet="'w_300,h_600,c_fit'"-->
-<!--                    :settings-desktop="'w_300,h_600,c_fit'"/>-->
-<!--                </div>-->
-<!--              </slide>-->
-<!--            </carousel>-->
-            <div class="gallery" v-if="$page.product.imageGallery.length > 0">
-              <ClientOnly>
-                <slick ref="slider" :options="sliderOptions" class="slider">
-                  <div class="slide" :key="`imagegallery${i}`" v-for="(img, i) in $page.product.imageGallery">
-                    <div class="slide__image">
-                      <ResponsiveImage
-                        :url="img"
-                        :alt="$page.product.title + i"
-                        :settings-mobile="'w_400,h_800,c_fit'"
-                        :settings-tablet="'w_300,h_600,c_fit'"
-                        :settings-desktop="'w_300,h_600,c_fit'"/>
-                    </div>
+          <div class="gallery" v-if="$page.product.imageGallery.length > 0">
+            <ClientOnly>
+              <slick ref="slider" :options="sliderOptions" class="slider">
+                <div class="slide" :key="`imagegallery${i}`" v-for="(img, i) in $page.product.imageGallery">
+                  <div class="slide__image">
+                    <ResponsiveImage
+                      :url="img"
+                      :alt="$page.product.title + i"
+                      :settings-mobile="'w_400,h_800,c_fit'"
+                      :settings-tablet="'w_300,h_600,c_fit'"
+                      :settings-desktop="'w_300,h_600,c_fit'"/>
                   </div>
-                </slick>
-                <slick ref="sliderNavThumbnails" :options="sliderNavOptions" class="slider-nav-thumbnails">
-                  <div class="slide" :key="`imageNavgallery${i}`" v-for="(img, i) in $page.product.imageGallery">
-                    <div class="slide__image">
-                      <ResponsiveImage
-                        :is-thumb-car="true"
-                        :url="img"
-                        :alt="$page.product.title + i"
-                        :settings-mobile="'w_150,h_200,c_fit'"
-                        :settings-tablet="'w_150,h_200,c_fit'"
-                        :settings-desktop="'w_150,h_200,c_fit'"/>
-                    </div>
+                </div>
+              </slick>
+              <slick ref="sliderNavThumbnails" :options="sliderNavOptions" class="slider-nav-thumbnails">
+                <div class="slide" :key="`imageNavgallery${i}`" v-for="(img, i) in $page.product.imageGallery">
+                  <div class="slide__image">
+                    <ResponsiveImage
+                      :is-thumb-car="true"
+                      :url="img"
+                      :alt="$page.product.title + i"
+                      :settings-mobile="'w_150,h_200,c_fit'"
+                      :settings-tablet="'w_150,h_200,c_fit'"
+                      :settings-desktop="'w_150,h_200,c_fit'"/>
                   </div>
-                </slick>
-              </ClientOnly>
-            </div>
-
+                </div>
+              </slick>
+            </ClientOnly>
+          </div>
           <div class="content">
             <h1 class="title" v-html="$page.product.title" />
             <div class="description" v-html="$page.product.description"/>
