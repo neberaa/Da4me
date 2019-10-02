@@ -91,7 +91,7 @@
                   :style="{'background-color': item.color}"/>
               </ul>
             </div>
-            <div class="size-container">
+            <div class="size-container" v-show="$page.product.size.length > 0">
               <p class="title">Размер: </p>
               <button
                 class="size"
