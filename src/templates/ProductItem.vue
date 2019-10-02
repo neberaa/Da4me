@@ -63,7 +63,7 @@
             </ClientOnly>
           </div>
           <div class="content">
-            <h1 class="title" v-html="$page.product.title" />
+            <h2 class="title" v-html="$page.product.title" />
             <span class="art" v-text="$page.product.artikul"/>
             <div class="price">
               <SignIcon class="icon price__icon"/>
@@ -91,7 +91,24 @@
                   :style="{'background-color': item.color}"/>
               </ul>
             </div>
-            <p class="size" v-text="$page.product.size"/>
+            <div class="size-container">
+              <p class="title">Размер: </p>
+              <button
+                class="size"
+                :class="{selected: selectedSize === sizeInd}"
+                v-for="(size, sizeInd) in $page.product.size"
+                :key="sizeInd" @click="selectSize(sizeInd)"
+                v-text="size"/>
+              <a href="" @click.prevent="showSizeTable" class="size-table">Таблица размеров</a>
+            </div>
+            <div class="quantity-container">
+              <p class="title">Количество: </p>
+              <div class="quantity">
+                <span class="dec" @click="[productQuantity > 0 ? productQuantity-- : false]">-</span>
+                <input type="number" min="1" :value="productQuantity">
+                <span class="inc" @click="productQuantity++">+</span>
+              </div>
+            </div>
             <div class="cta-wrapper">
               <button
                 data-lock
@@ -183,6 +200,8 @@ export default {
         focusOnSelect: true,
       },
       activeColor: null,
+      selectedSize: 0,
+      productQuantity: 1,
     }
   },
   computed: {
@@ -243,6 +262,11 @@ export default {
       this.$page.product.activeColor = this.$page.product.colors[0].colorId;
       this.$page.product.image = this.$page.product.colors[0].gallery[0];
       this.$page.product.imageGallery = this.$page.product.colors[0].gallery;
+    },
+    selectSize(ind) {
+      this.selectedSize = ind;
+    },
+    showSizeTable() {
     }
   },
   mounted() {
@@ -280,7 +304,6 @@ export default {
         height: 50px;
       }
       .icon {
-
         width: 25px;
         height: 25px;
         top: 8px;
@@ -319,6 +342,9 @@ export default {
       @include screenBreakpoint2(phone) {
         margin: auto;
         max-height: calc(100vh - 100px);
+      }
+      @include screenBreakpoint2(desktop) {
+        min-height: 700px;
       }
       .wishlist {
         top: calc(1.2rem + 15px);
@@ -365,6 +391,9 @@ export default {
       }
       .title {
         margin-top: 1.2rem;
+      }
+      p.title {
+        margin-bottom: 0.4rem;
       }
       .price {
         display: flex;
@@ -422,10 +451,71 @@ export default {
           }
         }
       }
+      .size-container {
+        .title {
+          font-weight: bold;
+        }
+        .size {
+          border: 1px solid $gray;
+          padding: 5px 20px;
+          border-radius: 20px;
+          text-transform: uppercase;
+          margin-top: 0;
+          &:not(:last-of-type) {
+            margin-right: 0.4rem;
+          }
+          &.selected {
+            border: 2px solid $blue;
+          }
+        }
+        .size-table {
+          font-size: 0.8rem;
+          text-decoration: underline dotted;
+          display: flex;
+        }
+      }
+      .quantity-container {
+        .title {
+          font-weight: bold;
+        }
+        .quantity {
+          position: relative;
+          display: inline-flex;
+          align-items: center;
+        }
+        input[type=number]::-webkit-inner-spin-button,
+        input[type=number]::-webkit-outer-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+        }
+        input {
+          width: 70px;
+          font-weight: bold;
+          padding: 5px 20px;
+          border: 1px solid $gray;
+          border-radius: 20px;
+          text-align: center;
+        }
+        span {
+          cursor: pointer;
+          font-size: 1.2rem;
+          font-weight: bold;
+          position: absolute;
+          line-height: 0;
+          &.dec {
+            left: 15px;
+            font-size: 1.4rem;
+          }
+          &.inc {
+            right: 13px;
+          }
+        }
+      }
       .cta-wrapper {
         display: flex;
         align-items: flex-start;
         flex-direction: column;
+        margin-top: 1rem;
         .small {
           font-size: 0.7rem;
           padding: 0.2rem 0;
