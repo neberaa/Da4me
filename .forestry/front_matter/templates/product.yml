@@ -65,24 +65,6 @@ fields:
   config: {}
   label: Галерея
   description: Выберите дополнительные картинки для слайдера
-- name: size
-  type: select
-  default: ''
-  config:
-    required: false
-    options:
-    - XS
-    - " S"
-    - M
-    - L
-    - XL
-    source:
-      type: simple
-      section: 
-      file: 
-      path: 
-  label: Размер
-  description: Выберите размер, если есть
 - name: colors
   type: field_group
   config: {}
@@ -131,13 +113,24 @@ fields:
     required: true
   label: Артикул товара
   description: 'Введите артикул товара для учета  '
+- name: size
+  type: tag_list
+  default:
+  - XS
+  - S
+  - M
+  - L
+  - XL
+  label: Размер
+  description: Добавьте возможные размеры для продукта через запятую(S, M и т.д.).
+    Если доступны все размеры оставьте поле пустым
 pages:
+- products/Платья/платье-летнее.md
+- products/Kids/комбинезон.md
 - products/Family look/сарафаны-для-мамы-и-малышки.md
 - products/Kids/футболка.md
-- products/Kids/комбинезон.md
 - products/Платья/платье-в-пол.md
 - products/Юбки/юбка-летняя.md
 - products/Юбки/юбка-в-пол.md
 - products/Сарафаны/сарафан-бомба.md
 - products/Сарафаны/сарафан-бархат.md
-- products/Платья/платье-летнее.md

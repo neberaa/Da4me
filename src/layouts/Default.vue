@@ -173,16 +173,16 @@ button {
   color: $gray;
   white-space: nowrap;
   font-weight: bold;
-  border: 2px solid $gray;
+  border: 1px solid $gray;
   &.blue {
     border-color: $blue;
   }
   &.outline {
     border:none;
-    outline: 2px solid $gray;
+    outline: 1px solid $gray;
     outline-offset: -4px;
     &.blue {
-      outline: 2px solid $blue;
+      outline: 1px solid $blue;
     }
   }
   &.thin {
@@ -194,7 +194,7 @@ button {
   }
   &.inactive {
     cursor: not-allowed;
-    border: 2px solid $light-gray;
+    border: 1px solid $light-gray;
     color: $light-gray;
   }
 }
