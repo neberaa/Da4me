@@ -99,7 +99,8 @@
                 v-for="(size, sizeInd) in $page.product.size"
                 :key="sizeInd" @click="selectSize(sizeInd)"
                 v-text="size"/>
-              <a href="" @click.prevent="showSizeTable" class="size-table">Таблица размеров</a>
+              <a v-if="settings.size_chart.length > 0" href="" @click.prevent="showSizeTable" class="size-table">Таблица размеров</a>
+              <g-link v-if="settings.size_chart.length <= 0" :to="{ name: 'sizes' }" class="size-table"></g-link>
             </div>
             <div class="quantity-container">
               <p class="title">Количество: </p>
@@ -202,6 +203,7 @@ export default {
       activeColor: null,
       selectedSize: 0,
       productQuantity: 1,
+      settings: require("../../data/theme.json"),
     }
   },
   computed: {
@@ -270,6 +272,7 @@ export default {
     }
   },
   mounted() {
+    console.log('routes', this.$route);
     this.setProductColors();
     this.setDefaultColor();
   }
