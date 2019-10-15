@@ -37,6 +37,12 @@ fields:
     maxSize: 250
   label: Фон для футера
   description: Картинка для футера
+- name: size_chart
+  type: file
+  config:
+    maxSize: 250
+  label: Размерная сетка
+  description: Выберите картинку с размерной сеткой
 - name: cloudinary_url
   type: text
   config:
