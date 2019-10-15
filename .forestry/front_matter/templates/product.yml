@@ -125,9 +125,9 @@ fields:
   description: Добавьте возможные размеры для продукта через запятую(S, M и т.д.).
     Если доступны все размеры оставьте поле пустым
 pages:
+- products/Family look/сарафаны-для-мамы-и-малышки.md
 - products/Платья/платье-летнее.md
 - products/Kids/комбинезон.md
-- products/Family look/сарафаны-для-мамы-и-малышки.md
 - products/Kids/футболка.md
 - products/Платья/платье-в-пол.md
 - products/Юбки/юбка-летняя.md
