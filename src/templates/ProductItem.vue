@@ -91,7 +91,7 @@
                   :style="{'background-color': item.color}"/>
               </ul>
             </div>
-            <div class="size-container" v-show="$page.product.size.length > 0">
+            <div class="size-container">
               <p class="title">Размер: </p>
               <button
                 class="size"
@@ -99,8 +99,24 @@
                 v-for="(size, sizeInd) in $page.product.size"
                 :key="sizeInd" @click="selectSize(sizeInd)"
                 v-text="size"/>
-              <a v-if="settings.size_chart.length > 0" href="" @click.prevent="showSizeTable" class="size-table">Таблица размеров</a>
-              <g-link v-if="settings.size_chart.length <= 0" :to="{ name: 'sizes' }" class="size-table"></g-link>
+              <template v-if="sizeChart !== null">
+                <a href="" @click.prevent="showSizeImage = true" class="size-table">Таблица размеров</a>
+                <transition name="fade400">
+                  <div class="size-chart" v-show="showSizeImage">
+                    <div class="overlay" @click="showSizeImage = false"/>
+                    <div class="image">
+                      <ResponsiveImage
+                        :url="sizeChart"
+                        alt="Таблица размеров"
+                        :settings-mobile="'w_300,h_600,c_fit'"
+                        :settings-tablet="'w_0.5,h_0.5,c_fit'"/>
+                    </div>
+                  </div>
+                </transition>
+              </template>
+              <template v-if="sizePage !== null">
+                <g-link :to="sizePage" class="size-table">Таблица размеров</g-link>
+              </template>
             </div>
             <div class="quantity-container">
               <p class="title">Количество: </p>
@@ -204,6 +220,9 @@ export default {
       selectedSize: 0,
       productQuantity: 1,
       settings: require("../../data/theme.json"),
+      sizeChart: null,
+      sizePage: null,
+      showSizeImage: false,
     }
   },
   computed: {
@@ -268,11 +287,20 @@ export default {
     selectSize(ind) {
       this.selectedSize = ind;
     },
-    showSizeTable() {
+    defineSizeChart() {
+      const { size_chart } = this.settings;
+      if (size_chart.length > 0) {
+        this.sizeChart = size_chart;
+      } else {
+        const page = this.$router.options.routes.map(r => r.path).filter(r => r.indexOf('sizes') > -1);
+        if (page.length > 0) {
+          this.sizePage = page[0];
+        }
+      }
     }
   },
   mounted() {
-    console.log('routes', this.$route);
+    this.defineSizeChart();
     this.setProductColors();
     this.setDefaultColor();
   }
@@ -475,6 +503,32 @@ export default {
           font-size: 0.8rem;
           text-decoration: underline dotted;
           display: flex;
+        }
+        .size-chart {
+          position: fixed;
+          left: 0;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          z-index: 100;
+          .overlay {
+            width: 100vw;
+            height: 100vh;
+            background: rgba($gray, 0.7);
+          }
+          .image {
+            position: relative;
+            @include center('both');
+            width: 60vw;
+            height: 50vh;
+            max-width: 800px;
+            @include screenBreakpoint2(phone) {
+              width: calc(100% - 4rem);
+              margin: auto;
+              height: 80vh;
+              overflow: auto;
+            }
+          }
         }
       }
       .quantity-container {
