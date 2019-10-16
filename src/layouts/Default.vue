@@ -282,6 +282,12 @@ main.page-content {
     &::after {
       transform: rotate(-45deg);
     }
+    &.white {
+      fill: $white;
+      &::before, &::after {
+        background-color: $white;
+      }
+    }
   }
 }
 // Custom cursor

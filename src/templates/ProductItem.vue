@@ -91,7 +91,9 @@
                   :style="{'background-color': item.color}"/>
               </ul>
             </div>
-            <div class="size-container">
+            <div
+              class="size-container"
+              v-show="$page.product.size.length > 0">
               <p class="title">Размер: </p>
               <button
                 class="size"
@@ -100,11 +102,23 @@
                 :key="sizeInd" @click="selectSize(sizeInd)"
                 v-text="size"/>
               <template v-if="sizeChart !== null">
-                <a href="" @click.prevent="showSizeImage = true" class="size-table">Таблица размеров</a>
+                <a
+                  href=""
+                  @click.prevent="showSizeImage = true"
+                  class="size-table">
+                  Таблица размеров
+                </a>
                 <transition name="fade400">
-                  <div class="size-chart" v-show="showSizeImage">
-                    <div class="overlay" @click="showSizeImage = false"/>
+                  <div
+                    class="size-chart"
+                    v-show="showSizeImage">
+                    <div
+                      class="overlay"
+                      @click="showSizeImage = false"/>
                     <div class="image">
+                      <button
+                        class="icon white cross"
+                        @click="showSizeImage = false"/>
                       <ResponsiveImage
                         :url="sizeChart"
                         alt="Таблица размеров"
@@ -115,7 +129,11 @@
                 </transition>
               </template>
               <template v-if="sizePage !== null">
-                <g-link :to="sizePage" class="size-table">Таблица размеров</g-link>
+                <g-link
+                  :to="sizePage"
+                  class="size-table">
+                  Таблица размеров
+                </g-link>
               </template>
             </div>
             <div class="quantity-container">
@@ -526,7 +544,17 @@ export default {
               width: calc(100% - 4rem);
               margin: auto;
               height: 80vh;
-              overflow: auto;
+            }
+            .icon {
+              width: 30px;
+              height: 30px;
+              right: 0;
+              top: -70px;
+              position: absolute;
+              &::before,
+              &::after {
+                height: 40px;
+              }
             }
           }
         }
