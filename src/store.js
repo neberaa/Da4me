@@ -37,14 +37,6 @@ const store = new Vuex.Store({
         state.cartIsOpen = false;
       }
     },
-    addToCart (state, id ) {
-      state.cart.push(id);
-      localStorage.setItem('cart', JSON.stringify(state.cart));
-    },
-    removeFromCart (state, id) {
-      state.cart.splice(state.cart.indexOf(id), 1);
-      localStorage.setItem('cart', JSON.stringify(state.cart));
-    },
     clearCart(state) {
       state.cart = [];
       localStorage.setItem('cart', JSON.stringify(state.cart));
@@ -57,6 +49,21 @@ const store = new Vuex.Store({
     },
     setOrderData(state, data) {
       state.orderData = data;
+    },
+    addOrderData(state, product) {
+      state.orderData.push(product);
+      localStorage.setItem('orderData', JSON.stringify(state.orderData));
+      console.log(state.orderData);
+    },
+    updateOrderData(state, product) {
+      state.orderData = state.orderData.filter(p => p.id !== product.id);
+      state.orderData.push(product);
+      localStorage.setItem('orderData', JSON.stringify(state.orderData));
+      console.log('update', state.orderData);
+    },
+    removeFromOrderData(state, id) {
+      state.orderData.splice(state.orderData.indexOf(id), 1);
+      localStorage.setItem('orderData', JSON.stringify(state.orderData));
     }
   },
   getters: {
@@ -65,6 +72,9 @@ const store = new Vuex.Store({
     },
     isAddedToCart: (state) => (id) => {
       return state.cart.includes(id);
+    },
+    isAddedToOrder: (state) => (id) => {
+      return state.orderData.map(d => d.id).includes(id);
     },
   }
 });

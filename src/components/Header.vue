@@ -55,7 +55,7 @@
             data-lock
             class="icon cart"
             :class="{'cart--coral': cartIsOpen}"
-            :data-products-count="[cart.length === 0 ? null : cart.length]"
+            :data-products-count="[orderData.length === 0 ? null : orderData.length]"
             @click.prevent="toggleCart">
             <CartIcon
               class="icon"
@@ -130,7 +130,7 @@
                 href=""
                 data-lock
                 class="icon cart cart--white"
-                :data-products-count="[cart.length === 0 ? null : cart.length]"
+                :data-products-count="[orderData.length === 0 ? null : orderData.length]"
                 @click.prevent="toggleCart">
                 <CartIcon class="icon icon--white"/>
               </a>
@@ -138,7 +138,7 @@
           </div>
       </div>
       </transition>
-    <ShoppingCart :Products="$static.products.edges"/>
+    <ShoppingCart/>
   </header>
 </template>
 
@@ -201,7 +201,8 @@ export default {
     ...mapState([
       'menuIsOpen',
       'cartIsOpen',
-      'cart'
+      'cart',
+      'orderData',
     ]),
     isMobile() {
       const { width, height } = window.screen;

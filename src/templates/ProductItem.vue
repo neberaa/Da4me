@@ -97,9 +97,9 @@
               <p class="title">Размер: </p>
               <button
                 class="size"
-                :class="{selected: selectedSize === sizeInd}"
+                :class="{selected: selectedSizeInd === sizeInd}"
                 v-for="(size, sizeInd) in $page.product.size"
-                :key="sizeInd" @click="selectSize(sizeInd)"
+                :key="sizeInd" @click="selectSize(size, sizeInd)"
                 v-text="size"/>
               <template v-if="sizeChart !== null">
                 <a
@@ -139,20 +139,20 @@
             <div class="quantity-container">
               <p class="title">Количество: </p>
               <div class="quantity">
-                <span class="dec" @click="[productQuantity > 0 ? productQuantity-- : false]">-</span>
+                <span class="dec" @click="selectQuantity('dec')">-</span>
                 <input type="number" min="1" :value="productQuantity">
-                <span class="inc" @click="productQuantity++">+</span>
+                <span class="inc" @click="selectQuantity('inc')">+</span>
               </div>
             </div>
             <div class="cta-wrapper">
               <button
                 data-lock
                 class="cta blue"
-                :class="{inactive: isAddedToCart($page.product.id)}"
-                @click="[isAddedToCart($page.product.id) ? false : addToCart($page.product.id)]">
+                :class="{inactive: isAddedToOrder($page.product.id)}"
+                @click="addToCart">
                 Добавить в корзину
               </button>
-              <span class="small" v-show="isAddedToCart($page.product.id)">
+              <span class="small" v-show="isAddedToOrder($page.product.id)">
                 Товар успешно добавлен в корзину
               </span>
             </div>
@@ -176,6 +176,7 @@ query ProductItem ($path: String!) {
     category
     artikul
     size
+    path
     colors {
       color1
       imagesColor1
@@ -197,7 +198,7 @@ query ProductItem ($path: String!) {
 </page-query>
 
 <script>
-import { mapGetters, mapMutations } from 'vuex';
+import { mapGetters, mapMutations, mapState } from 'vuex';
 import CartIcon from "../assets/icons/shopping-bag.svg";
 import SignIcon from "../assets/icons/sign.svg";
 import HeartIcon from "../assets/icons/heart.svg";
@@ -235,7 +236,7 @@ export default {
         focusOnSelect: true,
       },
       activeColor: null,
-      selectedSize: 0,
+      selectedSizeInd: 0,
       productQuantity: 1,
       settings: require("../../data/theme.json"),
       sizeChart: null,
@@ -244,9 +245,12 @@ export default {
     }
   },
   computed: {
+    ...mapState([
+      'orderData'
+    ]),
     ...mapGetters([
       'isAddedToWishList',
-      'isAddedToCart'
+      'isAddedToOrder',
     ]),
     activeCategory() {
       const {categories, product} = this.$page;
@@ -254,19 +258,33 @@ export default {
       const activeCategory = categories.edges.filter(c =>  c.node.path.substring(12, c.node.path.length) === prodCategory);
 
       return activeCategory[0].node;
+    },
+    activeProduct() {
+      return this.orderData.length > 0 &&
+      this.orderData.filter(d => d.id === this.$page.product.id).length > 0 ?
+        this.orderData.filter(d => d.id === this.$page.product.id)[0] : this.$page.product;
     }
   },
   watch: {
     $route() {
       this.setProductColors();
-      this.setDefaultColor();
-    }
+      this.setDefaults();
+    },
+    selectedSizeInd() {
+      this.updateData();
+    },
+    productQuantity(value) {
+      this.$page.product.quantity = value;
+      this.updateData();
+    },
   },
   methods: {
     ...mapMutations([
       'addToWishList',
       'removeFromWishList',
-      'addToCart'
+      'updateOrderData',
+      'addOrderData',
+      'loadJSON'
     ]),
     toggleWishList(id) {
       if (this.isAddedToWishList(id)) {
@@ -290,20 +308,45 @@ export default {
       this.$page.product.colors = colors;
     },
     setActiveColorImage(prodId, id) {
-      const activeColor = this.$page.product.colors.filter(c => c.colorId === id);
-      if (activeColor.length > 0) {
-        this.$page.product.image = activeColor[0].gallery[0];
-        this.$page.product.imageGallery = activeColor[0].gallery;
+      this.activeColor = this.$page.product.colors.filter(c => c.colorId === id);
+      if ( this.activeColor !== null && this.activeColor.length > 0) {
+        this.$page.product.image = this.activeColor[0].gallery[0];
+        this.$page.product.imageGallery = this.activeColor[0].gallery;
       }
       this.$page.product.activeColor = id;
+      this.updateData();
     },
     setDefaultColor() {
-      this.$page.product.activeColor = this.$page.product.colors[0].colorId;
-      this.$page.product.image = this.$page.product.colors[0].gallery[0];
-      this.$page.product.imageGallery = this.$page.product.colors[0].gallery;
+      if (this.isAddedToOrder(this.$page.product.id) && this.activeProduct.activeColor) {
+        this.setActiveColorImage(this.$page.product.id, this.activeProduct.activeColor);
+      } else if (this.$page.product.colors[0] && !this.activeProduct.activeColor) {
+        this.$page.product.activeColor = this.$page.product.colors[0].colorId;
+        this.$page.product.image = this.$page.product.colors[0].gallery[0];
+        this.$page.product.imageGallery = this.$page.product.colors[0].gallery;
+      }
     },
-    selectSize(ind) {
-      this.selectedSize = ind;
+    setDefaultSize() {
+      if (this.isAddedToOrder(this.$page.product.id) && this.activeProduct.selectedSize) {
+        this.selectedSizeInd = this.$page.product.size.indexOf(this.activeProduct.selectedSize);
+      } else if (this.$page.product.size && !this.activeProduct.selectedSize) {
+        this.$page.product.selectedSize = this.$page.product.size[0];
+      }
+    },
+    setDefaultQuantity() {
+      if (this.activeProduct.quantity) {
+        this.productQuantity = this.activeProduct.quantity;
+      }
+    },
+    selectSize(size, ind) {
+      this.$page.product.selectedSize = size;
+      this.selectedSizeInd = ind;
+    },
+    selectQuantity(action) {
+      if (action === 'dec') {
+        this.productQuantity > 0 ? this.productQuantity-- : false;
+      } else {
+        this.productQuantity++;
+      }
     },
     defineSizeChart() {
       const { size_chart } = this.settings;
@@ -315,12 +358,29 @@ export default {
           this.sizePage = page[0];
         }
       }
+    },
+    addToCart() {
+      if (!this.isAddedToOrder(this.$page.product.id)) {
+        this.updateOrderData(this.$page.product);
+      }
+    },
+    updateData() {
+      if (this.isAddedToOrder(this.$page.product.id)) {
+        this.updateOrderData(this.$page.product);
+      }
+    },
+    setDefaults() {
+      this.setDefaultSize();
+      this.setDefaultQuantity();
+      this.setDefaultColor();
     }
   },
   mounted() {
     this.defineSizeChart();
     this.setProductColors();
-    this.setDefaultColor();
+    this.loadJSON('orderData');
+    this.setDefaults();
+
   }
 }
 </script>

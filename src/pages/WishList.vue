@@ -31,9 +31,9 @@
               </button>
               <transition name="fade400">
                 <button
-                  v-show="!isAddedToCart(product.node.id)"
+                  v-show="!isAddedToOrder(product.node.id)"
                   class="buttons__item cta blue"
-                  @click="addToCart(product.node.id)">
+                  @click="addOrderData(product.node)">
                   Добавить в корзину
                 </button>
               </transition>
@@ -78,7 +78,7 @@
         'wishList',
       ]),
       ...mapGetters([
-        'isAddedToCart'
+        'isAddedToOrder'
       ]),
       favouriteProducts() {
         return this.$page.products.edges.filter(item => this.wishList.includes(item.node.id));
@@ -88,7 +88,7 @@
       ...mapMutations([
         'removeFromWishList',
         'loadJSON',
-        'addToCart'
+        'addOrderData'
       ]),
     },
     beforeMount() {

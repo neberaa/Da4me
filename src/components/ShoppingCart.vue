@@ -4,33 +4,38 @@
       <button class="icon cross" data-lock @click="closeCart"/>
       <h2>Корзина</h2>
       <div class="products">
-        <div v-for="product in addedProducts" :key="product.node.id" class="product">
+        <div v-for="product in orderData" :key="product.id" class="product">
           <div class="column column--left">
             <g-link
-              :to="product.node.path"
+              :to="product.path"
               class="product__image">
               <ResponsiveImage
-                :url="product.node.image"
-                :alt="product.node.title"
+                :url="product.image"
+                :alt="product.title"
                 :settings-mobile="'w_400,h_800,c_fit'"
                 :settings-tablet="'w_300,h_600,c_fit'"
                 :settings-desktop="'w_300,h_600,c_fit'"/>
             </g-link>
           </div>
           <div class="column column--right">
-            <button class="icon cross" data-lock @click="removeFromCart(product.node.id)"/>
-            <p class="product__price">Цена: {{product.node.price}}, 00 грн</p>
-            <label :for="`quantity-select-${product.node.id}`">Кол-во</label>
-            <select :id="`quantity-select-${product.node.id}`" v-model="product.node.quantity">
-              <option v-for="i in 10" :key="i" :value="i">{{i || 1}}</option>
-            </select>
-            <div class="summary">ИТОГО: {{totalAmount(product.node.price, product.node.quantity || 1)}}, 00 грн</div>
+            <h5 class="product__title" v-text="product.title"/>
+            <span class="product__article" v-text="product.artikul"/>
+            <p class="product__price">Цена: {{product.price}}, 00 грн</p>
+            <p class="product__size" v-show="product.selectedSize">Размер: {{product.selectedSize}}</p>
+            <p class="product__quantity">Кол-во: {{product.quantity || 1}}</p>
+            <div class="product__summary">ИТОГО: {{product.price * (product.quantity || 1)}}, 00 грн</div>
+            <button
+              class="product__cta cta small"
+              data-lock
+              @click="removeFromOrderData(product.id)">
+              Убрать из корзины
+            </button>
           </div>
         </div>
       </div>
-      <p v-show="cart.length > 0">Общая сумма заказа: {{totalOrderAmount}}, 00 грн</p>
-      <g-link class="cta cart-order blue" :to="{ name: 'order' }" v-show="cart.length > 0 && $route.name !== 'order'">Оформить заказ</g-link>
-      <p v-show="cart.length === 0" class="empty-text">Ваша корзина пуста...</p>
+      <p v-show="orderData.length > 0">Общая сумма заказа: {{totalOrderAmount}}, 00 грн</p>
+      <g-link class="cta cart-order blue" :to="{ name: 'order' }" v-show="orderData.length > 0 && $route.name !== 'order'">Оформить заказ</g-link>
+      <p v-show="orderData.length === 0" class="empty-text">Ваша корзина пуста...</p>
     </div>
   </transition>
 </template>
@@ -44,41 +49,26 @@
     directives: {
       ClickOutside
     },
-    props: {
-      Products: {
-        type: Array,
-        required: false,
-      },
-    },
     computed: {
       ...mapState([
         'cartIsOpen',
         'cart',
         'orderData'
       ]),
-      addedProducts() {
-        return this.Products.filter(item => this.cart.includes(item.node.id));
-      },
       totalOrderAmount() {
         let total = 0;
-        this.addedProducts.forEach(p => {
-          const productTotal = parseInt(p.node.price) * parseInt(p.node.quantity || 1);
+        this.orderData.forEach(p => {
+          const productTotal = parseInt(p.price) * parseInt(p.quantity || 1);
           total += productTotal;
         });
         return total;
       }
     },
-    watch: {
-      addedProducts() {
-        this.setOrderData(this.addedProducts);
-      },
-    },
     methods: {
       ...mapMutations([
         'closeCart',
-        'removeFromCart',
         'loadJSON',
-        'setOrderData'
+        'removeFromOrderData',
       ]),
       manageCart(e) {
         if (this.cartIsOpen) {
@@ -94,7 +84,7 @@
       },
     },
     beforeMount() {
-      this.loadJSON('cart');
+      this.loadJSON('orderData');
     },
   }
 </script>
@@ -126,36 +116,53 @@
 
     .product {
       width: 100%;
-      height: 250px;
       position: relative;
-      margin-bottom: 15px;
+      margin-bottom: 1.4rem;
       overflow: hidden;
       display: flex;
-      align-items: flex-start;
+      align-items: stretch;
       justify-content: flex-start;
+      flex-direction: column;
+      @include screenBreakpoint2(desktop) {
+        flex-direction: row;
+      }
 
       &__image {
-        width: 150px;
-        height: 200px;
+        width: 180px;
+        height: 250px;
         display: block;
         position: relative;
+        @include screenBreakpoint2(phone) {
+          width: 100%;
+          height: 60vh;
+          margin-bottom: 0.4rem;
+        }
+        @include screenBreakpoint2(tablet) {
+          width: 100%;
+          height: 350px;
+          margin-bottom: 0.4rem;
+        }
       }
 
-      &__cta {
-        padding: 5px;
-        font-size: 0.8rem;
-        margin-top: 10px;
-      }
       .column--right {
         display: flex;
         flex-direction: column;
-        margin-left: 1rem;
-        .icon.cross {
-          width: 15px;
-          height: 15px;
-          &::before, &::after {
-            height: 15px;
-          }
+        margin: 0;
+        align-items: flex-start;
+        p, .product__summary {
+          margin: 0.4rem 0;
+        }
+        @include screenBreakpoint2(desktop) {
+          margin-left: 1rem;
+        }
+      }
+      &__title {
+        margin: 0;
+      }
+      &__cta {
+        @include screenBreakpoint2(desktop) {
+          position: absolute;
+          bottom: 0;
         }
       }
     }

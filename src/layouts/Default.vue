@@ -120,6 +120,9 @@ h3 {
 h4 {
   font-size: 1.4rem;
 }
+h5 {
+  font-size: 1.2rem;
+}
 a {
   color: inherit;
   text-decoration: none;
@@ -130,6 +133,9 @@ p {
 }
 span {
   font-size: 0.8rem;
+  &.small {
+    font-size: 0.6rem;
+  }
 }
 
 img {
@@ -174,6 +180,7 @@ button {
   white-space: nowrap;
   font-weight: bold;
   border: 1px solid $gray;
+  text-align: center;
   &.blue {
     border-color: $blue;
   }
@@ -196,6 +203,10 @@ button {
     cursor: not-allowed;
     border: 1px solid $light-gray;
     color: $light-gray;
+  }
+  &.small {
+    font-size: 0.8rem;
+    padding: 10px;
   }
 }
 input {
