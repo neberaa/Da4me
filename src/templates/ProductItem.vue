@@ -356,7 +356,7 @@ export default {
     },
     addToCart() {
       if (!this.isAddedToOrder(this.$page.product.id)) {
-        this.updateOrderData(this.$page.product);
+        this.addOrderData(this.$page.product);
       }
     },
     updateData() {
