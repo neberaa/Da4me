@@ -330,9 +330,7 @@ export default {
       }
     },
     setDefaultQuantity() {
-      if (this.activeProduct.quantity) {
-        this.productQuantity = this.activeProduct.quantity;
-      }
+      this.productQuantity = this.activeProduct.quantity ? this.activeProduct.quantity : 1;
     },
     selectSize(size, ind) {
       this.$page.product.selectedSize = size;
@@ -629,6 +627,9 @@ export default {
         input[type=number]::-webkit-outer-spin-button {
           -webkit-appearance: none;
           margin: 0;
+        }
+        input[type=number] {
+          -moz-appearance:textfield; /* Firefox */
         }
         input {
           width: 70px;
