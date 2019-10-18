@@ -13,7 +13,6 @@
           :settings-tablet="'w_0.5,h_0.5,c_fit'"/>
       </div>
       <button
-        data-lock
         class="category__cta cta outline blue">
         {{ item.node.header }}
       </button>

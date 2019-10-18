@@ -13,7 +13,6 @@
             v-if="$page.product.image && $page.product.imageGallery.length < 2">
             <a
               class="wishlist"
-              data-lock
               @click.prevent="toggleWishList($page.product.id)">
               <HeartIcon
                 class="icon"
@@ -28,7 +27,6 @@
           <div class="gallery" v-if="$page.product.imageGallery.length > 1">
             <a
               class="wishlist"
-              data-lock
               @click.prevent="toggleWishList($page.product.id)">
               <HeartIcon
                 class="icon"
@@ -146,7 +144,6 @@
             </div>
             <div class="cta-wrapper">
               <button
-                data-lock
                 class="cta blue"
                 :class="{inactive: isAddedToOrder($page.product.id)}"
                 @click="addToCart">

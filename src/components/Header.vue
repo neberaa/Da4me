@@ -5,7 +5,6 @@
         <div class="column column--left">
           <div
             class="hamburger hamburger--spin js-hamburger"
-            data-lock
             :class="{'is-active': menuIsOpen}"
             @click="toggleMenu">
             <div class="hamburger-box">
@@ -15,13 +14,11 @@
           <div class="social-icons">
             <a
               :href="contacts.instagram"
-              data-lock
               class="social-icons__item">
               <InstagramIcon class="icon"/>
             </a>
             <a
               :href="contacts.facebook"
-              data-lock
               class="social-icons__item">
               <FacebookIcon class="icon"/>
             </a>
@@ -45,14 +42,12 @@
           </a>
           <g-link
             to="/wish-list"
-            class="icon wishlist"
-            data-lock>
+            class="icon wishlist">
             <HeartIcon
               class="icon"/>
           </g-link>
           <a
             href=""
-            data-lock
             class="icon cart"
             :class="{'cart--coral': cartIsOpen}"
             :data-products-count="[orderData.length === 0 ? null : orderData.length]"
@@ -87,13 +82,11 @@
               <div class="social-icons">
                 <a
                   :href="contacts.instagram"
-                  data-lock
                   class="social-icons__item">
                   <InstagramIcon class="icon icon--white"/>
                 </a>
                 <a
                   :href="contacts.facebook"
-                  data-lock
                   class="social-icons__item">
                   <FacebookIcon class="icon icon--white"/>
                 </a>
@@ -122,13 +115,11 @@
               </a>
               <g-link
                 to="/wish-list"
-                class="icon wishlist"
-                data-lock>
+                class="icon wishlist">
                 <HeartIcon class="icon icon--white"/>
               </g-link>
               <a
                 href=""
-                data-lock
                 class="icon cart cart--white"
                 :data-products-count="[orderData.length === 0 ? null : orderData.length]"
                 @click.prevent="toggleCart">

@@ -1,7 +1,9 @@
 <template>
   <transition name="slide-right">
     <div class="cart__popup" v-click-outside="manageCart"  v-show="cartIsOpen">
-      <button class="icon cross" data-lock @click="closeCart"/>
+      <button
+        class="icon cross"
+        @click="closeCart"/>
       <h2>Корзина</h2>
       <div class="products">
         <div v-for="product in orderData" :key="product.id" class="product">
@@ -26,7 +28,6 @@
             <div class="product__summary">ИТОГО: {{product.price * (product.quantity || 1)}}, 00 грн</div>
             <button
               class="product__cta cta small"
-              data-lock
               @click="removeFromOrderData(product.id)">
               Убрать из корзины
             </button>
