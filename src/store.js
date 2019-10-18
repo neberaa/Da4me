@@ -47,17 +47,14 @@ const store = new Vuex.Store({
         state[name] = JSON.parse(json);
       }
     },
-    setOrderData(state, data) {
-      state.orderData = data;
-    },
     addOrderData(state, product) {
       state.orderData.push(product);
       localStorage.setItem('orderData', JSON.stringify(state.orderData));
       console.log(state.orderData);
     },
     updateOrderData(state, product) {
-      state.orderData = state.orderData.filter(p => p.id !== product.id);
-      state.orderData.push(product);
+      const prodInd = state.orderData.findIndex(p => p.id === product.id);
+      state.orderData[prodInd] = product;
       localStorage.setItem('orderData', JSON.stringify(state.orderData));
       console.log('update', state.orderData);
     },
