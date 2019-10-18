@@ -50,13 +50,11 @@ const store = new Vuex.Store({
     addOrderData(state, product) {
       state.orderData.push(product);
       localStorage.setItem('orderData', JSON.stringify(state.orderData));
-      console.log(state.orderData);
     },
     updateOrderData(state, product) {
       const prodInd = state.orderData.findIndex(p => p.id === product.id);
       state.orderData[prodInd] = product;
       localStorage.setItem('orderData', JSON.stringify(state.orderData));
-      console.log('update', state.orderData);
     },
     removeFromOrderData(state, id) {
       state.orderData.splice(state.orderData.indexOf(id), 1);
