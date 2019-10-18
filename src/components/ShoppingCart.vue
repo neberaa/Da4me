@@ -12,7 +12,7 @@
               :to="product.path"
               class="product__image">
               <ResponsiveImage
-                :url="product.image"
+                :url="product.imageGallery.length > 0 ? product.imageGallery[0] : product.image"
                 :alt="product.title"
                 :settings-mobile="'w_400,h_800,c_fit'"
                 :settings-tablet="'w_300,h_600,c_fit'"
