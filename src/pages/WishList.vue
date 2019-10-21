@@ -11,7 +11,8 @@
             :to="product.node.path"
             class="product__image">
             <ResponsiveImage
-              :url="product.node.image"
+              :url="product.node.imageGallery && product.node.imageGallery.length > 0 ?
+                  product.node.imageGallery[0] : product.node.image"
               :alt="product.node.title"
               :settings-mobile="'w_400,h_800,c_fit'"
               :settings-tablet="'w_300,h_600,c_fit'"
@@ -57,6 +58,7 @@
           path
           price
           article
+          imageGallery
         }
       }
     }
@@ -90,17 +92,14 @@
         'loadJSON',
         'addOrderData',
         'showSnackBar',
-        'setSnackBarText',
       ]),
       addToCart(product) {
         this.addOrderData(product);
-        this.setSnackBarText('Товар удален из списка желаний!');
-        this.showSnackBar();
+        this.showSnackBar('Товар удален из списка желаний!');
       },
       removeFromList(id) {
         this.removeFromWishList(id);
-        this.setSnackBarText('Товар удален из списка желаний!');
-        this.showSnackBar();
+        this.showSnackBar('Товар удален из списка желаний!');
       }
     },
     beforeMount() {

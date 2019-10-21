@@ -282,18 +282,15 @@ export default {
       'updateOrderData',
       'addOrderData',
       'loadJSON',
-      'setSnackBarText',
       'showSnackBar',
     ]),
     toggleWishList(id) {
       if (this.isAddedToWishList(id)) {
         this.removeFromWishList(id);
-        this.setSnackBarText('Товар удален из списка желаний!');
-        this.showSnackBar();
+        this.showSnackBar('Товар удален из списка желаний!');
       } else {
         this.addToWishList(id);
-        this.setSnackBarText('Товар успешно добавлен в список желаний!');
-        this.showSnackBar();
+        this.showSnackBar('Товар успешно добавлен в список желаний!');
       }
     },
     setProductColors() {
@@ -363,15 +360,13 @@ export default {
     addToCart() {
       if (!this.isAddedToOrder(this.$page.product.id)) {
         this.addOrderData(this.$page.product);
-        this.setSnackBarText('Товар успешно добавлен в корзину!');
-        this.showSnackBar();
+        this.showSnackBar('Товар успешно добавлен в корзину!');
       }
     },
     updateData() {
       if (this.isAddedToOrder(this.$page.product.id)) {
         this.updateOrderData(this.$page.product);
-        this.setSnackBarText('Заказ обновлен!');
-        this.showSnackBar();
+        this.showSnackBar('Заказ обновлен!');
       }
     },
     setDefaults() {

@@ -71,7 +71,6 @@
         'closeCart',
         'loadJSON',
         'removeFromOrderData',
-        'setSnackBarText',
         'showSnackBar',
       ]),
       manageCart(e) {
@@ -88,8 +87,7 @@
       },
       removeFromOrder(id) {
         this.removeFromOrderData(id);
-        this.setSnackBarText('Товар удален из корзины!');
-        this.showSnackBar();
+        this.showSnackBar('Товар удален из корзины!');
       }
     },
     beforeMount() {
