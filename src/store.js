@@ -57,7 +57,7 @@ const store = new Vuex.Store({
       localStorage.setItem('orderData', JSON.stringify(state.orderData));
     },
     removeFromOrderData(state, id) {
-      state.orderData.splice(state.orderData.indexOf(id), 1);
+      state.orderData = state.orderData.filter(d => d.id !== id);
       localStorage.setItem('orderData', JSON.stringify(state.orderData));
     }
   },
