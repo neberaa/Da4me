@@ -95,7 +95,7 @@
       ]),
       addToCart(product) {
         this.addOrderData(product);
-        this.showSnackBar('Товар удален из списка желаний!');
+        this.showSnackBar('Товар успешно добавлен в корзину!');
       },
       removeFromList(id) {
         this.removeFromWishList(id);
