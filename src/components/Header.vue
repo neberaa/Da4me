@@ -225,7 +225,6 @@ export default {
           document.body.classList.add('scroll-lock');
         }, 0);
       } else {
-        console.log('enable body scroll');
         enableBodyScroll(navContainer);
         setTimeout(() => {
           document.body.classList.remove('scroll-lock');

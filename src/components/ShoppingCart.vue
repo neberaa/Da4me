@@ -12,7 +12,8 @@
               :to="product.path"
               class="product__image">
               <ResponsiveImage
-                :url="product.imageGallery.length > 0 ? product.imageGallery[0] : product.image"
+                :url="product.imageGallery && product.imageGallery.length > 0 ?
+                  product.imageGallery[0] : product.image"
                 :alt="product.title"
                 :settings-mobile="'w_400,h_800,c_fit'"
                 :settings-tablet="'w_300,h_600,c_fit'"
@@ -28,7 +29,7 @@
             <div class="product__summary">ИТОГО: {{product.price * (product.quantity || 1)}}, 00 грн</div>
             <button
               class="product__cta cta small"
-              @click="removeFromOrderData(product.id)">
+              @click="removeFromOrder(product.id)">
               Убрать из корзины
             </button>
           </div>
@@ -70,6 +71,8 @@
         'closeCart',
         'loadJSON',
         'removeFromOrderData',
+        'setSnackBarText',
+        'showSnackBar',
       ]),
       manageCart(e) {
         if (this.cartIsOpen) {
@@ -83,6 +86,11 @@
       totalAmount(price, q) {
         return parseInt(price) * q;
       },
+      removeFromOrder(id) {
+        this.removeFromOrderData(id);
+        this.setSnackBarText('Товар удален из корзины!');
+        this.showSnackBar();
+      }
     },
     beforeMount() {
       this.loadJSON('orderData');

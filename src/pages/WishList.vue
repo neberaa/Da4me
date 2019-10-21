@@ -26,14 +26,14 @@
             <div class="buttons">
               <button
                 class="buttons__item cta"
-                @click="removeFromWishList">
+                @click="removeFromList(product.node.id)">
                 Убрать из списка
               </button>
               <transition name="fade400">
                 <button
                   v-show="!isAddedToOrder(product.node.id)"
                   class="buttons__item cta blue"
-                  @click="addOrderData(product.node)">
+                  @click="addToCart(product.node)">
                   Добавить в корзину
                 </button>
               </transition>
@@ -88,8 +88,20 @@
       ...mapMutations([
         'removeFromWishList',
         'loadJSON',
-        'addOrderData'
+        'addOrderData',
+        'showSnackBar',
+        'setSnackBarText',
       ]),
+      addToCart(product) {
+        this.addOrderData(product);
+        this.setSnackBarText('Товар удален из списка желаний!');
+        this.showSnackBar();
+      },
+      removeFromList(id) {
+        this.removeFromWishList(id);
+        this.setSnackBarText('Товар удален из списка желаний!');
+        this.showSnackBar();
+      }
     },
     beforeMount() {
       this.loadJSON('wishList');

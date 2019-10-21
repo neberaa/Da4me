@@ -1,33 +1,57 @@
 <template>
-  <transition name="slide-fade">
-    <div class="snackbar-container">
-      <div class="snackbar">
-        <div class="snackbar__content" v-text="text"/>
-      </div>
-    </div>
-  </transition>
+  <div class="snackbar" :class="{active: snackBarIsShown}">
+    <div class="snackbar__content" v-text="snackBarText"/>
+  </div>
 </template>
 
 <script>
-export default {
-  props: {
-    text: {
-      required: false,
-      type: String,
-      default: 'Добавлен успешно'
-    },
-  },
-  data() {
+import { mapState, mapMutations } from 'vuex';
 
+export default {
+  watch: {
+    snackBarIsShown(isShown) {
+      if (isShown) {
+        setTimeout(() => {
+          this.hideSnackBar();
+        }, 1000);
+      }
+    }
+  },
+  computed: {
+    ...mapState([
+      'snackBarIsShown',
+      'snackBarText',
+    ])
   },
   methods: {
-
+    ...mapMutations([
+      'hideSnackBar'
+    ])
   }
 }
 </script>
 
 <style lang="scss" scoped>
-  .snackbar-container {
-
+  .snackbar {
+    @include center('x');
+    position: fixed;
+    bottom: 0;
+    background: rgba($gray, 0.7);
+    padding: 15px;
+    opacity: 0;
+    transition: all 400ms ease;
+    color: $white;
+    font-size: 1rem;
+    width: fit-content;
+    @include screenBreakpoint2(desktop) {
+      font-size: 1.2rem;
+    }
+    &__content {
+      text-align: center;
+    }
+    &.active {
+      bottom: 2rem;
+      opacity: 1;
+    }
   }
 </style>

@@ -11,6 +11,8 @@ const store = new Vuex.Store({
     menuIsOpen: false,
     cart: [],
     orderData: [],
+    snackBarIsShown: false,
+    snackBarText: 'Успешно',
   },
   mutations: {
     toggleMenu(state) {
@@ -59,6 +61,15 @@ const store = new Vuex.Store({
     removeFromOrderData(state, id) {
       state.orderData = state.orderData.filter(d => d.id !== id);
       localStorage.setItem('orderData', JSON.stringify(state.orderData));
+    },
+    showSnackBar(state) {
+      state.snackBarIsShown = true;
+    },
+    hideSnackBar(state) {
+      state.snackBarIsShown = false;
+    },
+    setSnackBarText(state, text) {
+      state.snackBarText = text && text.length > 0 ? text : 'Успешно';
     }
   },
   getters: {

@@ -6,6 +6,7 @@
           <slot/>
         </main>
       </transition>
+    <snack-bar/>
     <Footer />
   </div>
 </template>
@@ -13,9 +14,11 @@
 <script>
 import Header from "@/components/Header"
 import Footer from "@/components/Footer"
+import SnackBar from "@/components/SnackBar"
 
 export default {
   components: {
+    SnackBar,
     Header,
     Footer
   },
