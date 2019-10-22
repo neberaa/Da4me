@@ -302,7 +302,7 @@ export default {
         const item = {
           colorId: `${this.$page.product.id}-color-${i}`,
           color: this.$page.product.colors[`color${i}`] || null,
-          colorTitle: p.node.colors[`titleColor${i}`] || null,
+          colorTitle: this.$page.product.colors[`titleColor${i}`] || null,
           gallery: this.$page.product.colors[`imagesColor${i}`] || null,
         };
         if (item.color !== null) {
