@@ -39,10 +39,10 @@
                 <th>Общая сумма</th>
               </tr>
               <tr class="order__item" v-for="item in orderData">
-                <td v-text="item.node.title"/>
-                <td v-text="item.node.price"/>
-                <td v-text="item.node.quantity || 1"/>
-                <td v-text="parseInt(item.node.price * (item.node.quantity || 1))"/>
+                <td v-text="item.title"/>
+                <td v-text="item.price"/>
+                <td v-text="item.quantity || 1"/>
+                <td v-text="parseInt(item.price * (item.quantity || 1))"/>
               </tr>
               <tr>
                 <td colspan="4">Сумма к оплате: {{totalAmount}}, 00 грн</td>
@@ -93,7 +93,7 @@
       totalAmount() {
         let total = 0;
         this.orderData.forEach(p => {
-          const productTotal = parseInt(p.node.price) * parseInt(p.node.quantity || 1);
+          const productTotal = parseInt(p.price) * parseInt(p.quantity || 1);
           total += productTotal;
         });
         return total;
@@ -102,6 +102,7 @@
     methods: {
       ...mapMutations([
         'clearCart',
+        'loadJSON',
       ]),
       encode (data) {
         return Object.keys(data)
@@ -110,7 +111,7 @@
       },
       prepareFormData() {
         this.formData.order = [];
-        this.orderData.map(d => d.node).forEach(d => {
+        this.orderData.forEach(d => {
           let orderItem = {};
             if (!d.hasOwnProperty('quantity')) {
               orderItem['Кол-во'] = 1;
@@ -119,8 +120,15 @@
             }
             orderItem['Название'] = d.title;
             orderItem['Цена'] = d.price;
-            orderItem['Артикул'] = d.article;
+            orderItem['Артикул'] = d.artikul;
+            if (d.hasOwnProperty('activeColor')) {
+              orderItem['Цвет'] = d.colors.filter(c => c.colorId === d.activeColor).map(c => c.color)[0];
+            }
+          if (d.hasOwnProperty('selectedSize')) {
+            orderItem['Размер'] = d.selectedSize;
+          }
             orderItem['Итого'] = orderItem['Кол-во'] * parseInt(orderItem['Цена']);
+          console.log('order item', orderItem);
             this.formData.order.push(orderItem);
         });
       },
@@ -152,7 +160,8 @@
       }
     },
     mounted() {
-      console.log('this.orderdata', this.formSubmitted);
+      this.loadJSON('orderData');
+      console.log('this.orderdata', this.orderData);
     }
   }
 </script>
