@@ -76,8 +76,8 @@
       manageCart(e) {
         if (this.cartIsOpen) {
           const cartIcon = e.target.className.baseVal ? true: e.target.className.indexOf('cart') >= 0;
-          const crossIcon = e.target.className.baseVal ? true : e.target.className.indexOf('cross') >= 0;
-          if (!cartIcon && !crossIcon) {
+          const cta = e.target.className.baseVal ? true : e.target.className.indexOf('cta') >= 0;
+          if (!cartIcon && !cta) {
             this.closeCart();
           }
         }

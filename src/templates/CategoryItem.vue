@@ -43,8 +43,7 @@
               <div class="image-container">
                 <g-link :to="product.node.path">
                   <ResponsiveImage
-                    :url="product.node.imageGallery && product.node.imageGallery.length > 0 ?
-                      product.node.imageGallery[0] : product.node.image"
+                    :url="product.node.image"
                     :alt="product.node.title"
                     :settings-mobile="'w_400,h_800,c_fit'"
                     :settings-tablet="'w_0.5,h_0.5,c_fit'"/>
