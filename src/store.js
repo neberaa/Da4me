@@ -9,7 +9,6 @@ const store = new Vuex.Store({
     wishList: [],
     cartIsOpen: false,
     menuIsOpen: false,
-    cart: [],
     orderData: [],
     snackBarIsShown: false,
     snackBarText: 'Успешно',
@@ -40,8 +39,8 @@ const store = new Vuex.Store({
       }
     },
     clearCart(state) {
-      state.cart = [];
-      localStorage.setItem('cart', JSON.stringify(state.cart));
+      state.orderData = [];
+      localStorage.setItem('orderData', JSON.stringify(state.orderData));
     },
     loadJSON(state, name) {
       const json = localStorage.getItem(name);
