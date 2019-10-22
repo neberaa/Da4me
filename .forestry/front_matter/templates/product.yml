@@ -69,6 +69,12 @@ fields:
   type: field_group
   config: {}
   fields:
+  - name: title_color1
+    type: text
+    config:
+      required: false
+    label: Название цвета1
+    description: Введите название для цвета1
   - name: color1
     type: color
     config:
@@ -81,6 +87,12 @@ fields:
     config: {}
     label: Картинки для изделий с цветом 1
     description: 'Выбрать картинки для продукта с другим цветом '
+  - name: title_color2
+    type: text
+    config:
+      required: false
+    label: Название цвета2
+    description: Введите название для цвета2
   - name: color2
     type: color
     config:
@@ -93,6 +105,12 @@ fields:
     config: {}
     label: Картинки для изделия с цветом 2
     description: Выберите картинки для изделия с цветом №2
+  - name: title_color3
+    type: text
+    config:
+      required: false
+    label: Название цвета3
+    description: Введите название для цвета3
   - name: color3
     type: color
     label: Цвет3
@@ -126,11 +144,11 @@ fields:
     Если доступны все размеры оставьте поле пустым
 pages:
 - products/Family look/сарафаны-для-мамы-и-малышки.md
-- products/Платья/платье-летнее.md
-- products/Kids/комбинезон.md
-- products/Kids/футболка.md
 - products/Платья/платье-в-пол.md
-- products/Юбки/юбка-летняя.md
-- products/Юбки/юбка-в-пол.md
-- products/Сарафаны/сарафан-бомба.md
 - products/Сарафаны/сарафан-бархат.md
+- products/Сарафаны/сарафан-бомба.md
+- products/Kids/комбинезон.md
+- products/Платья/платье-летнее.md
+- products/Юбки/юбка-в-пол.md
+- products/Юбки/юбка-летняя.md
+- products/Kids/футболка.md
