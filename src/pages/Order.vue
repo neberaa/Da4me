@@ -151,6 +151,11 @@
           .then(() => {
             this.formSubmitted = true;
             this.clearCart();
+            window.scroll({
+              top: 0,
+              left: 0,
+              behavior: 'smooth'
+            });
           })
           .catch(error => {
             console.log(error);
