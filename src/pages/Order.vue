@@ -122,7 +122,7 @@
             orderItem['Цена'] = d.price;
             orderItem['Артикул'] = d.artikul;
             if (d.hasOwnProperty('activeColor')) {
-              orderItem['Цвет'] = d.colors.filter(c => c.colorId === d.activeColor).map(c => c.color)[0];
+              orderItem['Цвет'] = d.colors.filter(c => c.colorId === d.activeColor).map(c => c.colorTitle)[0];
             }
           if (d.hasOwnProperty('selectedSize')) {
             orderItem['Размер'] = d.selectedSize;

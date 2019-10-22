@@ -207,6 +207,7 @@ export default {
             prodId: p.node.id,
             colorId: `${p.node.id}-color-${i}`,
             color: p.node.colors[`color${i}`] || null,
+            colorTitle: p.node.colors[`titleColor${i}`] || null,
             imageUrl: p.node.colors[`imagesColor${i}`][0] || null
           };
 

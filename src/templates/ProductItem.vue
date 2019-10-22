@@ -175,10 +175,13 @@ query ProductItem ($path: String!) {
     size
     path
     colors {
+      titleColor1
       color1
       imagesColor1
+      titleColor2
       color2
       imagesColor2
+      titleColor3
       color3
       imagesColor3
     }
@@ -299,6 +302,7 @@ export default {
         const item = {
           colorId: `${this.$page.product.id}-color-${i}`,
           color: this.$page.product.colors[`color${i}`] || null,
+          colorTitle: p.node.colors[`titleColor${i}`] || null,
           gallery: this.$page.product.colors[`imagesColor${i}`] || null,
         };
         if (item.color !== null) {
