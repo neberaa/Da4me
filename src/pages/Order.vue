@@ -161,7 +161,6 @@
     },
     mounted() {
       this.loadJSON('orderData');
-      console.log('this.orderdata', this.orderData);
     }
   }
 </script>
