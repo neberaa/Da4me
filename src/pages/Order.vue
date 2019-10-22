@@ -128,7 +128,6 @@
             orderItem['Размер'] = d.selectedSize;
           }
             orderItem['Итого'] = orderItem['Кол-во'] * parseInt(orderItem['Цена']);
-          console.log('order item', orderItem);
             this.formData.order.push(orderItem);
         });
       },
