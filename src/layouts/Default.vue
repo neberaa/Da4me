@@ -126,12 +126,18 @@ button {
   &.blue {
     border-color: $blue;
   }
+  &.red {
+    border-color: $red;
+  }
   &.outline {
     border:none;
     outline: 1px solid $gray;
     outline-offset: -4px;
     &.blue {
       outline: 1px solid $blue;
+    }
+    &.red {
+      outline: 1px solid $red;
     }
   }
   &.thin {
