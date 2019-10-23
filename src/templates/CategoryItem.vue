@@ -133,6 +133,11 @@ query CategoryItem ($path: String!) {
   import SignIcon from '../assets/icons/sign.svg';
 export default {
   inject: ['resp'],
+  metaInfo () {
+    return {
+      title: this.$page.category.header
+    }
+  },
   components: {
     SignIcon,
   },

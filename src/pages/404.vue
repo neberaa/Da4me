@@ -15,7 +15,13 @@
 </template>
 
 <script>
-export default {}
+export default {
+  metaInfo () {
+    return {
+      title: 'Ошибка'
+    }
+  },
+}
 </script>
 
 <style lang="scss" scoped>

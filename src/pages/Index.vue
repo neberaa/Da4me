@@ -85,6 +85,11 @@ export default {
         .then(m => m.Slide)
         .catch(),
   },
+  metaInfo () {
+    return {
+      title: 'Главная'
+    }
+  },
   data() {
     return {
       settings: require("../../data/theme.json"),

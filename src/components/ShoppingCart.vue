@@ -4,9 +4,12 @@
       <button
         class="icon cross"
         @click="closeCart"/>
-      <h2>Корзина</h2>
+      <h2 class="cart-title">Корзина</h2>
       <div class="products">
-        <div v-for="product in orderData" :key="product.id" class="product">
+        <div
+          v-for="product in orderData"
+          :key="product.id"
+          class="product">
           <div class="column column--left">
             <g-link
               :to="product.path"
@@ -27,11 +30,27 @@
           </div>
           <div class="column column--right">
             <h5 class="product__title" v-text="product.title"/>
-            <span class="product__article" v-text="product.artikul"/>
-            <p class="product__price">Цена: {{product.price}}, 00 грн</p>
-            <p class="product__size" v-show="product.selectedSize">Размер: {{product.selectedSize}}</p>
-            <p class="product__quantity">Кол-во: {{product.quantity || 1}}</p>
-            <div class="product__summary">ИТОГО: {{product.price * (product.quantity || 1)}}, 00 грн</div>
+            <p
+              class="product__price">
+              <span>Цена: </span>
+              {{product.price}}, 00 грн
+            </p>
+            <p
+              class="product__size"
+              v-show="product.selectedSize">
+              <span>Размер: </span>
+              {{product.selectedSize}}
+            </p>
+            <p
+              class="product__quantity">
+              <span>Кол-во: </span>
+              {{product.quantity || 1}} шт
+            </p>
+            <div
+              class="product__summary">
+              <span>Сумма: </span>
+              {{product.price * (product.quantity || 1)}}, 00 грн
+            </div>
             <button
               class="product__cta cta small"
               @click="removeFromOrder(product.id)">
@@ -40,9 +59,22 @@
           </div>
         </div>
       </div>
-      <p v-show="orderData.length > 0">Общая сумма заказа: {{totalOrderAmount}}, 00 грн</p>
-      <g-link class="cta cart-order blue" :to="{ name: 'order' }" v-show="orderData.length > 0 && $route.name !== 'order'">Оформить заказ</g-link>
-      <p v-show="orderData.length === 0" class="empty-text">Ваша корзина пуста...</p>
+      <p
+        class="summary"
+        v-show="orderData.length > 0">
+        Сумма заказа: {{totalOrderAmount}}, 00 грн
+      </p>
+      <g-link
+        class="cta cart-order blue"
+        :to="{ name: 'order' }"
+        v-show="orderData.length > 0 && $route.name !== 'order'">
+        Оформить заказ
+      </g-link>
+      <p
+        v-show="orderData.length === 0"
+        class="empty-text">
+        Ваша корзина пуста...
+      </p>
     </div>
   </transition>
 </template>
@@ -69,6 +101,13 @@
           total += productTotal;
         });
         return total;
+      }
+    },
+    watch: {
+      $route() {
+        if (this.cartIsOpen) {
+          this.closeCart();
+        }
       }
     },
     methods: {
@@ -121,9 +160,17 @@
     .icon.cross {
       width: 30px;
       height: 30px;
+      position: absolute;
+      top: 40px;
       &::before, &::after {
         height: 30px;
       }
+    }
+    .cart-title {
+      border-bottom: 1px solid $light-gray;
+      padding-left: 4rem;
+      margin-top: 0;
+      padding-bottom: 1rem;
     }
 
     .product {
@@ -140,8 +187,8 @@
       }
 
       &__image {
-        width: 180px;
-        height: 250px;
+        width: 130px;
+        height: 200px;
         display: block;
         position: relative;
         @include screenBreakpoint2(phone) {
@@ -176,22 +223,49 @@
         flex-direction: column;
         margin: 0;
         align-items: flex-start;
+        p, div {
+          margin-bottom: 0;
+          font-size: 0.8rem;
+        }
         p, .product__summary {
           margin: 0.4rem 0;
         }
         @include screenBreakpoint2(desktop) {
           margin-left: 1rem;
         }
+        p span,
+        div span {
+          font-weight: bold;
+        }
       }
       &__title {
         margin: 0;
       }
+      &__size {
+        text-transform: uppercase;
+        span {
+          text-transform: none;
+        }
+      }
       &__cta {
+        margin-top: 0.4rem;
         @include screenBreakpoint2(desktop) {
           position: absolute;
           bottom: 0;
         }
+        @include screenBreakpoint2(phone) {
+          width: 100%;
+        }
       }
+    }
+    .summary {
+      border-top: 1px solid $light-gray;
+      padding-top: 2rem;
+      text-transform: uppercase;
+      font-weight: bold;
+    }
+    .cart-order {
+      display: block;
     }
   }
 </style>

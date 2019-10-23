@@ -4,6 +4,7 @@
       <template v-if="!formSubmitted">
         <h1>Оформление заказа</h1>
         <form
+          class="order-form"
           name="order"
           method="post"
           @submit.prevent="handleSubmit"
@@ -16,6 +17,7 @@
             </label>
           </p>
           <div class="sender-info">
+            <h4>Контактные данные:</h4>
             <div>
               <label for="order-name" class="label" >Введите свое имя</label>
               <input type="text" id="order-name" name="name" v-model="formData.name" placeholder="Имя" />
@@ -30,7 +32,7 @@
             </div>
           </div>
           <div class="order-preview">
-            <h4>Заказ:</h4>
+            <h4>Ваш заказ:</h4>
             <table>
               <tr class="header">
                 <th>Наименование</th>
@@ -80,6 +82,11 @@
   import { mapState, mapMutations } from 'vuex';
   export default {
     name: "Order",
+    metaInfo () {
+      return {
+        title: 'Оформление заказа'
+      }
+    },
     data() {
       return {
         formData: {},
@@ -170,10 +177,35 @@
 </script>
 
 <style lang="scss" scoped>
-  table {
-    margin-bottom: 2rem;
-    th {
-      border-bottom: 1px solid $red;
+  .order-form {
+    display: flex;
+    @include screenBreakpoint2(phone) {
+      flex-direction: column;
+    }
+    h4 {
+      margin-bottom: 0.4rem;
+    }
+    .sender-info {
+      flex: 0 0 50%;
+      @include screenBreakpoint2(phone) {
+        flex-basis: 100%;
+      }
+      input {
+        width: 100%;
+        max-width: 350px;
+        margin-bottom: 1rem;
+        @include screenBreakpoint2(phone) {
+          max-width: 100%;
+        }
+      }
+    }
+    .order-preview {
+      table {
+        margin-bottom: 2rem;
+        th {
+          border-bottom: 1px solid $red;
+        }
+      }
     }
   }
 </style>

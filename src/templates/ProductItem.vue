@@ -534,10 +534,14 @@ export default {
         flex-basis: 100%;
       }
       .title {
-        margin-top: 1.2rem;
+        margin: 1.2rem 0;
       }
       p.title {
         margin-bottom: 0.4rem;
+      }
+      .art {
+        border: 1px solid $light-gray;
+        padding: 5px 10px;
       }
       .price {
         display: flex;
@@ -601,8 +605,8 @@ export default {
         }
         .size {
           border: 1px solid $gray;
-          padding: 5px 20px;
-          border-radius: 20px;
+          padding: 8px 23px;
+          border-radius: 23px;
           text-transform: uppercase;
           margin-top: 0;
           &:not(:last-of-type) {
@@ -616,6 +620,7 @@ export default {
           font-size: 0.8rem;
           text-decoration: underline dotted;
           display: flex;
+          margin-top: 0.4rem;
         }
         .size-chart {
           position: fixed;
@@ -672,12 +677,13 @@ export default {
           -moz-appearance:textfield; /* Firefox */
         }
         input {
-          width: 70px;
+          width: 90px;
           font-weight: bold;
-          padding: 5px 20px;
+          padding: 5px 30px;
           border: 1px solid $gray;
           border-radius: 20px;
           text-align: center;
+          height: 40px;
         }
         span {
           cursor: pointer;

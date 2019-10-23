@@ -123,11 +123,24 @@ button {
   font-weight: bold;
   border: 1px solid $gray;
   text-align: center;
+  transition: all 300ms ease;
+  &:hover {
+    background: $gray;
+    color: $white;
+  }
   &.blue {
     border-color: $blue;
+    &:hover {
+      background: $blue;
+      color: $white;
+    }
   }
   &.red {
     border-color: $red;
+    &:hover {
+      background: $red;
+      color: $white;
+    }
   }
   &.outline {
     border:none;
@@ -135,6 +148,9 @@ button {
     outline-offset: -4px;
     &.blue {
       outline: 1px solid $blue;
+      &:hover {
+        outline-color: $white;
+      }
     }
     &.red {
       outline: 1px solid $red;
@@ -151,6 +167,11 @@ button {
     cursor: not-allowed;
     border: 1px solid $light-gray;
     color: $light-gray;
+    &:hover {
+      border: 1px solid $light-gray;
+      color: $light-gray;
+      background: $white;
+    }
   }
   &.small {
     font-size: 0.8rem;
@@ -158,7 +179,7 @@ button {
   }
 }
 input {
-  height: 35px;
+  height: 45px;
   border: 1px solid rgba($gray, 0.3);
   transition: all 300ms ease;
   font-family: 'Didact Gothic';
@@ -203,8 +224,7 @@ main.page-content {
 
 .label {
   display: block;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.4rem;
 }
 
 .icon {

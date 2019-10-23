@@ -71,6 +71,11 @@
   import SignIcon from '../assets/icons/sign.svg';
   export default {
     name: "WishList",
+    metaInfo () {
+      return {
+        title: 'Список желаний'
+      }
+    },
     components: {
       HeartIcon,
       SignIcon,
