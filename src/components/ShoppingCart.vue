@@ -11,6 +11,11 @@
             <g-link
               :to="product.path"
               class="product__image">
+              <div
+                class="sale-chip"
+                v-show="product.oldPrice && product.oldPrice > 0">
+                Sale
+              </div>
               <ResponsiveImage
                 :url="product.imageGallery && product.imageGallery.length > 0 ?
                   product.imageGallery[0] : product.image"
@@ -148,6 +153,21 @@
           width: 100%;
           height: 350px;
           margin-bottom: 0.4rem;
+        }
+        .sale-chip {
+          position: absolute;
+          top: 10px;
+          left: 10px;
+          background: $coral;
+          color: $white;
+          text-transform: uppercase;
+          font-size: 0.8rem;
+          padding: 5px;
+          z-index: 1;
+          @include screenBreakpoint2(phone) {
+            top: 15px;
+            left: 15px;
+          }
         }
       }
 

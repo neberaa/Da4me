@@ -18,6 +18,11 @@
                 class="icon"
                 :class="{'icon--coral': isAddedToWishList($page.product.id)}"/>
             </a>
+            <div
+              class="sale-chip"
+              v-show="$page.product.oldPrice && $page.product.oldPrice > 0">
+              Sale
+            </div>
             <ResponsiveImage
               :url="$page.product.image"
               :alt="$page.product.title"
@@ -450,6 +455,23 @@ export default {
       @include screenBreakpoint2(phone) {
         margin: 1.2rem auto;
         padding-bottom: 150%;
+      }
+      .sale-chip {
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        background: $coral;
+        color: $white;
+        text-transform: uppercase;
+        font-size: 0.8rem;
+        padding: 5px;
+        z-index: 1;
+        @include screenBreakpoint2(desktop) {
+          top: 20px;
+          left: 20px;
+          font-size: 1rem;
+          padding: 5px 10px;
+        }
       }
     }
     .gallery {

@@ -48,6 +48,11 @@
                     :settings-mobile="'w_400,h_800,c_fit'"
                     :settings-tablet="'w_0.5,h_0.5,c_fit'"/>
                 </g-link>
+                <div
+                  class="sale-chip"
+                  v-show="product.node.oldPrice && product.node.oldPrice > 0">
+                  Sale
+                </div>
               </div>
               <p v-text="product.node.title"/>
               <p class="description" v-text="product.node.description"/>
@@ -66,7 +71,7 @@
                 <div class="price__value">
                   <span
                     class="old"
-                    v-show="product.node.oldPrice">
+                    v-show="product.node.oldPrice && product.node.oldPrice > 0">
                     {{ product.node.oldPrice }}, 00
                   </span>
                   <span>{{ product.node.price }}, 00</span>
@@ -404,6 +409,16 @@ export default {
           }
           @include screenBreakpoint2(desktop) {
             flex: 0 0;
+          }
+          .sale-chip {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: $coral;
+            color: $white;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            padding: 5px;
           }
         }
         p {
