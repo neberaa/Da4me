@@ -193,6 +193,17 @@ input {
     outline: none;
   }
 }
+textarea {
+  resize: none;
+  border: 1px solid rgba($gray, 0.3);
+  font-family: 'Didact Gothic';
+  font-size: 1rem;
+  padding: 10px;
+  &:focus {
+    border: 1px solid rgba($blue, 0.5);
+    outline: none;
+  }
+}
 
 .layout {
   padding: 0;

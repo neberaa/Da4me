@@ -16,8 +16,8 @@ function addStyleResource (rule) {
 module.exports = {
   siteName: "Fashion e-store",
   siteUrl: `https://da4me.netlify.com`,
-  titleTemplate: "Da4Me | %s",
-  siteDescription: "Creative and modern clothes fashion store",
+  titleTemplate: "%s | Da4Me",
+  siteDescription: "Интернет-магазин дизайнерской женской одежды",
   plugins: [
     {
       use: "@gridsome/source-filesystem",

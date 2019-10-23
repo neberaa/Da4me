@@ -30,25 +30,41 @@
               <label for="order-email" class="label">Введите свой email</label>
               <input type="email" required id="order-email" name="email" v-model="formData.email" placeholder="Электронная почта"/>
             </div>
+            <div>
+              <label for="order-description" class="label">Примечание к заказу</label>
+              <textarea name="description" id="order-description" rows="6" placeholder="Особые пожелания, способ доставки, другая дополнительная информация" v-model="formData.description"></textarea>
+            </div>
           </div>
           <div class="order-preview">
             <h4>Ваш заказ:</h4>
             <table>
-              <tr class="header">
-                <th>Наименование</th>
-                <th>Цена</th>
-                <th>Кол-во</th>
-                <th>Общая сумма</th>
+              <thead>
+              <tr>
+                <th>Товар</th>
+                <th></th>
+                <th>Всего</th>
               </tr>
-              <tr class="order__item" v-for="item in orderData">
-                <td v-text="item.title"/>
-                <td v-text="item.price"/>
-                <td v-text="item.quantity || 1"/>
-                <td v-text="parseInt(item.price * (item.quantity || 1))"/>
-              </tr>
+              </thead>
+              <tbody>
+                <tr class="order__item" v-for="item in orderData">
+                  <td class="image">
+                    <ResponsiveImage
+                      :url="item.imageGallery && item.imageGallery.length > 0 ?
+                        item.imageGallery[0] : item.image"
+                      :alt="item.title"
+                      :settings-mobile="'w_400,h_800,c_fit'"
+                      :settings-tablet="'w_300,h_600,c_fit'"
+                      :settings-desktop="'w_300,h_600,c_fit'"/>
+                  </td>
+                  <td class="info">{{item.title}} x {{item.quantity || 1}} шт</td>
+                  <td class="total">{{ parseInt(item.price * (item.quantity || 1)) }} грн</td>
+                </tr>
+              </tbody>
+              <tfoot>
               <tr>
                 <td colspan="4">Сумма к оплате: {{totalAmount}}, 00 грн</td>
               </tr>
+              </tfoot>
             </table>
           </div>
           <button type="submit" class="cta">Заказать</button>
@@ -151,6 +167,7 @@
               "name": this.formData.name,
               "email": this.formData.email,
               "phone": this.formData.phone,
+              "description": this.formData.description,
               "order": JSON.stringify(this.formData.order),
             }),
             axiosConfig
@@ -179,6 +196,8 @@
 <style lang="scss" scoped>
   .order-form {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     @include screenBreakpoint2(phone) {
       flex-direction: column;
     }
@@ -190,7 +209,8 @@
       @include screenBreakpoint2(phone) {
         flex-basis: 100%;
       }
-      input {
+      input,
+      textarea{
         width: 100%;
         max-width: 350px;
         margin-bottom: 1rem;
@@ -200,11 +220,54 @@
       }
     }
     .order-preview {
+      flex: 0 0 50%;
+      table, th, td {
+        padding: 0.4rem;
+        border: 1px solid rgba($gray, 0.3);
+      }
       table {
-        margin-bottom: 2rem;
-        th {
-          border-bottom: 1px solid $red;
+        border-spacing: 0;
+        border-collapse: collapse;
+        thead {
+          text-align: left;
+          font-size: 1rem;
+          font-weight: bold;
+          tr {
+            height: 45px;
+          }
         }
+        .order__item {
+          .image {
+            picture {
+              position: relative;
+              width: 60px;
+              height: 80px;
+              overflow: hidden;
+              display: block;
+            }
+          }
+          .total {
+            white-space: nowrap;
+          }
+          td {
+            padding: 0.4rem;
+            font-size: 1rem;
+          }
+        }
+        tfoot {
+          tr {
+            height: 45px;
+            font-size: 1rem;
+            font-weight: bold;
+          }
+        }
+      }
+    }
+    .cta {
+      width: 100%;
+      margin-top: 1rem;
+      @include screenBreakpoint2(desktop) {
+        width: 200px;
       }
     }
   }
