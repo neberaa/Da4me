@@ -1,0 +1,32 @@
+---
+label: Project
+hide_body: false
+fields:
+- type: file
+  name: thumbnail
+  label: Thumbnail
+  description: This will only show up on the front page
+- type: text
+  name: title
+  label: Title
+  config:
+    required: true
+- type: datetime
+  name: date
+  label: Date
+  config:
+    required: true
+    date_format: YYYY
+    time_format: ''
+    export_format: YYYY
+    display_utc: true
+  default: now
+  hidden: true
+- type: tag_list
+  name: categories
+  label: Categories
+- type: color
+  name: project_bg_color
+  config:
+    color_format: Hex
+  label: Background color
