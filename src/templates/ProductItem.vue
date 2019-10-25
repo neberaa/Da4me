@@ -682,26 +682,30 @@ export default {
           -moz-appearance:textfield; /* Firefox */
         }
         input {
-          width: 90px;
+          width: 80px;
           font-weight: bold;
-          padding: 5px 30px;
+          padding: 0 30px;
           border: 1px solid $gray;
           border-radius: 20px;
           text-align: center;
           height: 40px;
+          line-height: 40px;
         }
         span {
           cursor: pointer;
           font-size: 1.2rem;
           font-weight: bold;
           position: absolute;
-          line-height: 0;
+          line-height: 35px;
+          width: 30px;
+          height: 40px;
+          text-align: center;
           &.dec {
-            left: 15px;
+            left: 0;
             font-size: 1.4rem;
           }
           &.inc {
-            right: 13px;
+            right: 0;
           }
         }
       }
