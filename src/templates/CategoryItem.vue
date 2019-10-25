@@ -106,6 +106,7 @@ query CategoryItem ($path: String!) {
   products: allProductItem {
     edges {
       node {
+        date
         id
         title
         category
@@ -144,14 +145,15 @@ export default {
   data() {
     return {
       sortItems: [
-        {name: 'название: А - Я', sortBy: 'nameAsc', index: 0},
-        {name: 'название: Я - A', sortBy: 'nameDesc', index: 1},
-        {name: 'цена: по убыванию', sortBy: 'priceDesc', index: 2},
-        {name: 'цена: по возрастанию', sortBy: 'priceAsc', index: 3},
+        {name: 'по новизне', sortBy: 'dateDesc', index: 0},
+        {name: 'название: А - Я', sortBy: 'nameAsc', index: 1},
+        {name: 'название: Я - A', sortBy: 'nameDesc', index: 2},
+        {name: 'цена: по убыванию', sortBy: 'priceDesc', index: 3},
+        {name: 'цена: по возрастанию', sortBy: 'priceAsc', index: 4},
       ],
       sortListIsHidden : true,
       categoryListIsHidden: true,
-      activeSortItem: null,
+      activeSortItem: 0,
       activeColor: null,
     }
   },
@@ -168,7 +170,7 @@ export default {
   },
   watch: {
     $route() {
-      this.activeSortItem = null;
+      this.activeSortItem = 0;
       this.setProductColors();
       this.setDefaultColor();
     }
@@ -204,8 +206,8 @@ export default {
         if (value === 'priceAsc') {
           return a.node.price - b.node.price;
         }
-        if (value === 'priceDesc') {
-          return b.node.price - a.node.price;
+        if (value === 'dateDesc') {
+          return new Date(b.node.date) - new Date(a.node.date);
         }
       })
     },
@@ -360,6 +362,7 @@ export default {
           &.active {
             border-color: $blue;
             color: $blue;
+            background: $white;
           }
           &:not(:last-of-type) {
             margin-bottom: 0.5rem;

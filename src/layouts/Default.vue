@@ -178,6 +178,12 @@ button {
     padding: 10px;
   }
 }
+input,
+textarea {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
 input {
   height: 45px;
   border: 1px solid rgba($gray, 0.3);
