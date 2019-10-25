@@ -143,7 +143,7 @@
               <p class="title">Количество: </p>
               <div class="quantity">
                 <span class="dec" @click="selectQuantity('dec')">-</span>
-                <input type="number" min="1" @blur="checkValue($event)" :value="productQuantity > 0 ? productQuantity : 1">
+                <input type="number" min="1" max="20" @blur="checkValue($event)" :value="productQuantity > 0 ? productQuantity : 1">
                 <span class="inc" @click="selectQuantity('inc')">+</span>
               </div>
             </div>
@@ -384,9 +384,13 @@ export default {
       this.setDefaultColor();
     },
     checkValue(e) {
-      const value = e.target.value;
-      if (value > 0) {
-        this.productQuantity = value;
+      const pattern = /[0-9]/g;
+      const value = e.target.value.replace(/^0+/, '');
+      const isNumber = pattern.test(value);
+
+      if (isNumber && parseInt(value) > 0) {
+        this.productQuantity = parseInt(value);
+        e.target.value = parseInt(value);
       } else {
         e.target.value = 1;
         this.productQuantity = 1;
@@ -397,6 +401,7 @@ export default {
     this.defineSizeChart();
     this.setProductColors();
     this.loadJSON('orderData');
+    this.loadJSON('wishList');
     this.setDefaults();
 
   }

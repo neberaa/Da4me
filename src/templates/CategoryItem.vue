@@ -235,6 +235,9 @@ export default {
         if (value === 'priceAsc') {
           return a.node.price - b.node.price;
         }
+        if (value === 'priceDesc') {
+          return b.node.price - a.node.price;
+        }
         if (value === 'dateDesc') {
           return new Date(b.node.date) - new Date(a.node.date);
         }
@@ -279,6 +282,7 @@ export default {
   mounted() {
     this.setProductColors();
     this.setDefaultColor();
+    this.loadJSON('wishList');
   }
 }
 </script>
