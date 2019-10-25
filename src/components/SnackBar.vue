@@ -43,6 +43,7 @@ export default {
     color: $white;
     font-size: 1rem;
     width: fit-content;
+    z-index: 100;
     @include screenBreakpoint2(desktop) {
       font-size: 1.2rem;
     }

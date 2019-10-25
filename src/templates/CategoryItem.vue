@@ -41,6 +41,13 @@
               :key="product.node.id"
               class="product__item">
               <div class="image-container">
+                <a
+                  class="wishlist"
+                  @click.prevent="toggleWishList(product.node.id)">
+                  <HeartIcon
+                    class="icon"
+                    :class="{'icon--coral': isAddedToWishList(product.node.id)}"/>
+                </a>
                 <g-link :to="product.node.path">
                   <ResponsiveImage
                     :url="product.node.image"
@@ -131,7 +138,10 @@ query CategoryItem ($path: String!) {
 </page-query>
 
 <script>
-  import SignIcon from '../assets/icons/sign.svg';
+import SignIcon from '../assets/icons/sign.svg';
+import { mapGetters, mapMutations, mapState } from 'vuex';
+import HeartIcon from "../assets/icons/heart.svg";
+
 export default {
   inject: ['resp'],
   metaInfo () {
@@ -141,6 +151,7 @@ export default {
   },
   components: {
     SignIcon,
+    HeartIcon,
   },
   data() {
     return {
@@ -158,6 +169,9 @@ export default {
     }
   },
   computed: {
+    ...mapGetters([
+      'isAddedToWishList',
+    ]),
     filteredProducts() {
       return this.$page.products.edges.filter(p => {
         const category = `/${p.node.category}.md`;
@@ -176,6 +190,21 @@ export default {
     }
   },
   methods: {
+    ...mapMutations([
+      'addToWishList',
+      'removeFromWishList',
+      'loadJSON',
+      'showSnackBar',
+    ]),
+    toggleWishList(id) {
+      if (this.isAddedToWishList(id)) {
+        this.removeFromWishList(id);
+        this.showSnackBar('Товар удален из списка желаний!');
+      } else {
+        this.addToWishList(id);
+        this.showSnackBar('Товар успешно добавлен в список желаний!');
+      }
+    },
     sortBy(value, ind = null) {
       if (ind !== null) {
         this.activeSortItem = ind;
@@ -417,6 +446,36 @@ export default {
           }
           @include screenBreakpoint2(desktop) {
             flex: 0 0;
+          }
+          .wishlist {
+            position: absolute;
+            cursor: pointer;
+            z-index: 2;
+            background: $white;
+            width: 30px;
+            height: 30px;
+            top: 10px;
+            right: 10px;
+            border-radius: 50%;
+            @include screenBreakpoint2(phone) {
+              width: 40px;
+              height: 40px;
+              top: 15px;
+              right: 15px;
+            }
+            .icon {
+              width: 20px;
+              height: 20px;
+              top: 6px;
+              left: 5px;
+              position: relative;
+              @include screenBreakpoint2(phone) {
+                width: 25px;
+                height: 25px;
+                top: 8px;
+                left: 8px;
+              }
+            }
           }
           .sale-chip {
             position: absolute;
