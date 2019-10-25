@@ -614,6 +614,7 @@ export default {
           border-radius: 23px;
           text-transform: uppercase;
           margin-top: 0;
+          font-weight: bold;
           &:not(:last-of-type) {
             margin-right: 0.4rem;
           }
@@ -640,15 +641,17 @@ export default {
             background: rgba($gray, 0.7);
           }
           .image {
-            position: relative;
             @include center('both');
-            width: 60vw;
-            height: 50vh;
-            max-width: 800px;
-            @include screenBreakpoint2(phone) {
-              width: calc(100% - 4rem);
-              margin: auto;
-              height: 80vh;
+            width: calc(100vw - 20px);
+            margin: auto;
+            height: calc((100vw - 20px) / 1.5);
+            @include screenBreakpoint2(phone-landscape) {
+              max-width: 90vw;
+              max-height: 80vh;
+            }
+            @include screenBreakpoint2(desktop) {
+              max-width: 1000px;
+              max-height: 500px;
             }
             .icon {
               width: 30px;
