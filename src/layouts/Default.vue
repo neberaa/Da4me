@@ -84,6 +84,14 @@ span {
 img {
   max-width: 100%;
 }
+.page {
+  img {
+    max-width: 500px;
+    width: 100%;
+    margin: auto;
+    display: block;
+  }
+}
 
 button {
   border: none;
