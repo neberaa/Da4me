@@ -464,6 +464,9 @@ export default {
                 text-decoration: none;
                 color: $white;
                 margin-bottom: 5px;
+                &.active {
+                  color: $blue;
+                }
               }
             }
 
