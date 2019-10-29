@@ -156,6 +156,11 @@
       width: 100%;
       box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.2);
     }
+    @include screenBreakpoint2(phone-landscape) {
+      top: 4rem;
+      width: 100%;
+      box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+    }
 
     .icon.cross {
       width: 30px;
@@ -185,6 +190,9 @@
       @include screenBreakpoint2(desktop) {
         flex-direction: row;
       }
+      @include screenBreakpoint2(phone-landscape) {
+        flex-direction: row;
+      }
 
       &__image {
         width: 130px;
@@ -195,6 +203,12 @@
           width: 100%;
           height: 60vh;
           margin-bottom: 0.4rem;
+        }
+        @include screenBreakpoint2(phone-landscape) {
+          width: 200px;
+          height: 300px;
+          margin-right: 1.4rem;
+          margin-bottom: 0;
         }
         @include screenBreakpoint2(tablet) {
           width: 100%;
@@ -255,6 +269,11 @@
         }
         @include screenBreakpoint2(phone) {
           width: 100%;
+        }
+        @include screenBreakpoint2(phone-landscape) {
+          position: absolute;
+          bottom: 0;
+          width: auto;
         }
       }
     }

@@ -40,7 +40,7 @@ export default {
     grid-auto-flow: dense;
     @include screenBreakpoint2(phone) {
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      grid-auto-rows: 400px;
+      grid-auto-rows: 450px;
     }
     .category {
       overflow: hidden;

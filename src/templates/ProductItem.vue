@@ -499,6 +499,9 @@ export default {
         margin: auto;
         max-height: calc(100vh - 100px);
       }
+      @include screenBreakpoint2(phone-landscape) {
+        max-height: 150vw;
+      }
       @include screenBreakpoint2(desktop) {
         min-height: 700px;
       }
@@ -530,6 +533,9 @@ export default {
           margin: 1.2rem auto;
           max-height: calc(80vh - 2.4rem);
         }
+        @include screenBreakpoint2(phone-landscape) {
+          max-height: 110vw;
+        }
       }
       .slider-nav-thumbnails {
         width: 100%;
@@ -537,6 +543,9 @@ export default {
           width: calc(100vw - 4rem);
           margin: auto;
           max-height: 22vh;
+        }
+        @include screenBreakpoint2(phone-landscape) {
+          max-height: 40vw;
         }
       }
     }

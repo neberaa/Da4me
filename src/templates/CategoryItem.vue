@@ -478,6 +478,9 @@ export default {
           @include screenBreakpoint2(phone) {
             height: 70vh;
           }
+          @include screenBreakpoint2(phone-landscape) {
+            height: 120vw;
+          }
           @include screenBreakpoint2(desktop) {
             flex: 0 0;
           }

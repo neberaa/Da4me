@@ -115,23 +115,23 @@
 
 <style lang="scss" scoped>
   .wishlist{
-.header {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  border-bottom: 1px solid $light-gray;
-  margin: 20px 0;
-  .icon {
-    display: block;
-    width: 2rem;
-    height: 2rem;
-    margin-right: 20px;
-  }
-  .page-title {
-    margin: 0;
-  }
+    .header {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      border-bottom: 1px solid $light-gray;
+      margin: 20px 0;
+      .icon {
+        display: block;
+        width: 2rem;
+        height: 2rem;
+        margin-right: 20px;
+      }
+      .page-title {
+        margin: 0;
+      }
 
-}
+    }
     .product {
       position: relative;
       margin-bottom: 15px;
@@ -143,6 +143,9 @@
       padding: 20px 0;
       @include screenBreakpoint2(phone) {
         flex-direction: column;
+      }
+      @include screenBreakpoint2(phone-landscape) {
+        flex-direction: row;
       }
 
       &__image {
@@ -157,6 +160,12 @@
         @include screenBreakpoint2(phone) {
           width: 100%;
           flex-basis: 500px;
+        }
+        @include screenBreakpoint2(phone-landscape) {
+          width: 150px;
+          height: 200px;
+          flex-basis: auto;
+          margin-right: 1.4rem;
         }
       }
       &__content {
@@ -191,6 +200,9 @@
           @include screenBreakpoint2(phone) {
             flex-direction: column;
             position: relative;
+          }
+          @include screenBreakpoint2(phone-landscape) {
+            position: absolute;
           }
           &__item {
             padding: 5px 15px;
