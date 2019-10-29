@@ -11,8 +11,16 @@
         <div class="content">
           <aside class="sidebar">
             <section class="categories">
-              <h4 class="categories__title" :class="[{'with-arrow': isMobile}, {'with-arrow--up': categoryListIsHidden && isMobile}]" @click="categoryListIsHidden = !categoryListIsHidden">Категории</h4>
-              <div class="categories__list" :class="[{hide: isMobile},{toggled: !categoryListIsHidden && isMobile}]">
+              <h4
+                class="categories__title"
+                :class="[{'with-arrow': isMobile},
+                  {'with-arrow--up': categoryListIsHidden && isMobile}]"
+                @click="categoryListIsHidden = !categoryListIsHidden">
+                Категории
+              </h4>
+              <div
+                class="categories__list"
+                :class="[{hide: isMobile}, {toggled: !categoryListIsHidden && isMobile}]">
                 <g-link
                   :to="item.node.path"
                   v-for="(item, i) in $page.categories.edges"
@@ -22,8 +30,17 @@
               </div>
             </section>
             <section class="sort">
-              <h4 class="sort__title" :class="[{'with-arrow': isMobile}, {'with-arrow--up': sortListIsHidden && isMobile}]" @click="sortListIsHidden = !sortListIsHidden">Сортировать</h4>
-              <div class="sort__list" :class="[{hide: isMobile},{toggled: !sortListIsHidden && isMobile}]">
+              <h4
+                class="sort__title"
+                :class="[{'with-arrow': isMobile},
+                  {'with-arrow--up': sortListIsHidden && isMobile}]"
+                @click="sortListIsHidden = !sortListIsHidden">
+                Сортировать
+              </h4>
+              <div
+                class="sort__list"
+                :class="[{hide: isMobile},
+                  {toggled: !sortListIsHidden && isMobile}]">
                 <button
                   class="sort-item cta thin"
                   :key="`sortItem${item.index}`"
@@ -35,7 +52,10 @@
             </section>
           </aside>
           <div class="products">
-            <p v-show="filteredProducts.length === 0">Категория пуста...</p>
+            <p
+              v-show="filteredProducts.length === 0">
+              Категория пуста...
+            </p>
             <div
               v-for="product in filteredProducts"
               :key="product.node.id"
@@ -50,7 +70,8 @@
                 </a>
                 <g-link :to="product.node.path">
                   <ResponsiveImage
-                    :url="product.node.image"
+                    :url="product.node.imageGallery && product.node.imageGallery.length > 0 ?
+                  product.node.imageGallery[0] : product.node.image"
                     :alt="product.node.title"
                     :settings-mobile="'w_400,h_800,c_fit'"
                     :settings-tablet="'w_0.5,h_0.5,c_fit'"/>
@@ -61,9 +82,15 @@
                   Sale
                 </div>
               </div>
-              <p v-text="product.node.title"/>
-              <p class="description" v-text="product.node.description"/>
-              <ul class="colors" v-if="product.node.colors.length > 0">
+              <h4
+                class="title"
+                v-text="product.node.title"/>
+              <p
+                class="description"
+                v-text="product.node.description"/>
+              <ul
+                class="colors"
+                v-if="product.node.colors.length > 0">
                 <li
                   class="colors__item"
                   :class="{active: product.node.activeColor === item.colorId}"
@@ -81,7 +108,10 @@
                     v-show="product.node.oldPrice && product.node.oldPrice > 0">
                     {{ product.node.oldPrice }}, 00
                   </span>
-                  <span>{{ product.node.price }}, 00</span>
+                  <span
+                    :class="{new: product.node.oldPrice && product.node.oldPrice > 0}">
+                    {{ product.node.price }}, 00
+                  </span>
                 </div>
                 <span>грн</span>
               </div>
@@ -492,16 +522,16 @@ export default {
             padding: 5px;
           }
         }
-        p {
-          margin-top: 0;
-          &.description {
-            font-style: italic;
-            font-size: 0.8rem;
-          }
-          @include screenBreakpoint2(phone) {
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-          }
+        .title {
+          font-size: 1.4rem;
+          margin: 0 0 0.5rem;
+          text-align: left;
+          font-weight: bold;
+        }
+        .description {
+          font-style: italic;
+          font-size: 1rem;
+          margin-bottom: 0.5rem;
         }
         .colors {
           display: flex;
@@ -537,18 +567,23 @@ export default {
           align-items: center;
           &__value {
             display: flex;
-            flex-direction: column;
             span {
-              margin: 0 0.2rem 0 0;
-              &.old {
+              margin: 0 0.4rem 0 0;
+              font-size: 1.2rem;
+              &.new {
                 color: $coral;
+              }
+              &.old {
                 text-decoration: line-through;
               }
             }
           }
+          span {
+            font-size: 1.2rem;
+          }
           &__icon {
-            width: 1.2rem;
-            height: 1.2rem;
+            width: 1rem;
+            height: 1rem;
             margin-right: 0.2rem;
           }
         }

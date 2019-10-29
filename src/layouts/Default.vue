@@ -39,6 +39,7 @@ body {
   font-size: 14px;
   transition: background 0.5s ease;
   overflow-x: hidden;
+  color: $gray;
   @include screenBreakpoint2(desktop) {
     font-size: 16px;
   }

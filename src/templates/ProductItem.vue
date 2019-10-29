@@ -66,17 +66,24 @@
             </ClientOnly>
           </div>
           <div class="content">
-            <h2 class="title" v-html="$page.product.title" />
-            <span class="art" v-text="$page.product.artikul"/>
+            <h2
+              class="title"
+              v-html="$page.product.title" />
+            <span
+              class="art"
+              v-text="$page.product.artikul"/>
             <div class="price">
               <SignIcon class="icon price__icon"/>
               <div class="price__value">
                 <h4
                   class="old"
-                  v-show="$page.product.oldPrice">
+                  v-show="$page.product.oldPrice && $page.product.oldPrice > 0">
                   {{ $page.product.oldPrice }}, 00
                 </h4>
-                <h4>{{ $page.product.price }}, 00</h4>
+                <h4
+                  :class="{new: $page.product.oldPrice &&$page.product.oldPrice > 0}">
+                  {{ $page.product.price }}, 00
+                </h4>
               </div>
               <h4>грн</h4>
             </div>
@@ -538,11 +545,19 @@ export default {
       @include screenBreakpoint2(phone) {
         flex-basis: 100%;
       }
-      .title {
+      & > .title {
         margin: 1.2rem 0;
+        font-size: 1.4rem;
+        @include screenBreakpoint2(desktop) {
+          font-size: 1.6rem;
+        }
+        @include screenBreakpoint2(phone) {
+          margin-top: 0;
+        }
       }
       p.title {
         margin-bottom: 0.4rem;
+        font-weight: bold;
       }
       .art {
         border: 1px solid $light-gray;
@@ -552,16 +567,25 @@ export default {
         display: flex;
         justify-content: flex-start;
         align-items: center;
+        h4 {
+          margin: 0.5rem 0;
+          color: $gray;
+          font-size: 1.2rem;
+        }
         &__icon {
-          width: 30px;
-          height: 30px;
+          width: 20px;
+          height: 20px;
         }
         &__value {
           margin: 1rem 0 1rem 0.5rem;
+          display: flex;
           h4 {
-            margin: 0 0.2rem 0 0;
-            &.old {
+            margin: 0 0.4rem 0 0;
+            font-size: 1.2rem;
+            &.new {
               color: $coral;
+            }
+            &.old {
               text-decoration: line-through;
             }
           }
@@ -604,10 +628,11 @@ export default {
           }
         }
       }
+      .description {
+        font-size: 1rem;
+        font-style: italic;
+      }
       .size-container {
-        .title {
-          font-weight: bold;
-        }
         .size {
           border: 1px solid $gray;
           padding: 8px 23px;
@@ -668,9 +693,6 @@ export default {
         }
       }
       .quantity-container {
-        .title {
-          font-weight: bold;
-        }
         .quantity {
           position: relative;
           display: inline-flex;
