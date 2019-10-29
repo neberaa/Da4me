@@ -15,15 +15,6 @@ fields:
   label: ID страницы
   description: 'Будет использоваться как путь к странице (должен быть на английском) '
   hidden: false
-- name: block
-  type: blocks
-  label: Блоки страниц
-  template_types:
-  - page-block
-  config:
-    min: 
-    max: 
-  description: Выберите блок для страницы
 - name: show_in_nav
   type: boolean
   label: Отображать в главном меню?
