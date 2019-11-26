@@ -85,9 +85,6 @@ img {
   max-width: 100%;
 }
 .page {
-  a {
-    color: $blue;
-  }
   img {
     max-width: 500px;
     width: 100%;
