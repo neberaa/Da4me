@@ -15,21 +15,6 @@ sections:
 - type: heading
   label: КОНТЕНТ
 - type: directory
-  path: products
-  label: Продукты
-  create: all
-  match: "**/*.md"
-  new_doc_ext: md
-  templates:
-  - product
-- type: directory
-  path: categories
-  label: Категории
-  create: documents
-  match: "**/*.md"
-  templates:
-  - category
-- type: directory
   path: pages
   label: Страницы
   create: all
