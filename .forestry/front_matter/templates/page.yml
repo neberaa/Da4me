@@ -1,0 +1,27 @@
+---
+label: Page
+hide_body: false
+fields:
+- name: title
+  type: text
+  config:
+    required: false
+  label: Заголовок
+  description: Введите заголовок страницы
+- name: path
+  type: text
+  config:
+    required: true
+  label: ID страницы
+  description: 'Будет использоваться как путь к странице (должен быть на английском) '
+  hidden: false
+- name: show_in_nav
+  type: boolean
+  label: Отображать в главном меню?
+  description: Будет ли страница выводиться в меню(в хедере и в футере))
+  hidden: false
+  default: true
+pages:
+- pages/о-нас.md
+- pages/размерная-сетка-1.md
+- pages/доставка.md
