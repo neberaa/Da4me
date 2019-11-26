@@ -15,21 +15,6 @@ sections:
 - type: heading
   label: КОНТЕНТ
 - type: directory
-  path: products
-  label: Продукты
-  create: all
-  match: "**/*.md"
-  new_doc_ext: md
-  templates:
-  - product
-- type: directory
-  path: categories
-  label: Категории
-  create: documents
-  match: "**/*.md"
-  templates:
-  - category
-- type: directory
   path: pages
   label: Страницы
   create: all
@@ -49,9 +34,13 @@ public_path: https://res.cloudinary.com/da4me/fl_progressive,q_auto:best
 front_matter_path: ''
 use_front_matter_path: true
 file_template: ":filename:"
+instant_preview: 
 build:
   preview_output_directory: dist
   install_dependencies_command: yarn install
   preview_docker_image: node:10
   mount_path: "/srv"
   instant_preview_command: vuepress dev -p 8080 -h 0.0.0.0
+  publish_command: vuepress build -d .vuepress/dist
+  output_directory: ".vuepress/dist"
+  preview_command: vuepress build -d .vuepress/dist
