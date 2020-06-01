@@ -143,13 +143,13 @@ fields:
   description: Добавьте возможные размеры для продукта через запятую(S, M и т.д.).
     Если доступны все размеры оставьте поле пустым
 pages:
+- products/Family look/сарафаны-для-мамы-и-малышки-1.md
+- products/Family look/сарафаны-для-мамы-и-малышки.md
+- products/Kids/комбинезон.md
+- products/Kids/футболка.md
+- products/Платья/платье-в-пол.md
+- products/Платья/платье-летнее.md
 - products/Сарафаны/сарафан-бархат.md
 - products/Сарафаны/сарафан-бомба.md
 - products/Юбки/юбка-в-пол.md
 - products/Юбки/юбка-летняя.md
-- products/Платья/платье-в-пол.md
-- products/Kids/комбинезон.md
-- products/Платья/платье-летнее.md
-- products/Family look/сарафаны-для-мамы-и-малышки.md
-- products/Kids/футболка.md
-- products/Family look/сарафаны-для-мамы-и-малышки-1.md

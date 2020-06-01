@@ -34,13 +34,13 @@ fields:
 - name: footer_bg
   type: file
   config:
-    maxSize: 250
+    maxSize: 
   label: Фон для футера
   description: Картинка для футера
 - name: size_chart
   type: file
   config:
-    maxSize: 250
+    maxSize: 
   label: Размерная сетка
   description: Выберите картинку с размерной сеткой
 - name: cloudinary_url
