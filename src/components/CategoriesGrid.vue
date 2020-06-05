@@ -8,7 +8,7 @@
       <div class="category__image">
         <ResponsiveImage
           :url="item.node.image"
-          :alt="item.node.title"
+          :alt="item.node.header"
           :settings-mobile="'w_300,h_600,c_fit'"
           :settings-tablet="'w_0.5,h_0.5,c_fit'"/>
       </div>
