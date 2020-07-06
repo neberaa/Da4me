@@ -1,8 +1,12 @@
+## Da4me e-commerce store
 ```
-Fashion store was created with serverless tech stack.
-Netlify + Vue.js + Forestry CMS and Cloudinary assets management. 
+Fashion store was created with serverless tech stack:
 
-Extremely fast, SEO friendly and cool designed.
+- Netlify
+- Vue.js
+- Forestry CMS
+- Cloudinary assets management
 ```
+**Extremely fast, SEO friendly and cool designed.**
 ### Check it out:
 ### https://da4me.netlify.app
